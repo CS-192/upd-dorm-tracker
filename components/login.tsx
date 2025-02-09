@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View } from "react-native";
 import { styles } from "@/app/styles";
 
+// This component contains the login card
+
 const Login = () => {
   return (
     <>
