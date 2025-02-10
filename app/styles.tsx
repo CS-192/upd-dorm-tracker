@@ -9,9 +9,26 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   LoginCard: {
-    backgroundColor: "#a37976",
-    padding: 10,
-    borderRadius: 10,
-    width: "70%",
+    backgroundColor: "transparent",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: 24,
+    borderRadius: 8,
+    height: "33.68%",
+    width: "78%",
+    borderColor: "#d9d9d9",
+    borderWidth: 1,
   },
+  Logo:{
+    width: 204,
+    height: 204,
+    resizeMode: "contain",
+  },
+  ImageWrapper:{
+    padding: 24,
+    
+    justifyContent: "center",
+  }
+
 });
+
