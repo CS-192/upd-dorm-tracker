@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { styles } from "@/app/styles";
-const logo = require("../assets/images/icon.png")
+const logo = require("../assets/images/icon.png");
 
 // This component contains the login card
 
@@ -15,16 +15,12 @@ const Login = () => {
   );
 };
 
-
-
 const Logo = () => {
   return (
     <View style={styles.ImageWrapper}>
-      <img src={logo}
-          style={styles.Logo}/>
+      <Image source={logo} style={styles.Logo} />
     </View>
-    
   );
 };
 
-export {Login, Logo};
+export { Login, Logo };
