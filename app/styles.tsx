@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 24,
     borderRadius: 8,
-    height: "33.68%",
     width: "78%",
     borderColor: "#d9d9d9",
     borderWidth: 1,
@@ -26,7 +25,6 @@ export const styles = StyleSheet.create({
   },
   ImageWrapper:{
     padding: 24,
-    
     justifyContent: "center",
   }
 
