@@ -16,7 +16,12 @@ export default function Index() {
         }}
       >
         <Logo />
-        <Login />
+        
+        <Login 
+          
+          
+        
+        />
       </SafeAreaView>
     </SafeAreaProvider>
   );
