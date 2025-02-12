@@ -17,21 +17,38 @@ const Login = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [testCounter, setTestCounter] = useState(0);
 
   const handleLogin = () => {
     console.log("Login attempted with:", username, password);
 
     if (username && password) {
       setTimeout(() => {
-        router.push("/dashboard");
+        switch (testCounter) {
+          case 0:
+            showToast("No database connection");
+            break;
+          case 1:
+            showToast("Incorrect username or password");
+            break;
+          case 2:
+            router.push("/dashboard");
+            break;
+          default:
+            break;
+        }
+        setTestCounter((testCounter + 1) % 3);
       }, 500);
     } else {
-      Toast.show({
-        type: "error", // Type of toast ('success', 'error', 'info')
-        text1: "Username or Password is empty!", // Main toast message
-        visibilityTime: 2000, // Duration before the toast disappears (in ms)
-        autoHide: true, // Automatically hide the toast after the given time
-      });
+      showToast(
+        "Fill out " +
+          (!username && !password
+            ? "username and password"
+            : !username
+            ? "username"
+            : "password") +
+          " field"
+      );
     }
   };
 
@@ -72,6 +89,15 @@ const Login = () => {
       </View>
     </View>
   );
+};
+
+const showToast = (message: string) => {
+  Toast.show({
+    type: "error", // Type of toast ('success', 'error', 'info')
+    text1: message, // Main toast message
+    visibilityTime: 2000, // Duration before the toast disappears (in ms)
+    autoHide: true, // Automatically hide the toast after the given time
+  });
 };
 
 export { Login };
