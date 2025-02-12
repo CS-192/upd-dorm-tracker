@@ -81,11 +81,14 @@ const Login = () => {
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.formCard}>
-        <Button
-            title="Sign in with Google"
-            onPress={() => Alert.alert('Google Sign In button pressed')}
-        />
+
+      <View style={[styles.formCard, { marginTop: 10 }]}>
+        <TouchableOpacity
+          style={[styles.signInButton, { backgroundColor: "dodgerblue" }]}
+          onPress={() => Alert.alert("Google Sign In button pressed")}
+        >
+          <Text style={styles.signInButtonText}>Sign in with Google</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
