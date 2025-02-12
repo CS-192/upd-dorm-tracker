@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import styles from "@/app/styles";
 
-const logo = require("../assets/images/icon.png");
+const logo = require("../assets/images/logo_circle.png");
 
 const Login = () => {
   const [username, setUsername] = useState("");

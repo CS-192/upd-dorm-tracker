@@ -15,12 +15,13 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   imageWrapper: {
-    alignItems: "center",
-    marginBottom: 30,
+    padding: 24,
+    justifyContent: "center",
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 204,
+    height: 204,
+    resizeMode: "contain",
   },
   formCard: {
     width: windowWidth * 0.85,
