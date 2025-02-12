@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Button,
 } from "react-native";
 import styles from "@/app/styles";
 import { useRouter } from "expo-router";
@@ -86,6 +87,12 @@ const Login = () => {
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.formCard}>
+        <Button
+            title="Sign in with Google"
+            onPress={() => Alert.alert('Google Sign In button pressed')}
+        />
       </View>
     </View>
   );
