@@ -32,12 +32,11 @@ export const styles = StyleSheet.create({
   },
   searchInput: {
     fontFamily: FONT.regular,
-    color: COLORS.gray2,
     paddingHorizontal: SIZES.small,
     paddingVertical: 8, // Added vertical padding
     borderWidth: 1,
-    borderColor: COLORS.gray2,
-    borderRadius: 12,
+    borderColor: "#d9d9d9", // changed color to match figma
+    borderRadius: 8,
     height: 37, // Increased height
     textAlignVertical: 'center', // Center text vertically (Android)
     marginTop:5,
@@ -48,12 +47,11 @@ export const styles = StyleSheet.create({
   },
   searchInput2: {
     fontFamily: FONT.regular,
-    color: COLORS.gray2,
     paddingHorizontal: SIZES.small,
     paddingVertical: 8, // Added vertical padding
     borderWidth: 1,
-    borderColor: COLORS.gray2,
-    borderRadius: 12,
+    borderColor: "#d9d9d9",
+    borderRadius: 8,
     height: 37, // Increased height
     textAlignVertical: 'center', // Center text vertically (Android)
     marginTop:5,
@@ -82,7 +80,7 @@ export const styles = StyleSheet.create({
   signInBtn:{
     borderWidth: 1,
     height: 35,
-    borderRadius: 12,
+    borderRadius: 8,
     alignSelf: 'center',
     width: 260,
     backgroundColor: 'maroon', // Set maroon background

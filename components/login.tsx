@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text, TextInput, View, TouchableOpacity } from "react-native";
 import { styles } from "@/app/styles";
-const logo = require("../assets/images/icon.png");
+const logo = require("../assets/images/logo_circle.png");
 import { COLORS, FONT, SIZES } from "../constants/theme";
 // This component contains the login card
 
