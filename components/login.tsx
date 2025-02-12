@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
-import { styles } from "@/app/styles";
+import styles from "@/app/styles";
 
 const logo = require("../assets/images/icon.png");
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    console.log('Login attempted with:', username, password);
+    console.log("Login attempted with:", username, password);
   };
 
   return (
@@ -39,10 +39,7 @@ const Login = () => {
           secureTextEntry
         />
 
-        <TouchableOpacity 
-          style={styles.signInButton}
-          onPress={handleLogin}
-        >
+        <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
           <Text style={styles.signInButtonText}>Sign in</Text>
         </TouchableOpacity>
 
