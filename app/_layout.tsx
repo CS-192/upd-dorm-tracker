@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import Toast from "react-native-toast-message";
 
 // This is where the "pages" are setup.
 // When a new page is added add a new Stack.Screen with name being the file name of the page that will be added.
@@ -6,12 +7,16 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="index" />
-    </Stack>
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="dashboard" />
+      </Stack>
+      <Toast />
+    </>
   );
 }
