@@ -17,27 +17,20 @@ const Login = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [testCounter, setTestCounter] = useState(0);
 
   const handleLogin = () => {
-    console.log("Login attempted with:", username, password);
-
     if (username && password) {
       setTimeout(() => {
-        switch (testCounter) {
-          case 0:
-            showToast("No database connection");
-            break;
-          case 1:
-            showToast("Incorrect username or password");
-            break;
-          case 2:
-            router.push("/dashboard");
-            break;
-          default:
-            break;
+        if (username === "databaseError" && password === "12345678") {
+          showToast("No database connection");
+        } else if (
+          username === "incorrectCredentials" &&
+          password === "12345678"
+        ) {
+          showToast("Incorrect username or password");
+        } else {
+          router.push("/dashboard");
         }
-        setTestCounter((testCounter + 1) % 3);
       }, 500);
     } else {
       showToast(
