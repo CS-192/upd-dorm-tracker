@@ -6,51 +6,95 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Button,
 } from "react-native";
 import styles from "@/app/styles";
 import { useRouter } from "expo-router";
 import Toast from "react-native-toast-message";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH } from "@/FirebaseConfig";
 
 const logo = require("../assets/images/logo_circle.png");
 
 const Login = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [testCounter, setTestCounter] = useState(0);
+  const [loading,setLoading] =useState(false);
+  //const [testCounter, setTestCounter] = useState(0);
+  const auth=FIREBASE_AUTH;
 
-  const handleLogin = () => {
-    console.log("Login attempted with:", username, password);
 
-    if (username && password) {
-      setTimeout(() => {
-        switch (testCounter) {
-          case 0:
-            showToast("No database connection");
-            break;
-          case 1:
-            showToast("Incorrect username or password");
-            break;
-          case 2:
-            router.push("/dashboard");
-            break;
-          default:
-            break;
-        }
-        setTestCounter((testCounter + 1) % 3);
-      }, 500);
-    } else {
+  const signIn = async () => {
+    if (!email || !password) {
       showToast(
         "Fill out " +
-          (!username && !password
+          (!email && !password
             ? "username and password"
-            : !username
+            : !email
             ? "username"
             : "password") +
           " field"
       );
+      return; // Exit the function if fields are missing
+    }
+    setLoading(true);
+    
+    try{
+      const response=await signInWithEmailAndPassword(auth,email,password);
+      console.log(response);
+      showToast("Successful Log In");
+      router.push("/dashboard");
+
+      
+      
+    }
+    catch (error:any) {
+      console.log(error);
+      alert("Error "+ error);
+
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  const signUp = async () => {
+    if (!email || !password) {
+      showToast(
+        "Fill out " +
+          (!email && !password
+            ? "username and password"
+            : !email
+            ? "username"
+            : "password") +
+          " field"
+      );
+      return; // Exit the function if fields are missing
+    }
+  
+    // Makes sure na up mail gamit
+    if (!email.endsWith("@up.edu.ph")) {
+      showToast("Only @up.edu.ph emails are allowed for sign up.");
+      return;
+    }
+  
+    setLoading(true);
+  
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(response);
+      showToast("Check your email");
+    } catch (error: any) {
+      console.log(error);
+      alert("Error " + error);
+    } finally {
+      setLoading(false);
     }
   };
+  
+
+  
 
   return (
     <View style={styles.container}>
@@ -65,8 +109,8 @@ const Login = () => {
         <TextInput
           style={styles.input}
           placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           autoCapitalize="none"
         />
 
@@ -75,18 +119,27 @@ const Login = () => {
           style={styles.input}
           placeholder="Password"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
+        <TouchableOpacity style={styles.signInButton} onPress={()=>signIn()}>
           <Text style={styles.signInButtonText}>Sign in</Text>
         </TouchableOpacity>
+
 
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
+
+         <View style={{marginTop:15}}>
+        <Button
+            title="Sign in with Google"
+            onPress={()=>signUp()}
+        />
       </View>
+      </View>
+     
     </View>
   );
 };
@@ -101,3 +154,7 @@ const showToast = (message: string) => {
 };
 
 export { Login };
+  function setLoading(arg0: boolean) {
+    throw new Error("Function not implemented.");
+  }
+
