@@ -20,29 +20,47 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [testCounter, setTestCounter] = useState(0);
+  const [loading,setLoading] =useState(false);
+  //const [testCounter, setTestCounter] = useState(0);
+  const auth=FIREBASE_AUTH;
 
-  const handleLogin = () => {
-    console.log("Login attempted with:", username, password);
 
-    if (username && password) {
-      setTimeout(() => {
-        switch (testCounter) {
-          case 0:
-            showToast("No database connection");
-            break;
-          case 1:
-            showToast("Incorrect username or password");
-            break;
-          case 2:
-            router.push("/dashboard");
-            break;
-          default:
-            break;
-        }
-        setTestCounter((testCounter + 1) % 3);
-      }, 500);
-    } else {
+  const signIn = async () => {
+    if (!email || !password) {
+      showToast(
+        "Fill out " +
+          (!email && !password
+            ? "username and password"
+            : !email
+            ? "username"
+            : "password") +
+          " field"
+      );
+      return; // Exit the function if fields are missing
+    }
+    setLoading(true);
+    
+    try{
+      const response=await signInWithEmailAndPassword(auth,email,password);
+      console.log(response);
+      showToast("Successful Log In");
+      router.push("/dashboard");
+
+      
+      
+    }
+    catch (error:any) {
+      console.log(error);
+      alert("Error "+ error);
+
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  const signUp = async () => {
+    if (!email || !password) {
       showToast(
         "Fill out " +
           (!email && !password
@@ -121,6 +139,7 @@ const Login = () => {
         />
       </View>
       </View>
+     
     </View>
   );
 };
