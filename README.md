@@ -8,6 +8,10 @@ This is a course requirement for CS 191/CS192 Software Engineering Courses of th
 - Garlu Victor Nepomuceno
 - Lee Justine Maca
 
+#### Prototype Figma File
+
+https://www.figma.com/proto/h8r14frHFfw3DoWKqlW2Wm/Mobile-App?node-id=5-2&t=Q3vplhQJGHW2N4WL-1&starting-point-node-id=103%3A1427
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
