@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   Text,
@@ -11,7 +11,11 @@ import {
 import styles from "@/app/styles";
 import { useRouter } from "expo-router";
 import Toast from "react-native-toast-message";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { FIREBASE_AUTH } from "@/FirebaseConfig";
 
 const logo = require("../assets/images/logo_circle.png");
@@ -20,10 +24,21 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading,setLoading] =useState(false);
-  //const [testCounter, setTestCounter] = useState(0);
-  const auth=FIREBASE_AUTH;
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
 
+  // Check kung nakalog in na yung user during launch 
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const userToken = await AsyncStorage.getItem("userToken");
+      if (userToken) {
+        // If user is logged in, punta sa dashboard agad
+        router.push("/dashboard");
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
 
   const signIn = async () => {
     if (!email || !password) {
@@ -39,25 +54,25 @@ const Login = () => {
       return; // Exit the function if fields are missing
     }
     setLoading(true);
-    
-    try{
-      const response=await signInWithEmailAndPassword(auth,email,password);
+
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
+
+      // Creates and saves unique user token
+      const userToken = response.user.uid; // Use the UID or a JWT token if available
+      await AsyncStorage.setItem("userToken", userToken);
+      await AsyncStorage.setItem("userEmail", email); // Store email persistently
+
       showToast("Successful Log In");
       router.push("/dashboard");
-
-      
-      
-    }
-    catch (error:any) {
+    } catch (error: any) {
       console.log(error);
-      alert("Error "+ error);
-
-    }
-    finally {
+      alert("Error " + error);
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
   const signUp = async () => {
     if (!email || !password) {
@@ -72,17 +87,21 @@ const Login = () => {
       );
       return; // Exit the function if fields are missing
     }
-  
+
     // Makes sure na up mail gamit
     if (!email.endsWith("@up.edu.ph")) {
       showToast("Only @up.edu.ph emails are allowed for sign up.");
       return;
     }
-  
+
     setLoading(true);
-  
+
     try {
-      const response = await createUserWithEmailAndPassword(auth, email, password);
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       console.log(response);
       showToast("Check your email");
     } catch (error: any) {
@@ -92,9 +111,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
-
-  
 
   return (
     <View style={styles.container}>
@@ -123,23 +139,18 @@ const Login = () => {
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.signInButton} onPress={()=>signIn()}>
+        <TouchableOpacity style={styles.signInButton} onPress={signIn}>
           <Text style={styles.signInButtonText}>Sign in</Text>
         </TouchableOpacity>
-
 
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
 
-         <View style={{marginTop:15}}>
-        <Button
-            title="Sign in with Google"
-            onPress={()=>signUp()}
-        />
+        <View style={{ marginTop: 15 }}>
+          <Button title="Sign in with Google" onPress={signUp} />
+        </View>
       </View>
-      </View>
-     
     </View>
   );
 };
@@ -154,7 +165,3 @@ const showToast = (message: string) => {
 };
 
 export { Login };
-  function setLoading(arg0: boolean) {
-    throw new Error("Function not implemented.");
-  }
-
