@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
-import { Login } from "./login";
+import { Login } from "../app/login";
 import { useRouter as useRouterOriginal } from "expo-router";
 import Toast from "react-native-toast-message";
 
