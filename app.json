@@ -4,7 +4,7 @@
     "slug": "upd-dorm-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo_circle.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -32,7 +32,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      ["expo-font", {"fonts": ["./assets/fonts/Inter.ttf"]}]
     ],
     "experiments": {
       "typedRoutes": true
