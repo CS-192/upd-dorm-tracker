@@ -27,7 +27,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
 
-  // Check kung nakalog in na yung user during launch 
+  // Check kung nakalog in na yung user during launch
   useEffect(() => {
     const checkLoginStatus = async () => {
       const userToken = await AsyncStorage.getItem("userToken");
@@ -164,4 +164,4 @@ const showToast = (message: string) => {
   });
 };
 
-export { Login };
+export default Login;
