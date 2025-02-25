@@ -148,7 +148,7 @@ const Login = () => {
         </TouchableOpacity>
 
         <View style={{ marginTop: 15 }}>
-          <Button title="Sign in with Google" onPress={signUp} />
+          <Button title="Sign up with UP mail" onPress={signUp} />
         </View>
       </View>
     </View>
