@@ -15,7 +15,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ userRole, toggleMenu })
           <>
             <Link style={styles.menuItem} href="/dashboard">☐ Dashboard</Link>
             <Text style={styles.menuItem}>☐ Scan UP ID</Text>
-            <Text style={styles.menuItem}>☐ Maintain Dormer's Information</Text>
+            <Link style={styles.menuItem} href="/manage-dormers">☐ Maintain Dormer's Information</Link>
             <Link style={styles.menuItem} href="/manage-requests">☐ Maintain Requests</Link>
             <Link style={styles.menuItem} href="./manage-dorm-details">☐ View & Update Dorm Details</Link>
           </>
