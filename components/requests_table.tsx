@@ -33,8 +33,7 @@ const TableComponent = () => {
         <Table borderStyle={{ borderTopWidth: 1, borderColor: "#ccc" }}>
             <Row data={tableHead} style={styles.head} textStyle={styles.headtext} flexArr={[1.5, 1.5, 1, 1]}/>
         </Table>
-        <ScrollView style={styles.tableScrollView}
-            contentContainerStyle={styles.tableScrollContent}>
+        <ScrollView style={styles.tableScrollView}>
             <Table borderStyle={ {borderTopWidth: 1, borderColor: "#ccc" }}>
                 <Rows data={tableData} style={styles.row} textStyle={styles.text} flexArr={[1.5, 1.5, 1, 1]} />
             </Table>

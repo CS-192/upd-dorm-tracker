@@ -123,11 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   tableScrollView: {
-    maxHeight: 600,
-  },
-  tableScrollContent: {
-    flexGrow: 1, // Allows content to fill available space
-    paddingBottom: 300, // Adds extra space at the bottom
+    maxHeight: 500,
   },
   row: {
     flexDirection: "row",
