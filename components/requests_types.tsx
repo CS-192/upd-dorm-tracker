@@ -4,6 +4,8 @@ import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';  
 import styles from '@/app/styles';  // Import the styles
 
 
+// will turn the cells into TouchableOpacity components later
+// will add a function to handle the press of the cells later 
 
 
 
@@ -13,9 +15,9 @@ const RequestTypes = () => {
     <View style={styles.tableContainer}>
         <Table borderStyle={{ borderBottomWidth: 1, borderColor: "#757575" }}>
           <TableWrapper style={styles.row}>
-            <Cell data="Late night/Overnight Pass" style={styles.cell} textStyle={styles.requestTypesText} />
-            <Cell data="Monthly Bill" style={styles.cell} textStyle={styles.requestTypesText} />
-            <Cell data="Report" style={styles.cell} textStyle={styles.requestTypesText} />
+            <Cell data="Late night/Overnight Pass" style={styles.cell}  />
+            <Cell data="Monthly Bill" style={styles.cell}  />
+            <Cell data="Report" style={styles.cell}  />
           </TableWrapper>
         </Table>
     </View>
@@ -23,4 +25,4 @@ const RequestTypes = () => {
   );
 }
 
-export default RequestTypes;  // Export the TableComponent function
+export default RequestTypes;  

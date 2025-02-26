@@ -131,8 +131,7 @@ const Login = () => {
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
-        <Link href="/manage_requests">Go to Manage Requests</Link> // temporary link to manage_requests
-        <Link href="/manage_dorm_details">Go to Manage Dorm Details</Link> // temporary link to manage_dorm_details
+        
 
          <View style={{marginTop:15}}>
         <Button
