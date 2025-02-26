@@ -37,11 +37,6 @@ const Dashboard = () => {
         <Button title="Logout" onPress={() => handleLogout(router)} />
         <AdminDashboard />
       </SafeAreaView>
-      <SafeAreaView style={styles.container}>
-        <Text>Successfully signed in!</Text>
-        <Link href="/manage-requests">Go to Manage Requests</Link> 
-        <Link href="./manage-dorm-details">Go to Manage Dorm Details</Link> 
-      </SafeAreaView>
     </SafeAreaProvider>
   );
 };

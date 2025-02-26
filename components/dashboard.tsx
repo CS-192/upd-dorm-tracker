@@ -42,13 +42,13 @@ export const DashboardGrid = () => {
         </TouchableOpacity>
       </Link>
 
-      <Link href="/dashboard" asChild>
+      <Link href="/manage-requests" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>REQUESTS</Text>
         </TouchableOpacity>
       </Link>
 
-      <Link href="/" asChild>
+      <Link href="./manage-dorm-details" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>DORM DETAILS</Text>
         </TouchableOpacity>
