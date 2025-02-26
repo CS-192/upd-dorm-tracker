@@ -3,10 +3,11 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import NavigationMenu from "../components/NavigationMenu";
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userRole, setUserRole] = useState("admin"); // Change to "student/admin" to test student/admin menu
+  const [userRole, setUserRole] = useState<"admin" | "student">("admin"); // Change to "student/admin" to test student/admin menu
 
   const toggleMenu = () => {
     console.log("Navigation menu toggled:", !isMenuOpen);
@@ -28,31 +29,7 @@ const Dashboard = () => {
         </View>
 
         {/* Sidebar Navigation Menu */}
-        {isMenuOpen && (
-          <TouchableOpacity style={styles.sidebar} onPress={toggleMenu} activeOpacity={1}>
-            <View style={styles.sidebarContent}>
-              {userRole === "admin" ? (
-                <>
-                  <Text style={styles.menuItem}>☐ Dashboard</Text>
-                  <Text style={styles.menuItem}>☐ Scan UP ID</Text>
-                  <Text style={styles.menuItem}>☐ Maintain Dormer's Information</Text>
-                  <Text style={styles.menuItem}>☐ Maintain Requests</Text>
-                  <Text style={styles.menuItem}>☐ View & Update Dorm Details</Text>
-                </>
-              ) : (
-                <>
-                  <Text style={styles.menuItem}>☐ Announcements</Text>
-                  <Text style={styles.menuItem}>☐ Create a Request</Text>
-                  <Text style={styles.subMenuItem}> Late Night/Overnight Pass</Text>
-                  <Text style={styles.subMenuItem}> Monthly Bill</Text>
-                  <Text style={styles.subMenuItem}> Report/Concerns</Text>
-                  <Text style={styles.menuItem}>☐ View Dorm Details</Text>
-                  <Text style={styles.menuItem}>☐ FAQs</Text>
-                </>
-              )}
-            </View>
-          </TouchableOpacity>
-        )}
+        {isMenuOpen && <NavigationMenu userRole={userRole} toggleMenu={toggleMenu} />}
 
         {/* Dashboard Content */}
         {!isMenuOpen && (
