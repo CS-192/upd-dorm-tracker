@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, Text, View, Button } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -8,7 +8,6 @@ import Ptext, { Ptitle } from "@/project_components";
 import DashboardCard, { DashboardGrid } from "@/components/dashboard";
 import { AntDesign } from "@expo/vector-icons";
 import { handleLogout } from "@/project_functions";
-import { Link } from "expo-router";
 
 const Dashboard = () => {
   const [email, setEmail] = useState("Guest"); // Default to Guest
