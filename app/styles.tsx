@@ -5,6 +5,7 @@ import { StyleSheet, Dimensions } from "react-native";
 // To add multiple styles to a component do style={[styles.style1, styles.style2]}
 
 const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
@@ -84,6 +85,97 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textDecorationLine: "underline",
   },
+  tabHeader:{
+    fontSize: 36,
+    fontWeight: 'bold',
+  },
+  manageRequestsContainer:{
+    flex: 1,
+    backgroundColor: "#fff",
+    width: "100%",
+    paddingLeft: 33,
+    paddingRight: 33,
+    marginBottom: 33,
+    marginTop: 100,
+    flexDirection: 'column',
+  },
+  searchContainer:{
+    width: "100%",
+  },
+  tableContainer: {
+    paddingTop: 5,
+    width: "100%",
+    alignContent: "center",
+    justifyContent: "center", 
+    paddingBottom: 5,
+  },
+  head: {
+    height: 40,
+    backgroundColor: "#ddd",
+    
+  },
+  headtext: {
+    margin: 10,
+    textAlign: "left",
+    fontSize: 12,
+    fontWeight: 'bold',
+  }, 
+  text: {
+    margin: 10,
+    textAlign: "left",
+    fontSize: 11,
+  },
+  tableScrollView: {
+    maxHeight: 600,
+  },
+  tableScrollContent: {
+    flexGrow: 1, // Allows content to fill available space
+    paddingBottom: 300, // Adds extra space at the bottom
+  },
+  row: {
+    flexDirection: "row",
+    height: 50,
+    alignItems: "center",
+  },
+  cell: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    minWidth: 100,
+  },
+  requestTypesText: {
+    fontSize: 12,
+    color: "#333",
+    marginBottom: 3,
+    textAlign: "left",
+    fontWeight: "bold",
+  },
+  requestTypesContainer: {
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#fff",
+  },
+  dormDetailsButton: {
+    width: "100%",
+    height: 45,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 7,
+    borderColor: "#CACACA",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 8,
+  },
+  dormDetailsButtonText: {
+    color: "#000",
+    fontSize: 18,
+    fontWeight: "bold",
+    alignSelf: "flex-start",
+    marginLeft: 20,
+  }
 });
 
 export default styles;

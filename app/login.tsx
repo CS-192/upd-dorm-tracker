@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-native";
 import styles from "@/app/styles";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -146,6 +146,7 @@ const Login = () => {
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
+        
 
         <View style={{ marginTop: 15 }}>
           <Button title="Sign up with UP mail" onPress={signUp} />

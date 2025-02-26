@@ -8,6 +8,7 @@ import Ptext, { Ptitle } from "@/project_components";
 import DashboardCard, { DashboardGrid } from "@/components/dashboard";
 import { AntDesign } from "@expo/vector-icons";
 import { handleLogout } from "@/project_functions";
+import { Link } from "expo-router";
 
 const Dashboard = () => {
   const [email, setEmail] = useState("Guest"); // Default to Guest
@@ -36,6 +37,11 @@ const Dashboard = () => {
         <Text>Hello, {email.split("@")[0]}!</Text>
         <Button title="Logout" onPress={() => handleLogout(router)} />
         <AdminDashboard />
+      </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <Text>Successfully signed in!</Text>
+        <Link href="/manage-requests">Go to Manage Requests</Link> 
+        <Link href="./manage-dorm-details">Go to Manage Dorm Details</Link> 
       </SafeAreaView>
     </SafeAreaProvider>
   );
