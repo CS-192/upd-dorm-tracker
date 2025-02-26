@@ -14,10 +14,11 @@ const ManageDormers = () => {
             <SafeAreaView style={styles.manageDormersContainer}>
                 <Text style={styles.tabHeader}>Manage Dormer's Information</Text>
                 <SearchComponent />
-                <DormersTableComponent />
+                <View style={{flex: 1, paddingBottom: 150}}>
+                    <DormersTableComponent />
+                </View>
                 <AddDormerButton />
             </SafeAreaView>
-
         </SafeAreaView>
     </SafeAreaProvider>
   );

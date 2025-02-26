@@ -35,7 +35,7 @@ const DormersTableComponent = () => {
         </Table>
         <ScrollView style={styles.tableScrollView}
             contentContainerStyle={styles.tableScrollContent}>
-            <Table borderStyle={ {borderTopWidth: 1, borderColor: "#ccc" }}>
+            <Table borderStyle={{borderTopWidth: 1, borderColor: "#ccc" }}>
                 <Rows data={tableData} style={styles.row} textStyle={styles.text} />
             </Table>
         </ScrollView>
