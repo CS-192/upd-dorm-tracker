@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.carlitomaso.upddormtracker"
     },
     "web": {
       "bundler": "metro",
@@ -33,10 +34,25 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      ["expo-font", {"fonts": ["./assets/fonts/Inter.ttf"]}]
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Inter.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d15d15c6-1900-48a7-91fe-4609b302d05f"
+      }
     }
   }
 }

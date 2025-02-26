@@ -102,7 +102,6 @@ const Login = () => {
         password
       );
       showToast("Check your email");
-      await signIn();
     } catch (error: any) {
       // Changed from alert to Alert.alert
       Alert.alert("Error " + error);

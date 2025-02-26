@@ -15,7 +15,6 @@ const Dashboard = () => {
   const [userRole, setUserRole] = useState<"admin" | "student">("admin"); // Change to "student/admin" to test student/admin menu
 
   const toggleMenu = () => {
-    console.log("Navigation menu toggled:", !isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -40,17 +39,33 @@ const Dashboard = () => {
         {/* Header Section */}
         <View style={styles.header}>
           <TouchableOpacity onPress={toggleMenu}>
-            <AntDesign name="menu-fold" size={24} color="white" style={styles.icon} />
+            <AntDesign
+              name="menu-fold"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
           </TouchableOpacity>
           <View style={styles.iconContainer}>
-            <AntDesign name="bells" size={24} color="white" style={styles.icon} />
-            <AntDesign name="user" size={24} color="white" style={styles.icon} />
+            <AntDesign
+              name="bells"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+            <AntDesign
+              name="user"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
           </View>
         </View>
 
         {/* Sidebar Navigation Menu */}
-        {isMenuOpen && <NavigationMenu userRole={userRole} toggleMenu={toggleMenu} />}
-
+        {isMenuOpen && (
+          <NavigationMenu userRole={userRole} toggleMenu={toggleMenu} />
+        )}
 
         {/*User Info (temporary. should be moved to different page)*/}
         <SafeAreaView
@@ -59,41 +74,45 @@ const Dashboard = () => {
             { justifyContent: "flex-start", alignItems: "baseline" },
           ]}
         >
-        <Text>Hello, {email.split("@")[0]}!</Text>
-        <Button title="Logout" onPress={() => handleLogout(router)} />
+          <Text>Hello, {email.split("@")[0]}!</Text>
+          <Button title="Logout" onPress={() => handleLogout(router)} />
         </SafeAreaView>
 
         {/* Dashboard Content */}
         {!isMenuOpen && (
           <ScrollView>
-          <Ptitle style={{ textAlign: "left", padding: 20, paddingBottom: 0 }}>
-            Dashboard
-          </Ptitle>
-          <DashboardGrid />
-          <DashboardCard>
-            <DashboardCard.Icon>
-              <AntDesign name="team" size={50} color="black" />
-            </DashboardCard.Icon>
-            <DashboardCard.Statistic>245/300</DashboardCard.Statistic>
-            <DashboardCard.Title>Number of People Inside</DashboardCard.Title>
-          </DashboardCard>
-    
-          <DashboardCard>
-            <DashboardCard.Icon>
-              <AntDesign name="home" size={50} color="black" />
-            </DashboardCard.Icon>
-            <DashboardCard.Statistic>100/100</DashboardCard.Statistic>
-            <DashboardCard.Title>Rooms are Currently Occupied</DashboardCard.Title>
-          </DashboardCard>
-    
-          <DashboardCard>
-            <DashboardCard.Icon>
-              <AntDesign name="file1" size={50} color="black" />
-            </DashboardCard.Icon>
-            <DashboardCard.Statistic>23</DashboardCard.Statistic>
-            <DashboardCard.Title>New Request Submitted</DashboardCard.Title>
-          </DashboardCard>
-        </ScrollView>
+            <Ptitle
+              style={{ textAlign: "left", padding: 20, paddingBottom: 0 }}
+            >
+              Dashboard
+            </Ptitle>
+            <DashboardGrid />
+            <DashboardCard>
+              <DashboardCard.Icon>
+                <AntDesign name="team" size={50} color="black" />
+              </DashboardCard.Icon>
+              <DashboardCard.Statistic>245/300</DashboardCard.Statistic>
+              <DashboardCard.Title>Number of People Inside</DashboardCard.Title>
+            </DashboardCard>
+
+            <DashboardCard>
+              <DashboardCard.Icon>
+                <AntDesign name="home" size={50} color="black" />
+              </DashboardCard.Icon>
+              <DashboardCard.Statistic>100/100</DashboardCard.Statistic>
+              <DashboardCard.Title>
+                Rooms are Currently Occupied
+              </DashboardCard.Title>
+            </DashboardCard>
+
+            <DashboardCard>
+              <DashboardCard.Icon>
+                <AntDesign name="file1" size={50} color="black" />
+              </DashboardCard.Icon>
+              <DashboardCard.Statistic>23</DashboardCard.Statistic>
+              <DashboardCard.Title>New Request Submitted</DashboardCard.Title>
+            </DashboardCard>
+          </ScrollView>
         )}
       </SafeAreaView>
     </SafeAreaProvider>
@@ -140,10 +159,10 @@ const styles = StyleSheet.create({
   },
   subMenuItem: {
     color: "white",
-    fontSize: 16,  // Slightly smaller than main menu items
+    fontSize: 16, // Slightly smaller than main menu items
     marginLeft: 20, // Indent submenu items
     marginBottom: 10,
-  },  
+  },
   title: {
     textAlign: "left",
     padding: 20,
