@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native";
 import styles from "@/app/styles";
-import { Table, Row, Rows, Cell, TableWrapper } from "react-native-table-component";
+import { Table, Row, Rows } from "react-native-table-component";
 
 const TableComponent = () => {
   const tableHead = ["Date", "Student No.", "Actions", ""];

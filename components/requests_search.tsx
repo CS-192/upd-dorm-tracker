@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput } from "react-native";
-import { SearchBar } from "react-native-elements";
+import { TextInput } from "react-native";
 import styles from "@/app/styles";
 
 const SearchComponent = () => {
