@@ -12,7 +12,7 @@ const SearchComponent = () => {
 
   return (
     <TextInput
-          style={styles.input}
+          style={{...styles.input, borderColor: "#b2b2b2"}}
           placeholder="Search here..."
           value={search}
           onChangeText={(text) => updateSearch(text)}
