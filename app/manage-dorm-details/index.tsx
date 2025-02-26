@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import styles from "../styles";
 import DormDetailsButtons from "@/components/dorm_details_buttons";
 
+
 const ManageDormDetails = () => {
   return (
     <SafeAreaProvider>
