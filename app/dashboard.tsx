@@ -51,6 +51,18 @@ const Dashboard = () => {
         {/* Sidebar Navigation Menu */}
         {isMenuOpen && <NavigationMenu userRole={userRole} toggleMenu={toggleMenu} />}
 
+
+        {/*User Info (temporary. should be moved to different page)*/}
+        <SafeAreaView
+          style={[
+            styles.container,
+            { justifyContent: "flex-start", alignItems: "baseline" },
+          ]}
+        >
+        <Text>Hello, {email.split("@")[0]}!</Text>
+        <Button title="Logout" onPress={() => handleLogout(router)} />
+        </SafeAreaView>
+
         {/* Dashboard Content */}
         {!isMenuOpen && (
           <ScrollView>
