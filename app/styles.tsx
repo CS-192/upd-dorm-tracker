@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }, 
   text: {
-    margin: 10,
-    textAlign: "left",
+    //margin: 10,
+    //textAlign: "left",
     fontSize: 11,
   },
   tableScrollView: {
