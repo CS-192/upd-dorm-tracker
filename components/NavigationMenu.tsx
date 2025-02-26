@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
 
 interface NavigationMenuProps {
   userRole: "admin" | "student";
@@ -12,11 +13,11 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ userRole, toggleMenu })
       <View style={styles.sidebarContent}>
         {userRole === "admin" ? (
           <>
-            <Text style={styles.menuItem}>☐ Dashboard</Text>
+            <Link style={styles.menuItem} href="/dashboard">☐ Dashboard</Link>
             <Text style={styles.menuItem}>☐ Scan UP ID</Text>
             <Text style={styles.menuItem}>☐ Maintain Dormer's Information</Text>
-            <Text style={styles.menuItem}>☐ Maintain Requests</Text>
-            <Text style={styles.menuItem}>☐ View & Update Dorm Details</Text>
+            <Link style={styles.menuItem} href="/manage-requests">☐ Maintain Requests</Link>
+            <Link style={styles.menuItem} href="./manage-dorm-details">☐ View & Update Dorm Details</Link>
           </>
         ) : (
           <>

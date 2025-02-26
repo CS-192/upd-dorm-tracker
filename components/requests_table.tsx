@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native";
 import styles from "@/app/styles";
-import { Table, Row, Rows, Cell, TableWrapper } from "react-native-table-component";
+import { Table, Row, Rows } from "react-native-reanimated-table";
 
 const TableComponent = () => {
   const tableHead = ["Date", "Student No.", "Actions", ""];
@@ -30,13 +30,12 @@ const TableComponent = () => {
   return (
     
     <View style={styles.tableContainer}>
-        <Table borderStyle={{ borderTopWidth: 1, borderColor: "#ccc" }}>
-            <Row data={tableHead} style={styles.head} textStyle={styles.headtext} />
+        <Table>
+            <Row data={tableHead} style={styles.head} textStyle={styles.headtext} flexArr={[1.5, 1.5, 1, 1]}/>
         </Table>
-        <ScrollView style={styles.tableScrollView}
-            contentContainerStyle={styles.tableScrollContent}>
-            <Table borderStyle={ {borderTopWidth: 1, borderColor: "#ccc" }}>
-                <Rows data={tableData} style={styles.row} textStyle={styles.text} />
+        <ScrollView style={styles.tableScrollView}>
+            <Table>
+                <Rows data={tableData} style={styles.row} textStyle={styles.text} flexArr={[1.5, 1.5, 1, 1]} />
             </Table>
         </ScrollView>
         
