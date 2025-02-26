@@ -36,7 +36,7 @@ export const DashboardGrid = () => {
         </TouchableOpacity>
       </Link>
 
-      <Link href="/dashboard" asChild>
+      <Link href="/manage-dormers" asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.text}>DORMERS</Text>
         </TouchableOpacity>
