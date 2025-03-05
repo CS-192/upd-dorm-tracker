@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Login from "./login";
+import Login from "../app/login";
 import { useRouter as useRouterOriginal } from "expo-router";
 import Toast from "react-native-toast-message";
 import {
@@ -134,7 +134,7 @@ describe("Login Component", () => {
     });
   });
 
-  test("handles successful sign in with correct credentials", async () => {
+  test("handles successful sign in with correct credentials using Google Firebase", async () => {
     const mockResponse = {
       user: {
         uid: "test-uid",

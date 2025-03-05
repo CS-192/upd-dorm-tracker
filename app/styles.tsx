@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textDecorationLine: "underline",
   },
-  tabHeader:{
+  tabHeader: {
     fontSize: 36,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-  manageRequestsContainer:{
+  manageRequestsContainer: {
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
@@ -97,23 +97,23 @@ const styles = StyleSheet.create({
     paddingRight: 33,
     marginBottom: 33,
     marginTop: 100,
-    flexDirection: 'column',
+    flexDirection: "column",
   },
-  manageDormersContainer:{
+  manageDormersContainer: {
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
     paddingLeft: 33,
     paddingRight: 33,
     marginBottom: 33,
-    marginTop: 100,
-    flexDirection: 'column',
+    // marginTop: 50,
+    flexDirection: "column",
   },
   tableContainer: {
     paddingTop: 5,
     width: "100%",
     alignContent: "center",
-    justifyContent: "center", 
+    justifyContent: "center",
     paddingBottom: 5,
   },
   head: {
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     margin: 10,
     textAlign: "left",
     fontSize: 13,
-    fontWeight: 'bold',
-  }, 
+    fontWeight: "bold",
+  },
   text: {
     margin: 10,
     textAlign: "left",
@@ -200,7 +200,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "flex-start",
     marginLeft: 20,
-  }
+    padding: 5,
+  },
 });
 
 export default styles;
