@@ -106,11 +106,11 @@ const styles = StyleSheet.create({
     paddingLeft: 33,
     paddingRight: 33,
     marginBottom: 33,
-    marginTop: 100,
+    marginTop: 15,
     flexDirection: 'column',
   },
   tableContainer: {
-    paddingTop: 5,
+    paddingTop: 0,
     width: "100%",
     alignContent: "center",
     justifyContent: "center", 

@@ -1,21 +1,20 @@
 import { Stack } from "expo-router";
 import HeaderWithMenu from "@/components/headerWithMenu";
 
-export default function DormInfoLayout() {
+export default function CreateRequestLayout() {
   return (
     <>
-      <HeaderWithMenu userRole="admin">
+      <HeaderWithMenu userRole="student">
         <Stack
             screenOptions={{
             headerShown: false,
           }}>
             <Stack.Screen name="index" />
-            <Stack.Screen name="announcement" />
-            <Stack.Screen name="faq" />
-            <Stack.Screen name="dorm-info" />
+            <Stack.Screen name="monthly-bill" />
+            <Stack.Screen name="late-pass" />
+            <Stack.Screen name="report" />
         </Stack>
-        </HeaderWithMenu>    
+      </HeaderWithMenu>    
     </>
-    
   );
 }
