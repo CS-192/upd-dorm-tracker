@@ -1,4 +1,3 @@
-// HeaderWithMenu.tsx
 import React, { useState } from "react";
 import { View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -9,7 +8,6 @@ interface HeaderWithMenuProps {
   children: React.ReactNode;
 }
 
-// We'll assume the header is ~54px tall
 const HEADER_HEIGHT = 54;
 
 const HeaderWithMenu: React.FC<HeaderWithMenuProps> = ({ userRole = "admin", children }) => { // Change userRole from "student" to "admin" or vice versa. NOTE changing roles seem to be a very hard task atm so calm down lng:)
@@ -21,7 +19,7 @@ const HeaderWithMenu: React.FC<HeaderWithMenuProps> = ({ userRole = "admin", chi
 
   return (
     <View style={{ flex: 1 }}>
-      {/* ABSOLUTE HEADER */}
+      {/* HEADER */}
       <View style={[styles.header, { height: HEADER_HEIGHT, position: "absolute", top: 0, left: 0, right: 0 }]}>
         <TouchableOpacity onPress={toggleMenu}>
           <AntDesign name="menu-fold" size={24} color="white" style={styles.icon} />
@@ -32,10 +30,10 @@ const HeaderWithMenu: React.FC<HeaderWithMenuProps> = ({ userRole = "admin", chi
         </View>
       </View>
 
-      {/* NAVIGATION MENU (also absolute) */}
+      {/* NAVIGATION MENU */}
       <NavigationMenu isVisible={isMenuOpen} toggleMenu={toggleMenu} userRole={userRole} />
 
-      {/* MAIN CONTENT - pushed down by HEADER_HEIGHT */}
+      {/* MAIN CONTENT - note: pushed down by HEADER_HEIGHT */}
       <View style={{ flex: 1, marginTop: HEADER_HEIGHT }}>
         {children}
       </View>
@@ -53,7 +51,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     zIndex: 2,
-    // We define `height` in-line above
   },
   iconContainer: {
     flexDirection: "row",

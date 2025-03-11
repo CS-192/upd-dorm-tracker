@@ -19,7 +19,7 @@ interface NavigationMenuProps {
   userRole: 'admin' | 'student';
 }
 
-const HEADER_HEIGHT = 54; // adjust as needed
+const HEADER_HEIGHT = 54; // adjust as needed lng
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({
   isVisible,
@@ -39,7 +39,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
 
   const translateX = slideAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [-420, 0], // adjust to your menu width
+    outputRange: [-420, 0], // adjust to menu width hehe
   });
 
   const backdropOpacity = slideAnim.interpolate({
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     bottom: 0,
-    width: 420, // adjust this to your desired menu width
+    width: 420, // adjust to menu width
     backgroundColor: '#333',
   },
   menuItem: {
