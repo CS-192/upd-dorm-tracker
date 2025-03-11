@@ -90,7 +90,7 @@ const EditAnnouncementForm = () => {
             {errors.details && <Text style={styles.errormessage}>{errors.details.message}</Text>}
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
-                    <Text style={styles.buttonlabel}>Submit</Text>
+                    <Text style={styles.buttonlabel}>Save</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={()=>router.back()}>
                     <Text style={styles.buttonlabel}>Cancel</Text>

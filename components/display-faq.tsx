@@ -99,13 +99,13 @@ export default DisplayFAQ;
 
 const styles = StyleSheet.create({
     card:{
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 5,
+        marginBottom: 3,
         borderColor: "#bbb",
         borderWidth: 1,
         height: 200,
         width: "100%",
-        borderRadius: 8,
+        //borderRadius: 8,
     },
     subjectContainer:{
         //backgroundColor: "blue",

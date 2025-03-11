@@ -28,9 +28,10 @@ const AddAnnouncement = () => {
             await addDoc(dormDetailsCollection, 
                 { subject: data.subject, 
                 details: data.details,
-                date: d,
+                date: d.toDateString(),
                 type: "Announcement",
                 time: {hours: d.getHours(), minutes: d.getMinutes()},
+                //time: d,
                 userId: user.uid }); 
             reset();
             router.back()
@@ -83,7 +84,7 @@ const AddAnnouncement = () => {
             {errors.details && <Text style={styles.errormessage}>{errors.details.message}</Text>}
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
-                    <Text style={styles.buttonlabel}>Submit</Text>
+                    <Text style={styles.buttonlabel}>Save</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={()=>router.back()}>
                     <Text style={styles.buttonlabel}>Cancel</Text>

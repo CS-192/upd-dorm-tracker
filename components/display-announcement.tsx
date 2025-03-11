@@ -1,7 +1,7 @@
 import { Announcement } from "@/project_types";
 import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, where, orderBy } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useState } from "react";
 import { useFocusEffect, useRouter, useNavigation } from "expo-router";
@@ -12,7 +12,7 @@ import React from "react";
 
 
 
-const Card = ({subject, details, id}: {subject:string, details:string, id:string}) => {
+const Card = ({subject, details, id, date}: {subject:string, details:string, id:string, date: Date}) => {
     const router = useRouter()
     const editAnnouncement = (id: string) => {
         router.push({pathname: "../manage-dorm-details/edit-announcement", params: {id}})
@@ -39,6 +39,9 @@ const Card = ({subject, details, id}: {subject:string, details:string, id:string
         <View style={styles.card}>
             <View style={styles.subjectContainer}>
                 <Text style={styles.subjectText}>{subject}</Text>
+            </View>
+            <View style={styles.dateContainer}>
+                <Text style={styles.dateText}>{date.toString()}</Text>
             </View>
             <View style={styles.detailsContainer}>
                 <Text>{details}</Text>
@@ -78,7 +81,9 @@ const DisplayAnnouncement: React.FC = () => {
     const fetchAnnouncements = async () => {
         if (user) {
           const q = query(dormDetailsCollection, where("userId", "==", user.uid),
-            where("type", "==", "Announcement")
+            where("type", "==", "Announcement"),
+            //orderBy("time", "desc")
+
         );
           const data = await getDocs(q);
           setAnnouncements(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -92,7 +97,7 @@ const DisplayAnnouncement: React.FC = () => {
         <FlatList
           data={announcements}
           renderItem={({ item }) => (
-            <Card subject={item.subject} details={item.details} id={item.id}/>
+            <Card subject={item.subject} details={item.details} id={item.id} date={item.date}/>
             //<Card data={item}/>
           )}
           keyExtractor={(item) => item.id}
@@ -104,13 +109,14 @@ export default DisplayAnnouncement;
 
 const styles = StyleSheet.create({
     card:{
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 5,
+        marginBottom: 3,
         borderColor: "#bbb",
         borderWidth: 1,
         height: 200,
         width: "100%",
-        borderRadius: 8,
+        //borderRadius: 8,
+        //padding: 5
     },
     subjectContainer:{
         //backgroundColor: "blue",
@@ -149,8 +155,18 @@ const styles = StyleSheet.create({
     },
     detailsText:{
         fontSize:14,
+    },
+    dateContainer:{
+        //backgroundColor: "blue",
+        width: "90%",
+        flex:0.5,
+        justifyContent: "center",
+        alignSelf: "center"
+    },
+    dateText:{
+        fontSize: 12,
+
     }
-    
 
 
 })
