@@ -109,9 +109,6 @@ const styles = StyleSheet.create({
     marginTop: 100,
     flexDirection: 'column',
   },
-  searchContainer:{
-    width: "100%",
-  },
   tableContainer: {
     paddingTop: 5,
     width: "100%",
@@ -121,31 +118,31 @@ const styles = StyleSheet.create({
   },
   head: {
     height: 40,
-    backgroundColor: "#ddd",
-    
+    backgroundColor: "#D3D3D3",
+    //padding: 5,
   },
   headtext: {
     margin: 10,
     textAlign: "left",
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: 'bold',
   }, 
   text: {
-    //margin: 10,
-    //textAlign: "left",
-    fontSize: 11,
+    margin: 10,
+    textAlign: "left",
+    fontSize: 13,
   },
   tableScrollView: {
-    maxHeight: 600, 
-  },
-  tableScrollContent: {
-    flexGrow: 1, // Allows content to fill available space
-    paddingBottom: 300, // Adds extra space at the bottom
+    maxHeight: 500,
   },
   row: {
     flexDirection: "row",
     height: 50,
     alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "#b2b2b2",
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
   },
   cell: {
     flex: 1,

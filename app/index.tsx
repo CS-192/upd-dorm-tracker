@@ -1,4 +1,4 @@
-import Login from "@/app/login";
+import Login from "./login";
 import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

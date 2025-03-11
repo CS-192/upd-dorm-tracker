@@ -57,7 +57,6 @@ const Login = () => {
 
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
 
       // Creates and saves unique user token
       const userToken = response.user.uid; // Use the UID or a JWT token if available
@@ -67,8 +66,8 @@ const Login = () => {
       showToast("Successful Log In");
       router.push("/dashboard");
     } catch (error: any) {
-      console.log(error);
-      alert("Error " + error);
+      // Changed from alert to Alert.alert
+      Alert.alert("Error " + error);
     } finally {
       setLoading(false);
     }
@@ -102,11 +101,11 @@ const Login = () => {
         email,
         password
       );
-      console.log(response);
       showToast("Check your email");
+      await signIn();
     } catch (error: any) {
-      console.log(error);
-      alert("Error " + error);
+      // Changed from alert to Alert.alert
+      Alert.alert("Error " + error);
     } finally {
       setLoading(false);
     }
@@ -146,7 +145,6 @@ const Login = () => {
         <TouchableOpacity style={styles.forgotPasswordContainer}>
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
-        
 
         <View style={{ marginTop: 15 }}>
           <Button title="Sign up with UP mail" onPress={signUp} />
