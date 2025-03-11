@@ -93,6 +93,15 @@ export interface Dorm_Detail {
     dorm: string;
 }
 
+//dorm info
+export interface Dorm_Info {
+    dorm: string;
+    curfew: string;
+    address: string;
+    contact_details: string;
+    history: string;
+}
+
 //Dormer Related
 export type sex='M' | 'F';
 
