@@ -24,11 +24,13 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="index" />
-        <Stack.Screen name="login"/>
+        <Stack.Screen name="login" />
         <Stack.Screen name="dashboard" />
         <Stack.Screen name="manage-requests" />
         <Stack.Screen name="manage-dorm-details" />
         <Stack.Screen name="manage-dormers" />
+        <Stack.Screen name="add-dormers" />
+        <Stack.Screen name="dormer/[id]" />
         <Stack.Screen name="user-profile" />
       </Stack>
       <Toast />
