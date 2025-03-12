@@ -4,6 +4,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import styles from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import SearchComponent from "@/components/requests_search";
+import UserRequests from "@/components/user_requests";
 
 const UserProfile = () => {
   const [userRole, setUserRole] = useState<"admin" | "student">("student"); // Change to "student/admin" to test student/admin menu
@@ -46,13 +48,15 @@ const UserProfile = () => {
                 </Text>
                 <Text>
                   <Text style={{fontWeight: 'bold'}}>Residence: </Text>
-                  <Text>Molave Residence Hall</Text>
+                  <Text>Molave Residence Hall</Text> 
                 </Text>
-                
+                <SearchComponent />
+                <UserRequests />
             </SafeAreaView>
         </SafeAreaView>
     </SafeAreaProvider>
   );
 };
+
 
 export default UserProfile;
