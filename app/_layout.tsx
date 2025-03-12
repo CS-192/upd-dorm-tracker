@@ -29,6 +29,7 @@ export default function RootLayout() {
         <Stack.Screen name="manage-requests" />
         <Stack.Screen name="manage-dorm-details" />
         <Stack.Screen name="manage-dormers" />
+        <Stack.Screen name="user-profile" />
       </Stack>
       <Toast />
     </>

@@ -53,12 +53,14 @@ const Dashboard = () => {
               color="white"
               style={styles.icon}
             />
-            <AntDesign
-              name="user"
-              size={24}
-              color="white"
-              style={styles.icon}
-            />
+            <Link href="/user-profile">
+              <AntDesign
+                name="user"
+                size={24}
+                color="white"
+                style={styles.icon}
+              />
+            </Link>
           </View>
         </View>
 
