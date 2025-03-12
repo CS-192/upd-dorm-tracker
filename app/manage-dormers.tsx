@@ -5,24 +5,27 @@ import styles from "./styles";
 import SearchComponent from "@/components/requests_search";
 import DormersTableComponent from "@/components/dormers_table";
 import { Ptitle } from "@/project_components";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const ManageDormers = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <SafeAreaView style={styles.manageDormersContainer}>
+        <View style={styles.manageDormersContainer}>
           <Ptitle style={{ marginBottom: 10 }}>
             Manage Dormer's Information
           </Ptitle>
           <SearchComponent />
           <DormersTableComponent />
-          <TouchableOpacity style={styles.addDormerButton}>
-            <Link href="/add-dormers">
-              <Text style={styles.addDormerButtonText}>Add Dormer</Text>
-            </Link>
+          <TouchableOpacity
+            style={styles.addDormerButton}
+            onPress={() => router.push("/add-dormers")}
+          >
+            <Text style={styles.addDormerButtonText}>Add Dormer</Text>
           </TouchableOpacity>
-        </SafeAreaView>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
