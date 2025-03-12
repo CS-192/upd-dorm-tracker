@@ -27,13 +27,18 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
 
+  if (auth.currentUser) {
+    router.replace("/dashboard");
+  }
+  console.log(auth.currentUser);
+
   // Check kung nakalog in na yung user during launch
   useEffect(() => {
     const checkLoginStatus = async () => {
       const userToken = await AsyncStorage.getItem("userToken");
       if (userToken) {
         // If user is logged in, punta sa dashboard agad
-        router.push("/dashboard");
+        router.replace("/dashboard");
       }
     };
 
@@ -64,7 +69,7 @@ const Login = () => {
       await AsyncStorage.setItem("userEmail", email); // Store email persistently
 
       showToast("Successful Log In");
-      router.push("/dashboard");
+      router.replace("/dashboard");
     } catch (error: any) {
       // Changed from alert to Alert.alert
       Alert.alert("Error " + error);
