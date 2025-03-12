@@ -1,49 +1,96 @@
-import { ScrollView, View } from "react-native";
+import {
+  ScrollView,
+  View,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+} from "react-native";
+import { useEffect, useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { FIREBASE_DB } from "@/FirebaseConfig";
 import styles from "@/app/styles";
-import { Table, Row, Rows, Cell, TableWrapper } from "react-native-reanimated-table";
+import { Table, Row, Rows, Cell } from "react-native-reanimated-table";
+import { Link } from "expo-router";
 
 const DormersTableComponent = () => {
+  const [tableData, setTableData] = useState<string[][]>([]);
   const tableHead = ["Room No.", "Name", "Action"];
-  const tableData = [
-    ["E138A", "Chou, Tzuyu", "View"],
-    ["E138B", "Park, Chaewon", "View"],
-    ["E138C", "Son, Wendy", "View"],
-    ["E138D", "Kim, Gaeul", "View"],
-    ["E137A", "House, Gregory", "View"],
-    ["E137B", "Chase, Robert", "View"],
-    ["E137C", "Cameron, Alison", "View"],
-    ["E137D", "Foreman, Eric", "View"],
-    ["E136A", "Odegaard, Martin", "View"],
-    ["E136B", "Haaland, Erling", "View"],
-    ["E136C", "Havertz, Kai", "View"],
-    ["E136D", "Tomiyasu, Takehiro", "View"],
-    ["E135A", "Park, Rose", "View"],
-    ["E135B", "Choi, Lia", "View"],
-    ["E135C", "Miyawaki, Sakura", "View"],
-    ["E135D", "Fukutomi, Tsuki", "View"],
-    ["E134A", "Gillard, Julia", "View"],
-    ["E134B", "Shimamura, Haruko", "View"],
-    ["E134C", "Adams, Henry John", "View"],
-    ["E134D", "Hougan, Lorerans", "View"]
-]
+  const screenWidth = Dimensions.get("window").width;
+  const columnWidths = [
+    screenWidth * 0.2,
+    screenWidth * 0.49,
+    screenWidth * 0.15,
+  ];
+
+  const dormQueried = "Molave";
+
+  useEffect(() => {
+    const fetchDormers = async () => {
+      try {
+        const dormersRef = collection(FIREBASE_DB, "dormers");
+        const molaveQuery = query(dormersRef, where("dorm", "==", dormQueried)); // 🔥 Filter by dorm
+        const querySnapshot = await getDocs(molaveQuery);
+
+        const dormersArray: string[][] = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return [
+            data.room_number || "N/A", // Room Number
+            `${data.last_name}, ${data.first_name}`, // Name (Last, First)
+            data.id, // Store the document ID to use in the link
+          ];
+        });
+
+        setTableData(dormersArray);
+      } catch (error) {
+        console.error("Error fetching dormers:", error);
+      }
+    };
+
+    fetchDormers();
+  }, []);
+
+  // Render clickable "View" link
+  const renderViewButton = (docId: string) => (
+    <Link href={`/`} asChild>
+      <TouchableOpacity>
+        <Text>View</Text>
+      </TouchableOpacity>
+    </Link>
+  );
 
   return (
-    
     <View style={styles.tableContainer}>
+      <Table>
+        <Row
+          data={tableHead}
+          style={styles.head}
+          textStyle={styles.headtext}
+          widthArr={columnWidths}
+        />
+      </Table>
+      <ScrollView style={styles.tableScrollView}>
         <Table>
-            <Row data={tableHead} style={styles.head} textStyle={styles.headtext} />
+          {tableData
+            .sort((a: string[], b: string[]) =>
+              a[0].localeCompare(b[0], undefined, { numeric: true })
+            )
+            .map((row, index) => (
+              <Row
+                key={index}
+                data={[
+                  row[0], // Room No.
+                  row[1], // Name
+                  renderViewButton(row[2]), // Clickable "View" button
+                ]}
+                style={styles.row}
+                textStyle={styles.text}
+                widthArr={columnWidths}
+              />
+            ))}
         </Table>
-        <ScrollView style={styles.tableScrollView}>
-            <Table>
-                <Rows data={tableData} style={styles.row} textStyle={styles.text} />
-            </Table>
-        </ScrollView>
-        
+      </ScrollView>
     </View>
-    
   );
 };
 
 export default DormersTableComponent;
-
-

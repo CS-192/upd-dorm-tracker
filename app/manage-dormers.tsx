@@ -12,7 +12,9 @@ const ManageDormers = () => {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <SafeAreaView style={styles.manageDormersContainer}>
-          <Ptitle>Manage Dormer's Information</Ptitle>
+          <Ptitle style={{ marginBottom: 10 }}>
+            Manage Dormer's Information
+          </Ptitle>
           <SearchComponent />
           <DormersTableComponent />
           <TouchableOpacity style={styles.addDormerButton}>
