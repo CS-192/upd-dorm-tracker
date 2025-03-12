@@ -36,7 +36,7 @@ const DormersTableComponent = () => {
           return [
             data.room_number || "N/A", // Room Number
             `${data.last_name}, ${data.first_name}`, // Name (Last, First)
-            data.id, // Store the document ID to use in the link
+            doc.id, // Store the document ID to use in the link
           ];
         });
 
@@ -50,13 +50,17 @@ const DormersTableComponent = () => {
   }, []);
 
   // Render clickable "View" link
-  const renderViewButton = (docId: string) => (
-    <Link href={`/`} asChild>
-      <TouchableOpacity>
-        <Text>View</Text>
-      </TouchableOpacity>
-    </Link>
-  );
+  const renderViewButton = (docId: string) => {
+    const dest = `dormer/${docId}`;
+    return (
+      // why tf is this erroring
+      <Link href={dest} asChild>
+        <TouchableOpacity>
+          <Text>View</Text>
+        </TouchableOpacity>
+      </Link>
+    );
+  };
 
   return (
     <View style={styles.tableContainer}>

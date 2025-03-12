@@ -30,6 +30,7 @@ export default function RootLayout() {
         <Stack.Screen name="manage-dorm-details" />
         <Stack.Screen name="manage-dormers" />
         <Stack.Screen name="add-dormers" />
+        <Stack.Screen name="dormer/[id]" />
       </Stack>
       <Toast />
     </>
