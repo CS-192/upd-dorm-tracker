@@ -51,7 +51,9 @@ const UserProfile = () => {
                   <Text>Molave Residence Hall</Text> 
                 </Text>
                 <SearchComponent />
-                <UserRequests />
+                {userRole === "student" &&
+                  <UserRequests />
+                }
             </SafeAreaView>
         </SafeAreaView>
     </SafeAreaProvider>
