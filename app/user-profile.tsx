@@ -8,7 +8,7 @@ import SearchComponent from "@/components/requests_search";
 import UserRequests from "@/components/user_requests";
 
 const UserProfile = () => {
-  const [userRole, setUserRole] = useState<"admin" | "student">("student"); // Change to "student/admin" to test student/admin menu
+  const [userRole, setUserRole] = useState<"admin" | "student">("admin"); // Change to "student/admin" to test student/admin menu
 
   const [email, setEmail] = useState("Guest"); // Default to Guest
 
@@ -50,9 +50,11 @@ const UserProfile = () => {
                   <Text style={{fontWeight: 'bold'}}>Residence: </Text>
                   <Text>Molave Residence Hall</Text> 
                 </Text>
-                <SearchComponent />
                 {userRole === "student" &&
-                  <UserRequests />
+                  <SafeAreaView>
+                    <SearchComponent />
+                    <UserRequests />
+                  </SafeAreaView>
                 }
             </SafeAreaView>
         </SafeAreaView>
