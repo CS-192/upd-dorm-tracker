@@ -36,7 +36,6 @@ const Dashboard = () => {
 
   return ( // Change userRole from "student" to "admin" or vice versa. NOTE changing roles seem to be a very hard task atm so calm down lng:)
     <HeaderWithMenu userRole="admin"> 
-        {/*User Info*/}
         <SafeAreaView
           style={[
             styles.container,
