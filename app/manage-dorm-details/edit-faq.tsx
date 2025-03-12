@@ -2,22 +2,21 @@ import React from "react";
 import { SafeAreaView, Text } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import styles from "../styles";
-import CreateButton from "@/components/createButton";
-import DisplayFAQ from "@/components/display-faq";
+import EditFAQForm from "@/components/edit-faq";
 
 
-const Faq = () => {
+
+const EditFAQ = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <SafeAreaView style={styles.manageRequestsContainer}>
-            <Text style={styles.tabHeader}>Frequently asked questions</Text>
-            <CreateButton path="faq" />
-            <DisplayFAQ/>
+            <Text style={styles.tabHeader}>Edit FAQ</Text>
+            <EditFAQForm />
         </SafeAreaView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
-export default Faq;
+export default EditFAQ;

@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+    //backgroundColor: "yellow"
   },
   imageWrapper: {
     padding: 24,

@@ -77,6 +77,7 @@ export interface FAQ extends Dorm_Detail_Type{
     type:"FAQ";
     question:string;
     answer:string;
+    //dorm: string;
 }
 
 export interface Announcement extends Dorm_Detail_Type{
@@ -85,12 +86,21 @@ export interface Announcement extends Dorm_Detail_Type{
     time: Time;
     subject: string;
     details: string;
-    
+    //dorm: string;
 }
 
 export interface Dorm_Detail {
     detail_type: Dorm_Detail_Type;
     dorm: string;
+}
+
+//dorm info
+export interface Dorm_Info {
+    dorm: string;
+    curfew: string;
+    address: string;
+    contact_details: string;
+    history: string;
 }
 
 //Dormer Related
