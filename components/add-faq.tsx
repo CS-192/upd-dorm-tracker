@@ -1,8 +1,7 @@
 
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-
 import { FAQ } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -12,8 +11,6 @@ const AddFAQ = () => {
     const auth = getAuth();
     const user = auth.currentUser;
     const router = useRouter();
-
-    //const navigation = useNavigation();
     const dormDetailsCollection = collection(FIREBASE_DB, 'dorm-details');
     const {
         control,
@@ -22,8 +19,8 @@ const AddFAQ = () => {
         reset,
     } = useForm<FAQ>();
 
+    // Creating a new database entry
     const onSubmit: SubmitHandler<FAQ> = async (data) => {
-        const d = new Date()
         if (user) {
             console.log(data)
             await addDoc(dormDetailsCollection, 
@@ -33,15 +30,10 @@ const AddFAQ = () => {
                 userId: user.uid }); 
             reset();
             router.back();
-            //navigation.navigate("announcement")  
-          //fetchTodos();
         } else {
           console.log("No user logged in");
         }
-        
       };
-
-    
 
     return (
         <View style={styles.container}>
@@ -51,7 +43,6 @@ const AddFAQ = () => {
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.inputSubject}
-                    //placeholder="Subject"
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
@@ -69,7 +60,6 @@ const AddFAQ = () => {
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.inputDetails}
-                    //placeholder="Details"
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}

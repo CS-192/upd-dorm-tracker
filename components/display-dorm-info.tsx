@@ -1,12 +1,11 @@
-import { Dorm_Info } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity, FlatList, Image} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image} from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, query } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { useEffect, useState } from "react";
-import { useFocusEffect, useRouter, useNavigation } from "expo-router";
+import { useState } from "react";
+import { useFocusEffect, useRouter } from "expo-router";
 import React from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
 
 
 
@@ -27,18 +26,12 @@ const DormPictures = () => {
             data={images}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                //<View style={styles.imageContainer}>
                 <Image source={item.image } style={styles.image} resizeMode="cover" />
-                //</View>
             )}
             horizontal
             pagingEnabled
-            showsHorizontalScrollIndicator={true}
-    />
+            showsHorizontalScrollIndicator={true} />
         </View>
-            
-            
-        
       );
     };
 
@@ -46,7 +39,6 @@ const DormPictures = () => {
 
 const Card = ({dorm, curfew, address, contact_details, history, id}: 
     {dorm:string, curfew:string, address:string, contact_details: string, history: string, id: string}) => {
-    
     const router = useRouter()
     const editDormInfo = (id: string) => {
         router.push({pathname: "../manage-dorm-details/edit-dorm-info", params: {id}})
@@ -93,19 +85,15 @@ const DisplayDormInfo: React.FC = () => {
     const [dormInfo, setDormInfo] = useState<any>([]);
     const dormInfoCollection = collection(FIREBASE_DB, 'dorm-info');
     
-
     useFocusEffect(
         React.useCallback(() => {
           fetchDormInfo();
         }, [dormInfo])
       );
 
-    
-      
-    
     const fetchDormInfo = async () => {
         if (user) {
-            const q = query(dormInfoCollection ); // change once assigned dorm is available sa profile
+            const q = query(dormInfoCollection ); // change once assigned dorm of the management is available
         //     const q = query(dormInfoCollection, where("dorm", "==", user.dorm),
         // );
           const data = await getDocs(q);
@@ -125,7 +113,6 @@ const DisplayDormInfo: React.FC = () => {
             <Card dorm={item.dorm} curfew={item.curfew} address={item.address} 
                 contact_details={item.contact_details} history={item.history}
                 id={item.id}/>
-            //<Card data={item}/>
           )}
           keyExtractor={(item) => item.id}
         />
@@ -158,7 +145,6 @@ const styles = StyleSheet.create({
     },
     infoCard:{
         marginTop: 10,
-
     },
     imageContainer:{
         color: "blue",
@@ -175,8 +161,6 @@ const styles = StyleSheet.create({
         height: undefined,
         aspectRatio: 1.5,
         flex:1,
-        //width: "100%",
-        //height: "40%",
     },
     button: {
         width: "60%",
@@ -188,7 +172,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        //alignSelf: "flex-end",
     },
     buttonlabel: {
         fontSize: 18,
@@ -198,8 +181,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         justifyContent: "flex-end", // Moves button to the bottom
         alignItems: "center",
-        //backgroundColor: "black",
-        //flex: 1,
         paddingBottom: 20,
     },
     

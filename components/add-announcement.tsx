@@ -1,8 +1,7 @@
 
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-
 import { Announcement } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -12,7 +11,6 @@ const AddAnnouncement = () => {
     const auth = getAuth();
     const user = auth.currentUser;
     const router = useRouter();
-    //const navigation = useNavigation();
     const dormDetailsCollection = collection(FIREBASE_DB, 'dorm-details');
     const {
         control,
@@ -21,6 +19,7 @@ const AddAnnouncement = () => {
         reset,
     } = useForm<Announcement>();
 
+    // For creating database entry
     const onSubmit: SubmitHandler<Announcement> = async (data) => {
         const d = new Date()
         if (user) {
@@ -31,18 +30,13 @@ const AddAnnouncement = () => {
                 date: d.toDateString(),
                 type: "Announcement",
                 time: {hours: d.getHours(), minutes: d.getMinutes()},
-                //time: d,
                 userId: user.uid }); 
             reset();
             router.back()
-            //navigation.navigate("announcement")  
-          //fetchTodos();
         } else {
           console.log("No user logged in");
         }
       };
-
-    
 
     return (
         <View style={styles.container}>
@@ -52,7 +46,6 @@ const AddAnnouncement = () => {
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.inputSubject}
-                    //placeholder="Subject"
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
@@ -70,7 +63,6 @@ const AddAnnouncement = () => {
                 render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
                     style={styles.inputDetails}
-                    //placeholder="Details"
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
@@ -111,9 +103,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginTop: 5,
         paddingHorizontal: 12,
-        //backgroundColor: "#fff",
         textAlignVertical: "top",
-        //marginBottom: 16,
     },
     inputDetails:{
         width: "100%",
@@ -121,7 +111,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#d9d9d9",
         borderRadius: 8,
-        //marginBottom: 16,
         paddingHorizontal: 12,
         textAlignVertical: "top",
     },  
@@ -141,7 +130,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        //alignSelf: "flex-end",
     },
     buttonlabel: {
         fontSize: 18,
@@ -149,7 +137,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     bottomContainer: {
-        justifyContent: "flex-end", // Moves button to the bottom
+        justifyContent: "flex-end", 
         alignItems: "center",
         //backgroundColor: "black",
         flex: 1,

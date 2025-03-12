@@ -1,14 +1,12 @@
 
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-
 import { Dorm_Info } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
-//import { useNavigation } from "expo-router";
 
 
 
@@ -19,7 +17,6 @@ const EditDormInfoForm = () => {
     const router = useRouter()
     const auth = getAuth();
     const user = auth.currentUser;
-    //const dormInfoCollection = collection(FIREBASE_DB, 'dorm-info');
     const {
         control,
         handleSubmit,
@@ -43,7 +40,6 @@ const EditDormInfoForm = () => {
     }, [id])
 
     const onSubmit: SubmitHandler<Dorm_Info> = async (data) => {
-        
         if (user) {
             console.log(data)
             await updateDoc(doc(FIREBASE_DB, 'dorm-info', id as string), 
@@ -53,12 +49,12 @@ const EditDormInfoForm = () => {
                 contact_details: data.contact_details,
                 history: data.history
                 });
-            //reset();
             router.back()
         } else {
             console.log("No user logged in");
         }
     };
+
     // const onSubmit: SubmitHandler<Dorm_Info> = async (data) => {
     //         const d = new Date()
     //         if (user) {
@@ -79,7 +75,6 @@ const EditDormInfoForm = () => {
     //         }
     //       };
     return (
-        //<View style={styles.container}>
         <ScrollView style={styles.scrollviewContainer}>
             <Text style={styles.label}>Dorm</Text>
             <Controller
@@ -175,10 +170,6 @@ const EditDormInfoForm = () => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-            
-        //</View>
-            
-     
     );
 }
 
@@ -186,12 +177,8 @@ const EditDormInfoForm = () => {
 
 
 const styles = StyleSheet.create({
-    
     scrollviewContainer:{
         flex: 1,
-        //paddingTop: 20,
-        //backgroundColor: "orange",
-        //paddingBottom:20,
     },
     inputDetails:{
         width: "100%",
@@ -199,7 +186,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#d9d9d9",
         borderRadius: 8,
-        //marginBottom: 16,
         paddingHorizontal: 12,
         textAlignVertical: "top",
     },  
@@ -209,7 +195,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#d9d9d9",
         borderRadius: 8,
-        //marginBottom: 16,
         paddingHorizontal: 12,
         textAlignVertical: "top",
     },  
@@ -229,7 +214,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        //alignSelf: "flex-end",
     },
     buttonlabel: {
         fontSize: 18,
@@ -237,10 +221,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     bottomContainer: {
-        justifyContent: "flex-end", // Moves button to the bottom
+        justifyContent: "flex-end", 
         alignItems: "center",
-        //backgroundColor: "black",
-        //flex: 1,
         paddingBottom: 20,
     },
     errormessage:{

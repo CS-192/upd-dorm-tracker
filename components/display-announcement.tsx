@@ -1,10 +1,9 @@
-import { Announcement } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, where, orderBy } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, where, } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { useEffect, useState } from "react";
-import { useFocusEffect, useRouter, useNavigation } from "expo-router";
+import { useState } from "react";
+import { useFocusEffect, useRouter} from "expo-router";
 import React from "react";
 
 
@@ -16,7 +15,6 @@ const Card = ({subject, details, id, date}: {subject:string, details:string, id:
     const router = useRouter()
     const editAnnouncement = (id: string) => {
         router.push({pathname: "../manage-dorm-details/edit-announcement", params: {id}})
-    
     }
 
     const deleteItem = async (id: string) => {
@@ -65,24 +63,18 @@ const DisplayAnnouncement: React.FC = () => {
     const user = auth.currentUser;
     const [announcements, setAnnouncements] = useState<any>([]);
     const dormDetailsCollection = collection(FIREBASE_DB, 'dorm-details');
-    // useEffect(() => {
-    //     fetchAnnouncements();
-    //   }, [user]);
 
+    // Updates the list of announcements displayed whenever screen is displayed
     useFocusEffect(
         React.useCallback(() => {
           fetchAnnouncements();
         }, [announcements])
       );
 
-    
-      
-    
     const fetchAnnouncements = async () => {
         if (user) {
-          const q = query(dormDetailsCollection, where("userId", "==", user.uid),
+          const q = query(dormDetailsCollection, where("userId", "==", user.uid), // change to dorm once may profile na sa database
             where("type", "==", "Announcement"),
-            //orderBy("time", "desc")
 
         );
           const data = await getDocs(q);
@@ -92,13 +84,11 @@ const DisplayAnnouncement: React.FC = () => {
         }
     };
 
-    
     return(
         <FlatList
           data={announcements}
           renderItem={({ item }) => (
             <Card subject={item.subject} details={item.details} id={item.id} date={item.date}/>
-            //<Card data={item}/>
           )}
           keyExtractor={(item) => item.id}
         />
@@ -115,8 +105,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 200,
         width: "100%",
-        //borderRadius: 8,
-        //padding: 5
     },
     subjectContainer:{
         //backgroundColor: "blue",
@@ -138,7 +126,6 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: "row-reverse",
         alignSelf: "center",
-
     },
     button:{
         marginLeft: 15,
@@ -165,7 +152,6 @@ const styles = StyleSheet.create({
     },
     dateText:{
         fontSize: 12,
-
     }
 
 

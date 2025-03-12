@@ -1,17 +1,12 @@
 
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-
 import { FAQ } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
 import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
-//import { useNavigation } from "expo-router";
-
-
-
 
 
 const EditFAQForm = () => {
@@ -39,17 +34,13 @@ const EditFAQForm = () => {
     }, [id])
 
     const onSubmit: SubmitHandler<FAQ> = async (data) => {
-        
         if (user) {
             console.log(data)
             await updateDoc(doc(FIREBASE_DB, 'dorm-details', id as string), { question: data.question, answer: data.answer });
-            //reset();
             router.back()
         } else {
             console.log("No user logged in");
-        }
-        
-        
+        }   
     };
     
     return (

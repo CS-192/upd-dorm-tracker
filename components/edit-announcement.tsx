@@ -1,17 +1,12 @@
 
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-
 import { Announcement } from "@/project_types";
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
-//import { useNavigation } from "expo-router";
-
-
-
 
 
 const EditAnnouncementForm = () => {
@@ -26,6 +21,7 @@ const EditAnnouncementForm = () => {
         reset,
     } = useForm<Announcement>();
 
+    // fetching the data to be edited to display in the text input box
     useEffect(()=>{
         const fetchData = async() => {
             const announcementDoc = doc(FIREBASE_DB, 'dorm-details', id as string);
@@ -38,18 +34,15 @@ const EditAnnouncementForm = () => {
         fetchData();
     }, [id])
 
+    // Saving the edited data
     const onSubmit: SubmitHandler<Announcement> = async (data) => {
-        
         if (user) {
             console.log(data)
             await updateDoc(doc(FIREBASE_DB, 'dorm-details', id as string), { subject: data.subject, details: data.details });
-            //reset();
             router.back()
         } else {
             console.log("No user logged in");
-        }
-        
-        
+        }  
     };
     
     return (
@@ -101,7 +94,6 @@ const EditAnnouncementForm = () => {
     );
     };
     
-
 
 const styles = StyleSheet.create({
     container: {

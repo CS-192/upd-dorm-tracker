@@ -1,14 +1,11 @@
 
-import { TextInput, Button, View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
 import { FIREBASE_DB } from '../FirebaseConfig';
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { useEffect, useState } from "react";
-import { useFocusEffect, useRouter, useNavigation } from "expo-router";
+import { useState } from "react";
+import { useFocusEffect, useRouter, } from "expo-router";
 import React from "react";
-
-
-
 
 
 
@@ -16,21 +13,20 @@ const Card = ({ subject, details, id }: { subject: string; details: string, id: 
     const router = useRouter()
     const editFAQ = (id: string) => {
         router.push({pathname: "../manage-dorm-details/edit-faq", params: {id}})
-    
-    }
+        };
     const deleteItem = async (id: string) => {
-            const announcementDoc = doc(FIREBASE_DB, 'dorm-details', id);
-            await deleteDoc(announcementDoc);
+        const announcementDoc = doc(FIREBASE_DB, 'dorm-details', id);
+        await deleteDoc(announcementDoc);
         };
     
-        const deleteItemAlert = (id: string) => {
-            Alert.alert(
-              "Confirm Delete",
-              "Are you sure you want to delete this item?",
-              [
+    const deleteItemAlert = (id: string) => {
+        Alert.alert(
+            "Confirm Delete",
+            "Are you sure you want to delete this item?",
+            [
                 { text: "Cancel", style: "cancel" },
                 { text: "Delete", onPress: () => deleteItem(id), style: "destructive" }
-              ]
+            ]
             );
           };
     
@@ -61,9 +57,6 @@ const DisplayFAQ: React.FC = () => {
     const user = auth.currentUser;
     const [faqs, setFAQs] = useState<any>([]);
     const dormDetailsCollection = collection(FIREBASE_DB, 'dorm-details');
-    // useEffect(() => {
-    //     fetchAnnouncements();
-    //   }, [user]);
 
     useFocusEffect(
         React.useCallback(() => {
@@ -83,7 +76,6 @@ const DisplayFAQ: React.FC = () => {
         }
     };
 
-    
     return(
         <FlatList
           data={faqs}
