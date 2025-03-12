@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   TextInput,
-  Button,
   Alert,
   StyleSheet,
   SafeAreaView,
-  TouchableHighlight,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
@@ -19,6 +17,8 @@ import {
 import { FIREBASE_DB } from "@/FirebaseConfig";
 import { Dormer } from "@/project_types";
 import Ptext, { Ptitle } from "@/project_components";
+import { Picker } from "@react-native-picker/picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 // DormerForm Component
 const DormerForm: React.FC = () => {
@@ -54,35 +54,6 @@ const DormerForm: React.FC = () => {
 
       <Controller
         control={control}
-        name="student_id"
-        rules={{ required: true }}
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            placeholder="Student ID"
-            keyboardType="numeric"
-            onChangeText={(text) => onChange(Number(text))}
-            value={value ? String(value) : ""}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name="last_name"
-        rules={{ required: true }}
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            style={styles.input}
-            placeholder="Last Name"
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
         name="first_name"
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
@@ -111,16 +82,71 @@ const DormerForm: React.FC = () => {
 
       <Controller
         control={control}
-        name="birth_date"
+        name="last_name"
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <TextInput
             style={styles.input}
-            placeholder="Birth Date (YYYY-MM-DD)"
+            placeholder="Last Name"
             onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="student_id"
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Student Number (no dash)"
+            keyboardType="numeric"
+            onChangeText={(text) => onChange(Number(text))}
             value={value ? String(value) : ""}
           />
         )}
+      />
+
+      <Controller
+        control={control}
+        name="birth_date"
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => {
+          const [showPicker, setShowPicker] = useState(false);
+
+          return (
+            <View>
+              {/* Open Date Picker */}
+              <TouchableOpacity
+                onPress={() => setShowPicker(true)}
+                style={styles.input}
+              >
+                <Ptext
+                  style={{ fontSize: 13.5, color: value ? "#000" : "#757575" }}
+                >
+                  {value ? new Date(value).toLocaleDateString() : "Birth Date"}
+                </Ptext>
+              </TouchableOpacity>
+
+              {/* Show Date Picker only when requested */}
+              {showPicker && (
+                <DateTimePicker
+                  value={value ? new Date(value) : new Date()}
+                  mode="date"
+                  display={Platform.OS === "ios" ? "spinner" : "default"}
+                  onChange={(event, selectedDate) => {
+                    setShowPicker(false);
+                    if (selectedDate) {
+                      onChange(selectedDate.toISOString()); // Store in ISO format for Firestore
+                    }
+                  }}
+                />
+              )}
+            </View>
+          );
+        }}
       />
 
       <Controller
@@ -135,6 +161,29 @@ const DormerForm: React.FC = () => {
             onChangeText={(text) => onChange(Number(text))}
             value={value ? String(value) : ""}
           />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="sex"
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={value}
+              onValueChange={onChange}
+              style={styles.picker}
+            >
+              <Picker.Item
+                label="Sex"
+                value=""
+                style={{ fontSize: 13.5, color: "#757575" }}
+              />
+              <Picker.Item label="Male" value="M" />
+              <Picker.Item label="Female" value="F" />
+            </Picker>
+          </View>
         )}
       />
 
@@ -185,7 +234,7 @@ const DormerForm: React.FC = () => {
         disabled={loading}
         style={styles.button}
       >
-        <Ptext>{loading ? "Saving..." : "Add Dormer"}</Ptext>
+        <Ptext>{loading ? "Loading..." : "Add Dormer"}</Ptext>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -213,7 +262,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    height: 45,
+    height: 50,
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
@@ -231,5 +280,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 5,
     width: 200,
+  },
+  pickerContainer: {
+    marginHorizontal: 50,
+    marginBottom: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+    borderColor: "#ccc",
+    borderWidth: 1,
+  },
+  picker: {
+    padding: 0,
+    height: 50,
+    fontSize: 1,
   },
 });

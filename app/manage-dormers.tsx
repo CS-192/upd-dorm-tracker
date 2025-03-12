@@ -15,11 +15,11 @@ const ManageDormers = () => {
           <Ptitle>Manage Dormer's Information</Ptitle>
           <SearchComponent />
           <DormersTableComponent />
-          <Link href="/add-dormers" style={styles.addDormerButton}>
-            <TouchableOpacity>
+          <TouchableOpacity style={styles.addDormerButton}>
+            <Link href="/add-dormers">
               <Text style={styles.addDormerButtonText}>Add Dormer</Text>
-            </TouchableOpacity>
-          </Link>
+            </Link>
+          </TouchableOpacity>
         </SafeAreaView>
       </SafeAreaView>
     </SafeAreaProvider>

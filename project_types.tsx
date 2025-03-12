@@ -97,6 +97,7 @@ export interface Dormer {
   birth_date: Date;
   phone_number: number;
   dorm: string;
+  sex: sex;
   room_number: string;
   address: string;
 }
