@@ -35,7 +35,7 @@ export const DormerForm: React.FC = () => {
       // Add dormer entry to Firestore
       await addDoc(collection(FIREBASE_DB, "dormers"), {
         ...data,
-        birth_date: birthDate.toISOString(), // Store as string for simplicity
+        birth_date: "", // Store as string for simplicity
       });
 
       Alert.alert("Success", "Dormer added successfully!");
@@ -111,7 +111,7 @@ export const DormerForm: React.FC = () => {
       <Controller
         control={control}
         name="birth_date"
-        rules={{ required: true }}
+        rules={{ required: false }}
         render={({ field: { onChange, value } }) => {
           const [showPicker, setShowPicker] = useState(false);
 
@@ -168,7 +168,7 @@ export const DormerForm: React.FC = () => {
       <Controller
         control={control}
         name="sex"
-        rules={{ required: true }}
+        rules={{ required: false }}
         render={({ field: { onChange, value } }) => (
           <View style={styles.pickerContainer}>
             <Picker
