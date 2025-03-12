@@ -100,10 +100,18 @@ export default function Dormer() {
           <Ptext style={dormerStyles.details}>Dorm: {dormer.dorm}</Ptext>
           <Ptext style={dormerStyles.details}>Room: {dormer.room_number}</Ptext>
           <Ptext style={dormerStyles.details}>Address: {dormer.address}</Ptext>
+          <TouchableOpacity disabled={loading} style={dormerStyles.button}>
+            <Ptext>Update Dormer Details</Ptext>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={handleDelete}
             disabled={loading}
-            style={dormerStyles.button}
+            style={[
+              dormerStyles.button,
+              {
+                backgroundColor: "#e06c8d",
+              },
+            ]}
           >
             <Ptext>Delete Dormer</Ptext>
           </TouchableOpacity>
@@ -120,11 +128,10 @@ const dormerStyles = StyleSheet.create({
   },
   button: {
     borderColor: "#4e4f52",
-    backgroundColor: "#e06c8d",
     borderWidth: 1,
     paddingHorizontal: 20,
     paddingVertical: 6,
-    margin: "auto",
+    marginHorizontal: "auto",
     marginTop: 10,
     borderRadius: 5,
     width: 200,
