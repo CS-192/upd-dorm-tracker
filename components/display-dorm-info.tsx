@@ -105,8 +105,9 @@ const DisplayDormInfo: React.FC = () => {
     
     const fetchDormInfo = async () => {
         if (user) {
-          const q = query(dormInfoCollection, where("userId", "==", user.uid),
-        );
+            const q = query(dormInfoCollection ); // change once assigned dorm is available sa profile
+        //     const q = query(dormInfoCollection, where("dorm", "==", user.dorm),
+        // );
           const data = await getDocs(q);
           setDormInfo(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         } else {
