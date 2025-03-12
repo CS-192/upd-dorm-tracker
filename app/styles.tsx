@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+    //backgroundColor: "yellow"
   },
   imageWrapper: {
     padding: 24,
@@ -89,7 +90,22 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "bold",
   },
-  manageRequestsContainer: {
+  subTabHeader:{
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  userProfileContainer:{
+    flex: 1,
+    backgroundColor: "#fff",
+    width: "100%",
+    paddingLeft: 33,
+    paddingRight: 33,
+    lineHeight: 20,
+    marginBottom: 33,
+    marginTop: 100,
+    flexDirection: 'column',
+  },
+  manageRequestsContainer:{
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
@@ -106,11 +122,10 @@ const styles = StyleSheet.create({
     paddingLeft: 33,
     paddingRight: 33,
     marginBottom: 33,
-    // marginTop: 50,
     flexDirection: "column",
   },
   tableContainer: {
-    paddingTop: 5,
+    paddingTop: 0,
     width: "100%",
     alignContent: "center",
     justifyContent: "center",
