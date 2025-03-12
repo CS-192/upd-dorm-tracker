@@ -9,6 +9,7 @@ import { handleLogout } from "@/project_functions";
 import NavigationMenu from "../components/NavigationMenu";
 import DashboardCard, { DashboardGrid } from "@/components/dashboard";
 import { Ptitle } from "@/project_components";
+import HeaderWithMenu from "@/components/headerWithMenu";
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,43 +34,8 @@ const Dashboard = () => {
     fetchEmail();
   }, []);
 
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        {/* Header Section */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={toggleMenu}>
-            <AntDesign
-              name="menu-fold"
-              size={24}
-              color="white"
-              style={styles.icon}
-            />
-          </TouchableOpacity>
-          <View style={styles.iconContainer}>
-            <AntDesign
-              name="bells"
-              size={24}
-              color="white"
-              style={styles.icon}
-            />
-            <Link href="/user-profile">
-              <AntDesign
-                name="user"
-                size={24}
-                color="white"
-                style={styles.icon}
-              />
-            </Link>
-          </View>
-        </View>
-
-        {/* Sidebar Navigation Menu */}
-        {isMenuOpen && (
-          <NavigationMenu userRole={userRole} toggleMenu={toggleMenu} />
-        )}
-
-        {/*User Info (temporary. should be moved to different page)*/}
+  return ( // Change userRole from "student" to "admin" or vice versa. NOTE changing roles seem to be a very hard task atm so calm down lng:)
+    <HeaderWithMenu userRole="admin"> 
         <SafeAreaView
           style={[
             styles.container,
@@ -116,8 +82,7 @@ const Dashboard = () => {
             </DashboardCard>
           </ScrollView>
         )}
-      </SafeAreaView>
-    </SafeAreaProvider>
+    </HeaderWithMenu>
   );
 };
 
