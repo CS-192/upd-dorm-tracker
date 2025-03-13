@@ -6,6 +6,7 @@ import { FIREBASE_DB } from '../FirebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 const AddFAQ = () => {
     const auth = getAuth();
@@ -30,6 +31,11 @@ const AddFAQ = () => {
                 userId: user.uid }); 
             reset();
             router.back();
+            Toast.show({
+                type: "success",
+                text1: "Success!",
+                text2: "FAQ added successfully."
+                });
         } else {
           console.log("No user logged in");
         }
@@ -37,7 +43,7 @@ const AddFAQ = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>Subject</Text>
+            <Text style={styles.label}>Question</Text>
             <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
@@ -47,6 +53,7 @@ const AddFAQ = () => {
                     onChangeText={onChange}
                     value={value}
                     multiline={true}
+                    placeholder="Enter question"
                     scrollEnabled={true}
                     />
                 )}
@@ -54,7 +61,7 @@ const AddFAQ = () => {
                 rules={{ required: "*This is required" }}
             />
             {errors.question && <Text style={styles.errormessage}>{errors.question.message}</Text>}
-            <Text style={styles.label}>Details</Text>
+            <Text style={styles.label}>Answer</Text>
             <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
@@ -63,6 +70,7 @@ const AddFAQ = () => {
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
+                    placeholder="Enter answer"
                     multiline={true}
                     scrollEnabled={true}
                     />
@@ -73,7 +81,7 @@ const AddFAQ = () => {
             {errors.answer && <Text style={styles.errormessage}>{errors.answer.message}</Text>}
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
-                    <Text style={styles.buttonlabel}>Submit</Text>
+                    <Text style={styles.buttonlabel}>Save</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={()=>router.back()}>
                     <Text style={styles.buttonlabel}>Cancel</Text>

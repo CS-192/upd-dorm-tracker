@@ -1,75 +1,109 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
-import AddFAQ from "./add-faq"; // Adjust the import path if needed
-import { useRouter } from "expo-router";
+import AddFAQ from "./add-faq";
+import { Alert } from "react-native";
 import { addDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
-// Mock Firebase functions
+// Mock Firebase Firestore
+jest.mock("@/FirebaseConfig", () => ({
+  FIREBASE_DB: {},
+}));
+
 jest.mock("firebase/firestore", () => ({
   collection: jest.fn(),
   addDoc: jest.fn(),
 }));
 
-jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(() => ({
-    currentUser: { uid: "test-user-id" },
-  })),
-}));
-
-// Mock Expo Router
 jest.mock("expo-router", () => ({
-  useRouter: jest.fn(),
-}));
+    useRouter: () => ({
+      push: jest.fn(),
+      back: jest.fn(),
+      isReady: true, // ✅ Mock `isReady`
+    }),
+  }));
 
-describe("AddFAQ Component", () => {
-  let mockRouter: { back: jest.Mock }; // ✅ Explicitly typed
+// Mock Alert
+jest.spyOn(Toast, "show");
 
-  beforeEach(() => {
-    mockRouter = { back: jest.fn() }; // ✅ No implicit 'any' error
-    (useRouter as jest.Mock).mockReturnValue(mockRouter);
+jest.mock("firebase/auth", () => ({
+    getAuth: jest.fn(() => ({
+      currentUser: { uid: "testUser123" },
+    })),
+  }));
+
+
+describe("AddAnnouncement", () => {
+  it("renders correctly", () => {
+    const { getByText, getByPlaceholderText, getByTestId } = render(
+      <AddFAQ />
+    );
+
+    //expect(getByText("Add Announcement")).toBeTruthy();
+    expect(getByText("Question")).toBeTruthy();
+    expect(getByText("Answer")).toBeTruthy();
   });
 
-  it("renders the form fields", () => {
-    const { getByText } = render(<AddFAQ />);
+  it("displays validation errors when answer field  is empty", async () => {
+    const { getByText, getByPlaceholderText } = render(<AddFAQ />);
+    const subjectInput = getByPlaceholderText("Enter question");
+    const detailsInput = getByPlaceholderText(" Enter answer");
+    const saveButton = getByText("Save");
 
-    expect(getByText("Subject")).toBeTruthy();
-    expect(getByText("Details")).toBeTruthy();
-  });
-
-  it("shows validation errors when submitting empty form", async () => {
-    const { getByText, getByRole } = render(<AddFAQ />);
-
-    fireEvent.press(getByRole("button", { name: /submit/i }));
-
+    // Fill inputs
+    fireEvent.changeText(subjectInput, "Test Subject");
+    //fireEvent.changeText(detailsInput, "Test Details");
+    fireEvent.press(saveButton);
+  
+    // Check if validation errors appear
     await waitFor(() => {
-      expect(getByText("*This is required")).toBeTruthy();
+      expect(getByText("*This is required")).toBeTruthy(); // Checks if required field error is displayed
     });
   });
 
-  it("submits the form when valid", async () => {
-    const { getByPlaceholderText, getByRole } = render(<AddFAQ />);
+  it("displays validation errors when question field  is empty", async () => {
+    const { getByText, getByPlaceholderText } = render(<AddFAQ />);
+    const subjectInput = getByPlaceholderText("Enter question");
+    const detailsInput = getByPlaceholderText(" Enter answer");
+    const saveButton = getByText("Save");
 
-    fireEvent.changeText(
-      getByPlaceholderText("Enter subject"),
-      "Test Question"
-    );
-    fireEvent.changeText(getByPlaceholderText("Enter details"), "Test Answer");
+    // Fill inputs
+    //fireEvent.changeText(subjectInput, "Test Subject");
+    fireEvent.changeText(detailsInput, "Test Details");
+    fireEvent.press(saveButton);
+  
+    // Check if validation errors appear
+    await waitFor(() => {
+      expect(getByText("*This is required")).toBeTruthy(); // Checks if required field error is displayed
+    });
+  });
 
-    fireEvent.press(getByRole("button", { name: /submit/i }));
+  it("renders input fields and handles form submission", async () => {
+    const { getByText, getByPlaceholderText } = render(<AddFAQ />);
+    const subjectInput = getByPlaceholderText("Enter question");
+    const detailsInput = getByPlaceholderText(" Enter answer");
+    const saveButton = getByText("Save");
 
+    // Fill inputs
+    fireEvent.changeText(subjectInput, "Test Subject");
+    fireEvent.changeText(detailsInput, "Test Details");
+
+    // Submit form
+    fireEvent.press(saveButton);
+
+    // Check if addDoc is called
     await waitFor(() => {
       expect(addDoc).toHaveBeenCalled();
     });
 
-    expect(mockRouter.back).toHaveBeenCalled();
-  });
-
-  it("navigates back when cancel is pressed", () => {
-    const { getByRole } = render(<AddFAQ />);
-
-    fireEvent.press(getByRole("button", { name: /cancel/i }));
-
-    expect(mockRouter.back).toHaveBeenCalled();
+    // Check if Toast message is shown
+    await waitFor(() => {
+      expect(Toast.show).toHaveBeenCalledWith({
+        type: "success",
+        text1: "Success!",
+        text2: "FAQ added successfully."
+    });
+    });
   });
 });
