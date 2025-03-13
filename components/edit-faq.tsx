@@ -7,6 +7,7 @@ import { updateDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
+import Toast from "react-native-toast-message";
 
 
 const EditFAQForm = () => {
@@ -38,6 +39,11 @@ const EditFAQForm = () => {
             console.log(data)
             await updateDoc(doc(FIREBASE_DB, 'dorm-details', id as string), { question: data.question, answer: data.answer });
             router.back()
+            Toast.show({
+                type: "success",
+                text1: "Success!",
+                text2: "Changes saved."
+                });
         } else {
             console.log("No user logged in");
         }   
