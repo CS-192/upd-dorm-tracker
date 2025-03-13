@@ -51,10 +51,10 @@ const originalConsoleLog = console.log;
 console.log = jest.fn();
 
 describe("Login Component", () => {
-  let router: { push: jest.Mock };
+  let router: { replace: jest.Mock };
 
   beforeEach(() => {
-    router = { push: jest.fn() };
+    router = { replace: jest.fn() };
     (useRouterOriginal as jest.Mock).mockReturnValue(router);
     jest.clearAllMocks();
   });
@@ -81,7 +81,7 @@ describe("Login Component", () => {
 
     await waitFor(() => {
       expect(AsyncStorage.getItem).toHaveBeenCalledWith("userToken");
-      expect(router.push).toHaveBeenCalledWith("/dashboard");
+      expect(router.replace).toHaveBeenCalledWith("/dashboard");
     });
   });
 
@@ -172,7 +172,7 @@ describe("Login Component", () => {
         visibilityTime: 2000,
         autoHide: true,
       });
-      expect(router.push).toHaveBeenCalledWith("/dashboard");
+      expect(router.replace).toHaveBeenCalledWith("/dashboard");
     });
   });
 

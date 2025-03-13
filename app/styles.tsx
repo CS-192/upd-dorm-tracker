@@ -90,11 +90,11 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "bold",
   },
-  subTabHeader:{
+  subTabHeader: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-  userProfileContainer:{
+  userProfileContainer: {
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
@@ -103,9 +103,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 33,
     marginTop: 100,
-    flexDirection: 'column',
+    flexDirection: "column",
   },
-  manageRequestsContainer:{
+  manageRequestsContainer: {
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
