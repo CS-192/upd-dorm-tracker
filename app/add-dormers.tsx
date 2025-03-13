@@ -19,6 +19,7 @@ import { Dormer } from "@/project_types";
 import Ptext, { Ptitle } from "@/project_components";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import HeaderWithMenu from "@/components/headerWithMenu";
 
 // DormerForm Component
 export const DormerForm: React.FC = () => {
@@ -244,11 +245,13 @@ export const DormerForm: React.FC = () => {
 
 const AddDormers = () => {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <DormerForm />
-      </SafeAreaView>
-    </GestureHandlerRootView>
+    <HeaderWithMenu userRole="admin">
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <DormerForm />
+        </SafeAreaView>
+      </GestureHandlerRootView>
+    </HeaderWithMenu>
   );
 };
 
