@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     paddingLeft: 33,
     paddingRight: 33,
     marginBottom: 33,
-    marginTop: 100,
+    marginTop: 33,
     flexDirection: "column",
   },
   manageDormersContainer: {
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     paddingRight: 33,
     marginBottom: 33,
     flexDirection: "column",
+    
   },
   tableContainer: {
     paddingTop: 0,

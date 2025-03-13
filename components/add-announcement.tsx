@@ -6,6 +6,7 @@ import { FIREBASE_DB } from '../FirebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 const AddAnnouncement = () => {
     const auth = getAuth();
@@ -33,10 +34,17 @@ const AddAnnouncement = () => {
                 userId: user.uid }); 
             reset();
             router.back()
+            Toast.show({
+                type: "success",
+                text1: "Success!",
+                text2: "Announcement added successfully."
+              });
         } else {
           console.log("No user logged in");
         }
       };
+
+
 
     return (
         <View style={styles.container}>

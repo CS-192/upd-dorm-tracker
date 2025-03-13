@@ -6,6 +6,7 @@ import { FIREBASE_DB } from '../FirebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 const AddFAQ = () => {
     const auth = getAuth();
@@ -30,6 +31,11 @@ const AddFAQ = () => {
                 userId: user.uid }); 
             reset();
             router.back();
+            Toast.show({
+                type: "success",
+                text1: "Success!",
+                text2: "FAQ added successfully."
+                });
         } else {
           console.log("No user logged in");
         }
