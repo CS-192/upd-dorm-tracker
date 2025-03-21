@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">UPD Dorm Tracker</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="manage_dorm_details_header">Manage Dorm Details</string>
+    <string name="announcement">Announcements</string>
+    <string name="faq">Frequently asked questions</string>
+    <string name="dorm_information">Dorm Information</string>
+    <string name="create">+  Create</string>
+    <string name="save">Save</string>
+    <string name="add_announcement">Add Announcement</string>
+    <string name="subject">Subject</string>
+    <string name="cancel">Cancel</string>
+    <string name="details">Details</string>
+    <string name="enter_subject">Enter subject</string>
+    <string name="enter_details">Enter details</string>
+
+</resources>
