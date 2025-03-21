@@ -1,4 +1,4 @@
-package com.example.upddormtracker.ui.home
+package com.example.upddormtracker.ui.dorm_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
-import com.example.upddormtracker.databinding.FragmentHomeBinding
+import com.example.upddormtracker.databinding.FragmentDormDetailsBinding
 
-class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+
+class DormDetailsFragment : Fragment() {
+
+    private var _binding: FragmentDormDetailsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +27,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val dormDetailsViewModel =
+            ViewModelProvider(this).get(DormDetailsViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentDormDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        dormDetailsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
