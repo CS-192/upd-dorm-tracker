@@ -26,6 +26,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 import com.example.upddormtracker.R
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,23 +35,27 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
-    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed
-                Toast.makeText(this, "Google Sign-In Failed: ${e.message}", Toast.LENGTH_SHORT).show()
+    private val googleSignInLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                try {
+                    // Google Sign In was successful, authenticate with Firebase
+                    val account = task.getResult(ApiException::class.java)!!
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } catch (e: ApiException) {
+                    // Google Sign In failed
+                    Toast.makeText(this, "Google Sign-In Failed: ${e.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -66,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
-
+        firestore = Firebase.firestore
         if (auth.currentUser != null) {
             redirectToMainActivity()
             return
@@ -100,12 +106,6 @@ class LoginActivity : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
             }
             setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            //start new instance
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
         })
 
         username.afterTextChanged {
@@ -157,11 +157,47 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
-                    user?.let {
-                        val loggedInUserView = LoggedInUserView(
-                            displayName = it.displayName ?: "Google User"
-                        )
-                        updateUiWithUser(loggedInUserView)
+                    user?.let { firebaseUser ->
+                        // Check if user already exists in Firestore
+                        firestore.collection("users").document(firebaseUser.uid)
+                            .get()
+                            .addOnCompleteListener { documentSnapshot ->
+                                if (!documentSnapshot.result.exists()) {
+                                    // Create new user document if it doesn't exist
+                                    val newUser = hashMapOf(
+                                        "email" to (firebaseUser.email ?: ""),
+                                        "name" to (firebaseUser.displayName ?: ""),
+                                        "isDormer" to false,
+                                        "isAdmin" to false,
+                                        "dorm" to ""
+                                    )
+
+                                    firestore.collection("users")
+                                        .document(firebaseUser.uid)
+                                        .set(newUser)
+                                        .addOnSuccessListener {
+                                            val loggedInUserView = LoggedInUserView(
+                                                displayName = firebaseUser.displayName
+                                                    ?: "Google User"
+                                            )
+                                            updateUiWithUser(loggedInUserView)
+                                        }
+                                        .addOnFailureListener {
+                                            // Handle Firestore document creation failure
+                                            showLoginFailed(R.string.login_failed)
+                                        }
+                                } else {
+                                    // User already exists, just update UI
+                                    val loggedInUserView = LoggedInUserView(
+                                        displayName = firebaseUser.displayName ?: "Google User"
+                                    )
+                                    updateUiWithUser(loggedInUserView)
+                                }
+                            }
+                            .addOnFailureListener {
+                                // Handle Firestore query failure
+                                showLoginFailed(R.string.login_failed)
+                            }
                     }
                 } else {
                     // If sign in fails, display a message to the user.
@@ -170,7 +206,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    // Existing methods remain the same...
+
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
