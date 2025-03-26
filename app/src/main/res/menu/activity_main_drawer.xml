@@ -9,6 +9,22 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/manage_dorm_details_header" />
         <item
+            android:id="@+id/nav_manage_requests"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Manage Requests" />
+        <item
+            android:id="@+id/nav_announcement"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/announcement" />
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_scan_upid"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Scan UP ID" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />

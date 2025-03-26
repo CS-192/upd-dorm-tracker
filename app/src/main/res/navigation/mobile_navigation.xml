@@ -12,6 +12,30 @@
         tools:layout="@layout/fragment_dorm_details" />
 
     <fragment
+        android:id="@+id/nav_manage_requests"
+        android:name="com.example.upddormtracker.ui.manage_requests.ManageRequestsFragment"
+        android:label="Manage Requests"
+        tools:layout="@layout/fragment_manage_requests" />
+
+    <fragment
+        android:id="@+id/nav_announcement"
+        android:name="com.example.upddormtracker.ui.announcement.AnnouncementFragment"
+        android:label="@string/announcement"
+        tools:layout="@layout/fragment_announcement" />
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.upddormtracker.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_scan_upid"
+        android:name="com.example.upddormtracker.ui.scan_upid.ScanUpIdFragment"
+        android:label="Scan UP ID"
+        tools:layout="@layout/fragment_scan_up_id" />
+
+    <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.upddormtracker.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
@@ -22,22 +46,27 @@
         android:name="com.example.upddormtracker.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
     <fragment
         android:id="@+id/announcementFragment"
         android:name="com.example.upddormtracker.ui.announcement.AnnouncementFragment"
         android:label="Announcements" />
+
     <fragment
         android:id="@+id/createAnnouncementFragment"
         android:name="com.example.upddormtracker.ui.add_announcement.CreateAnnouncementFragment"
         android:label="Add Announcement" />
+
     <fragment
         android:id="@+id/faqFragment"
         android:name="com.example.upddormtracker.ui.faq.FaqFragment"
         android:label="Frequently Asked Questions" />
+
     <fragment
         android:id="@+id/addFaqFragment"
         android:name="com.example.upddormtracker.ui.add_faq.AddFaqFragment"
         android:label="Add FAQ" />
+
     <fragment
         android:id="@+id/dormInfoFragment"
         android:name="com.example.upddormtracker.ui.dorm_info.DormInfoFragment"
