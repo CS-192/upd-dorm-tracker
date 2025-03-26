@@ -71,4 +71,16 @@
         android:id="@+id/dormInfoFragment"
         android:name="com.example.upddormtracker.ui.dorm_info.DormInfoFragment"
         android:label="Dorm Information" />
+
+    <fragment
+        android:id="@+id/nav_late_night_pass"
+        android:name="com.example.upddormtracker.ui.late_night_pass.LateNightPassFragment"
+        android:label="Late Night/Overnight Pass"
+        tools:layout="@layout/fragment_late_night_pass">
+        <!-- Define arguments if needed -->
+        <argument
+            android:name="passId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

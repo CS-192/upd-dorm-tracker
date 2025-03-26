@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentManageRequestsBinding
+import androidx.navigation.fragment.findNavController
 
 class ManageRequestsFragment : Fragment() {
 
@@ -128,13 +129,27 @@ class ManageRequestsFragment : Fragment() {
         val delete = rowView.findViewById<TextView>(R.id.text_delete)
 
         detailsEdit.setOnClickListener {
-            // Handle details/edit click
-            // For now just a placeholder
+            // Navigate to the Late Night Pass fragment with the request ID
+            val bundle = Bundle().apply {
+                putString("passId", request.id)
+            }
+            // Using the correct fragment ID as defined in navigation XML
+            findNavController().navigate(R.id.nav_late_night_pass, bundle)
         }
 
         delete.setOnClickListener {
             // Handle delete click
             // For now just a placeholder
+        }
+
+        // Make the entire row clickable
+        rowView.setOnClickListener {
+            // Navigate to the Late Night Pass fragment with the request ID
+            val bundle = Bundle().apply {
+                putString("passId", request.id)
+            }
+            // Using the correct fragment ID as defined in navigation XML
+            findNavController().navigate(R.id.nav_late_night_pass, bundle)
         }
 
         // Add row to table
