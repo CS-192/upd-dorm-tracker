@@ -28,6 +28,18 @@
         android:label="Announcements" />
     <fragment
         android:id="@+id/createAnnouncementFragment"
-        android:name="com.example.upddormtracker.ui.createannouncement.CreateAnnouncementFragment"
+        android:name="com.example.upddormtracker.ui.add_announcement.CreateAnnouncementFragment"
         android:label="Add Announcement" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.example.upddormtracker.ui.faq.FaqFragment"
+        android:label="Frequently Asked Questions" />
+    <fragment
+        android:id="@+id/addFaqFragment"
+        android:name="com.example.upddormtracker.ui.add_faq.AddFaqFragment"
+        android:label="Add FAQ" />
+    <fragment
+        android:id="@+id/dormInfoFragment"
+        android:name="com.example.upddormtracker.ui.dorm_info.DormInfoFragment"
+        android:label="Dorm Information" />
 </navigation>

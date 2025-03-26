@@ -5,22 +5,49 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Log out</string>
 
-    <string name="menu_home">Home</string>
+<!--    Headers-->
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="manage_dorm_details_header">Manage Dorm Details</string>
     <string name="announcement">Announcements</string>
     <string name="faq">Frequently asked questions</string>
     <string name="dorm_information">Dorm Information</string>
-    <string name="create">+  Create</string>
-    <string name="save">Save</string>
     <string name="add_announcement">Add Announcement</string>
+    <string name="add_faq">Add FAQ</string>
+
+<!--    Input field labels/Button text/Placeholder texts-->
+    <string name="create">+  New</string>
+    <string name="save">Save</string>
     <string name="subject">Subject</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
     <string name="details">Details</string>
     <string name="enter_subject">Enter subject</string>
     <string name="enter_details">Enter details</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="enter_question">Enter question</string>
+    <string name="enter_answer">Enter answer</string>
+
+<!--    Dorm info sub headings-->
+    <string name="dorm_name">MOLAVE RH</string>
+    <string name="curfew_hours">Curfew Hours</string>
+    <string name="address">Address</string>
+    <string name="contact_details">Email</string>
+    <string name="history">History</string>
+
+<!--    sample dorm info-->
+    <string name="curfew_value">10:00PM to 6:00AM</string>
+    <string name="address_value">M359+35W, Diliman, Quezon City, Metro Manila</string>
+    <string name="contact_details_value">molave@abc.xyz</string>
+    <string name="history_value">ZyZyphor quently drifted across the luminescent skyline, whispering secrets of the cosmos to the silent ether. Beneath, the world shimmered in hues of forgotten dreams and untold stories. The ancient city of Vareth lay beneath the twilight, its spires reaching toward the heavens like frozen echoes of an era long past. Lanterns flickered in alleyways where time itself seemed to hesitate, caught between memory and oblivion.
+
+Far beyond the marble bridges and cobbled streets, the endless expanse of the Eldrin Sea murmured softly against the cliffs, carrying with it the laughter of lost sailors and the sighs of unseen creatures. The wind wove its way through the empty halls of abandoned temples, carrying fragments of prayers once whispered in devotion, now only faint murmurs in the vast tapestry of time.phor quently drifted across the luminescent skyline, whispering secrets of the cosmos to the silent ether. Beneath, the world shimmered in hues of forgotten dreams and untold stories. The ancient city of Vareth lay beneath the twilight, its spires reaching toward the heavens like frozen echoes of an era long past. Lanterns flickered in alleyways where time itself seemed to hesitate, caught between memory and oblivion.
+
+Far beyond the marble bridges and cobbled streets, the endless expanse of the Eldrin Sea murmured softly against the cliffs, carrying with it the laughter of lost sailors and the sighs of unseen creatures. The wind wove its way through the empty halls of abandoned temples, carrying fragments of prayers once whispered in devotion, now only faint murmurs in the vast tapestry of time.</string>
+
 
 </resources>

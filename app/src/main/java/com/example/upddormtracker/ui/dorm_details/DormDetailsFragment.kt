@@ -59,12 +59,13 @@ class DormDetailsFragment : Fragment() {
 
         buttonSecond.setOnClickListener {
             // Handle "FAQ" button click
-
+            findNavController().navigate(R.id.faqFragment)
             println("FAQ Button Clicked!")
         }
 
         buttonThird.setOnClickListener {
             // Handle "Dorm Information" button click
+            findNavController().navigate(R.id.dormInfoFragment)
             println("Dorm Information Button Clicked!")
         }
     }

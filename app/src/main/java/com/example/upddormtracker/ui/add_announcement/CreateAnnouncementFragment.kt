@@ -1,11 +1,10 @@
-package com.example.upddormtracker.ui.createannouncement
+package com.example.upddormtracker.ui.add_announcement
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -32,10 +31,7 @@ class CreateAnnouncementFragment : Fragment() {
         _binding = FragmentCreateAnnouncementBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCreateAnnouncement
-        createAnnouncementViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
         return root
     }
 
@@ -80,7 +76,7 @@ class CreateAnnouncementFragment : Fragment() {
             viewModel.validateDetails(inputDetails.text.toString())
             if (viewModel.isFormValid()) {
                 // Proceed with form submission
-                Toast.makeText(requireContext(), "Announcement posted!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Announcement has been successfully posted!", Toast.LENGTH_SHORT).show()
                 findNavController().navigateUp()
             }
 
