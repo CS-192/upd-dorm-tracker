@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Focused or Pressed state (Input field selected) -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="10dp" />
+            <stroke android:width="2dp" android:color="@color/button_red" />
+        </shape>
+    </item>
+
+    <!-- Default state (Input field not selected) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="10dp" />
+            <stroke android:width="2dp" android:color="@android:color/darker_gray" />
+        </shape>
+    </item>
+
+</selector>
