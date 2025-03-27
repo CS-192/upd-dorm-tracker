@@ -35,7 +35,7 @@ class AddFaqFragment : Fragment() {
 
     private fun addFAQ(faq: FAQ){
         // Add document with auto-generated ID
-        firestore.collection("faq")
+        firestore.collection("faqs")
             .add(faq)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "FAQ has been successfully posted!", Toast.LENGTH_SHORT).show()
