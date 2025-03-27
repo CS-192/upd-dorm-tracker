@@ -47,10 +47,11 @@ class DormDetailsFragment : Fragment() {
         val buttonFirst: Button = binding.buttonFirst
         val buttonSecond: Button = binding.buttonSecond
         val buttonThird: Button = binding.buttonThird
+        val buttonFourth: Button = binding.buttonFourth
 
         // Set click listeners for buttons
 
-            // Handle "Announcement" button click
+        // Handle "Announcement" button click
 
         buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.announcementFragment)
@@ -66,6 +67,10 @@ class DormDetailsFragment : Fragment() {
         buttonThird.setOnClickListener {
             // Handle "Dorm Information" button click
             println("Dorm Information Button Clicked!")
+        }
+
+        buttonFourth.setOnClickListener {
+            findNavController().navigate(R.id.adminProfileFragment)
         }
     }
 
