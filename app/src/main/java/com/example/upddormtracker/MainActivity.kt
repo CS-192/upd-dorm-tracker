@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,6 +20,7 @@ import com.example.upddormtracker.ui.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
@@ -41,11 +43,27 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_requests
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        getUser()
+    }
+
+    private val userViewModel: UserViewModel by viewModels()
+
+    fun getUser() {
+        val user = Firebase.auth.currentUser
+        user?.let {
+            Firebase.firestore.collection("users").document(it.uid).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val dorm = document.getString("dorm") ?: ""
+                        userViewModel.setDorm(dorm) // Store dorm info in ViewModel
+                    }
+                }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

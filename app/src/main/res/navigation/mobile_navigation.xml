@@ -30,4 +30,14 @@
         android:id="@+id/createAnnouncementFragment"
         android:name="com.example.upddormtracker.ui.createannouncement.CreateAnnouncementFragment"
         android:label="Add Announcement" />
+
+    <fragment
+        android:id="@+id/nav_requests"
+        android:name="com.example.upddormtracker.ui.CreateRequestFragment"
+        android:label="Create Request" />
+
+    <fragment
+        android:id="@+id/lateNightFragment"
+        android:name="com.example.upddormtracker.ui.LateNightFragment"
+        android:label="Late Night/Overnight Pass" />
 </navigation>
