@@ -11,9 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.databinding.FragmentAddFaqBinding
+import com.example.upddormtracker.datamodel.FAQ
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class AddFaqFragment : Fragment() {
     private var _binding: FragmentAddFaqBinding? = null
+    private val firestore = Firebase.firestore
 
     private val binding get() = _binding!!
 
@@ -27,6 +31,19 @@ class AddFaqFragment : Fragment() {
         _binding = FragmentAddFaqBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
+    }
+
+    private fun addFAQ(faq: FAQ){
+        // Add document with auto-generated ID
+        firestore.collection("faq")
+            .add(faq)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "FAQ has been successfully posted!", Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
+            }
+            .addOnFailureListener{
+                Toast.makeText(requireContext(), "Error adding FAQ", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,8 +80,14 @@ class AddFaqFragment : Fragment() {
             viewModel.validateQuestion(inputQuestion.text.toString())
             viewModel.validateAnswer(inputAnswer.text.toString())
             if (viewModel.isFormValid()) {
-                Toast.makeText(requireContext(), "FAQ added successfully!", Toast.LENGTH_SHORT).show()
-                findNavController().navigateUp()
+                val question = inputQuestion.text.toString()
+                val answer = inputAnswer.text.toString()
+                val item = FAQ(
+                    question,
+                    answer,
+                    "Molave"
+                )
+                addFAQ(item)
             }
         }
 
