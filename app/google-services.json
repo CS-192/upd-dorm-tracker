@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149096796950",
+    "project_id": "upd-dorm-tracker-e4410",
+    "storage_bucket": "upd-dorm-tracker-e4410.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149096796950:android:4db0dc2095972673423637",
+        "android_client_info": {
+          "package_name": "com.example.upddormtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149096796950-j2p5idi584emvdplkiqjvccneopn4f6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhVxkVu6EV8SneFccD1YICAz0AcPeCDq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149096796950-j2p5idi584emvdplkiqjvccneopn4f6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
