@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">final</string>
+    <string name="title_activity_successful_scan">successfulScan</string>
+    <string name="title_activity_unsuccessful_scan">UnsuccessfulScan</string>
+</resources>

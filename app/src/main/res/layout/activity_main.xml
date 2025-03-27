@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#898888">
+
+
+    <!-- Toolbar with menu and notification icons -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#8B0000"
+
+        app:titleTextColor="@android:color/white">
+
+        <!-- Menu button -->
+        <ImageView
+            android:id="@+id/menu_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu"
+            android:contentDescription="Menu"
+            android:padding="7dp"
+            android:layout_gravity="start"
+
+            />
+
+        <!-- Spacer to push notification icon to the right -->
+        <View
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Notification button -->
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:background="@null"
+            android:contentDescription="profile"
+            android:padding="1dp"
+
+            android:layout_gravity="end"/>
+        <ImageView
+            android:id="@+id/notification_button"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notifications"
+            android:background="@null"
+            android:contentDescription="Notifications"
+            android:padding="10dp"
+
+            android:layout_gravity="end"/>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/back"
+            android:layout_marginRight="7dp"
+            android:layout_marginLeft="5dp"
+
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textSize="20dp"
+
+
+            />
+        </LinearLayout>
+
+    <!-- QR Code Image -->
+    <ImageView
+        android:id="@+id/qr_code_image"
+        android:layout_width="364dp"
+        android:layout_height="308dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:contentDescription="QR Code"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/better_qr" />
+
+    <!-- "Scan Now" Button -->
+    <Button
+        android:id="@+id/scan_now_button"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:text="Scan Now"
+        android:textSize="35sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button"
+
+        />
+
+</LinearLayout>
