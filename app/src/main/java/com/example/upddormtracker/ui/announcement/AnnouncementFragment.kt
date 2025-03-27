@@ -4,29 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
 import com.example.upddormtracker.adapter.AnnouncementAdapter
 import com.example.upddormtracker.databinding.FragmentAnnouncementBinding
 import com.example.upddormtracker.datamodel.Announcement
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class AnnouncementFragment : Fragment() {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private var _binding: FragmentAnnouncementBinding? = null
     private val binding get() = _binding!!
+    private val firestore = Firebase.firestore
+    private val announcementList = mutableListOf<Announcement>()
+    private lateinit var announcementAdapter: AnnouncementAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val announcementViewModel =
-            ViewModelProvider(this)[AnnouncementViewModel::class.java]
 
         _binding = FragmentAnnouncementBinding.inflate(inflater, container, false)
         return binding.root
@@ -35,26 +36,49 @@ class AnnouncementFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Sample announcement list (Replace with Firestore data later)
-        val announcementList = listOf(
-            Announcement("Meeting", "Dorm meeting at 6 PM", "2025-03-24", "1:30AM", "Molave"),
-            Announcement("Fire Drill", "Mandatory fire drill at 10 AM", "2025-03-25", "2:30PM", "Acacia"),
-            Announcement("Maintenance", "Water supply disruption", "2025-03-26", "5:02AM", "Acacia")
-        )
+        announcementAdapter = AnnouncementAdapter(announcementList)
 
+        // Setup RecyclerView
+        binding.announcementRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = announcementAdapter
+        }
 
+        // Fetch announcements from Firestore
+        fetchAnnouncements()
 
-        // Initialize RecyclerView
-        binding.announcementRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.announcementRecyclerView.adapter = AnnouncementAdapter(
-            announcementList
-        )
-
-        // Handle button click
+        // Handle create button click
         binding.createAnnouncement.setOnClickListener {
             findNavController().navigate(R.id.createAnnouncementFragment)
         }
     }
+
+    private fun fetchAnnouncements() {
+        firestore.collection("announcements")
+            .get()
+            .addOnSuccessListener { result ->
+                announcementList.clear()
+
+                // Add new announcements
+                for (document in result) {
+                    val announcement = Announcement(
+                        document.getString("subject") ?: "",
+                        document.getString("details") ?: "",
+                        document.getString("date") ?: "",
+                        document.getString("time") ?: "",
+                        document.getString("dorm") ?: ""
+                    )
+                    announcementList.add(announcement)
+                }
+
+                // Notify adapter of data change
+                announcementAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error fetching announcements", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
