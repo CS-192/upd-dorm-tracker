@@ -63,4 +63,15 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.2.2")
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.junit)
+
+    // ✅ Use AndroidX JUnit for UI tests
+    androidTestImplementation ("androidx.test:core:1.5.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.fragment:fragment-testing:1.6.2")
+
 }

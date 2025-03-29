@@ -84,8 +84,6 @@ class LateNightFragment : Fragment() {
                 id: Long
             ) {
                 selectedPass = requestTypes[position]
-                Toast.makeText(requireContext(), "Selected: $selectedPass", Toast.LENGTH_SHORT)
-                    .show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
