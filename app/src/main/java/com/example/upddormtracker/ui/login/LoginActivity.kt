@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     // Google Sign In failed
                     Toast.makeText(this, "Google Sign-In Failed: ${e.message}", Toast.LENGTH_SHORT)
                         .show()
+                    binding.btnLoginGoogle?.apply { isEnabled = true }
                 }
             }
         }
@@ -142,6 +143,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLoginGoogle?.setOnClickListener {
             signInWithGoogle()
+            binding.btnLoginGoogle?.apply { isEnabled = false }
         }
     }
 
