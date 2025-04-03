@@ -153,7 +153,7 @@ class LateNightFragment : Fragment() {
                 // Update TextView
                 tvSelectedDate.text = dateFormat.format(selectedCalendar.time)
             }, year, month, day)
-
+        datePickerDialog.datePicker.minDate = calendar.timeInMillis
         datePickerDialog.show()
     }
 
@@ -178,9 +178,11 @@ class LateNightFragment : Fragment() {
 
         // Validate inputs
         if (pass.isNullOrEmpty() || departureDate.isNullOrEmpty() || arrivalDate.isNullOrEmpty() ||
-            destination.isNullOrEmpty() || reason.isNullOrEmpty() || dorm.isNullOrEmpty()) {
+            destination.isNullOrEmpty() || reason.isNullOrEmpty() || dorm.isNullOrEmpty()
+        ) {
 
-            Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT)
+                .show()
             return  // Stop execution if any field is empty
         }
 
@@ -188,6 +190,7 @@ class LateNightFragment : Fragment() {
         val requestData = hashMapOf(
             "userId" to userId,
             "name" to displayName,
+            "type" to "pass",
             "dorm" to dorm,
             "pass" to pass,
             "departureDate" to departureDate,
