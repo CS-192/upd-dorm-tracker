@@ -58,7 +58,7 @@ class CreateRequestFragment : Fragment() {
         buttonSecond.setOnClickListener {
             // Handle "FAQ" button click
 
-            println("FAQ Button Clicked!")
+            findNavController().navigate(R.id.monthlyBillingFragment)
         }
 
         buttonThird.setOnClickListener {

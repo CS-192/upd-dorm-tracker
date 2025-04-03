@@ -23,4 +23,5 @@
     <style name="Theme.UPDDormTrackerBeta.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.UPDDormTrackerBeta.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
