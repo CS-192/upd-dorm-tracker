@@ -3,10 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/home_admin">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/home_admin"
+        android:name="com.example.upddormtracker.ui.dashboard_admin.DashboardAdminFragment"
+        android:label="@string/dashboard"
+        tools:layout="@layout/fragment_dashboard_admin" />
+    <fragment
+        android:id="@+id/dormDetailsFragment"
         android:name="com.example.upddormtracker.ui.dorm_details.DormDetailsFragment"
         android:label="@string/manage_dorm_details_header"
         tools:layout="@layout/fragment_dorm_details" />
@@ -25,7 +30,11 @@
     <fragment
         android:id="@+id/announcementFragment"
         android:name="com.example.upddormtracker.ui.announcement.AnnouncementFragment"
-        android:label="Announcements" />
+        android:label="Announcements" >
+        <action
+            android:id="@+id/action_announcementFragment_to_editAnnouncementFragment"
+            app:destination="@id/editAnnouncementFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createAnnouncementFragment"
         android:name="com.example.upddormtracker.ui.add_announcement.CreateAnnouncementFragment"
@@ -42,4 +51,12 @@
         android:id="@+id/dormInfoFragment"
         android:name="com.example.upddormtracker.ui.dorm_info.DormInfoFragment"
         android:label="Dorm Information" />
+    <fragment
+        android:id="@+id/editAnnouncementFragment"
+        android:name="com.example.upddormtracker.ui.edit_announcement.EditAnnouncementFragment"
+        android:label="Edit Announcement" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

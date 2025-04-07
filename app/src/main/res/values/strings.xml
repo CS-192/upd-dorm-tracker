@@ -16,6 +16,13 @@
     <string name="dorm_information">Dorm Information</string>
     <string name="add_announcement">Add Announcement</string>
     <string name="add_faq">Add FAQ</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="scan_id">Scan ID</string>
+    <string name="dorm_details">Dorm Details</string>
+    <string name="requests">Requests</string>
+    <string name="dormers">Dormers</string>
+
+
 
 <!--    Input field labels/Button text/Placeholder texts-->
     <string name="create">+  New</string>

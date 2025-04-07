@@ -1,4 +1,4 @@
-package com.example.upddormtracker.ui.dorm_details
+package com.example.upddormtracker.ui.dashboard_admin
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
-import com.example.upddormtracker.databinding.FragmentDormDetailsBinding
+import com.example.upddormtracker.databinding.FragmentDashboardAdminBinding
 
 
-class DormDetailsFragment : Fragment() {
+class DashboardAdminFragment : Fragment() {
 
-    private var _binding: FragmentDormDetailsBinding? = null
+    private var _binding: FragmentDashboardAdminBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,16 +26,17 @@ class DormDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dormDetailsViewModel =
-            ViewModelProvider(this)[DormDetailsViewModel::class.java]
+        val dashboardAdminViewModel =
+            ViewModelProvider(this)[DashboardAdminViewModel::class.java]
 
-        _binding = FragmentDormDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentDashboardAdminBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        dormDetailsViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textDashboard
+        dashboardAdminViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
         return root
     }
 
@@ -46,26 +47,23 @@ class DormDetailsFragment : Fragment() {
         val buttonFirst: Button = binding.buttonFirst
         val buttonSecond: Button = binding.buttonSecond
         val buttonThird: Button = binding.buttonThird
+        val buttonFourth: Button = binding.buttonFourth
 
         // Set click listeners for buttons
-
-            // Handle "Announcement" button click
-
         buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.announcementFragment)
+            findNavController().navigate(R.id.dormDetailsFragment)
         }
 
-
         buttonSecond.setOnClickListener {
-            // Handle "FAQ" button click
-            findNavController().navigate(R.id.faqFragment)
-            println("FAQ Button Clicked!")
+            //findNavController().navigate(R.id.faqFragment)
         }
 
         buttonThird.setOnClickListener {
-            // Handle "Dorm Information" button click
-            findNavController().navigate(R.id.dormInfoFragment)
-            println("Dorm Information Button Clicked!")
+            //findNavController().navigate(R.id.dormInfoFragment)
+        }
+
+        buttonFourth.setOnClickListener {
+            //findNavController().navigate(R.id.dormInfoFragment)
         }
     }
 

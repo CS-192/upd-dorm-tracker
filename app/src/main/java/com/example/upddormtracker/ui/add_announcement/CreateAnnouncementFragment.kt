@@ -104,6 +104,7 @@ class CreateAnnouncementFragment : Fragment() {
                 val subject = inputSubject.text.toString()
                 val details = inputDetails.text.toString()
                 val item = Announcement(
+                    "",
                     subject,
                     details,
                     LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE),

@@ -15,6 +15,7 @@ import com.example.upddormtracker.datamodel.Announcement
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+
 class AnnouncementFragment : Fragment() {
 
     private var _binding: FragmentAnnouncementBinding? = null
@@ -33,10 +34,15 @@ class AnnouncementFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        announcementAdapter = AnnouncementAdapter(announcementList)
+        announcementAdapter = AnnouncementAdapter(announcementList, firestore){ id: String ->
+            val action = AnnouncementFragmentDirections.actionAnnouncementFragmentToEditAnnouncementFragment(id)
+            findNavController().navigate(action)
+        }
 
         // Setup RecyclerView
         binding.announcementRecyclerView.apply {
@@ -62,11 +68,13 @@ class AnnouncementFragment : Fragment() {
                 // Add new announcements
                 for (document in result) {
                     val announcement = Announcement(
+                        document.id,
                         document.getString("subject") ?: "",
                         document.getString("details") ?: "",
                         document.getString("date") ?: "",
                         document.getString("time") ?: "",
-                        document.getString("dorm") ?: ""
+                        document.getString("dorm") ?: "",
+
                     )
                     announcementList.add(announcement)
                 }
