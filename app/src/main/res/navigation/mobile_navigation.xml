@@ -45,4 +45,30 @@
         android:id="@+id/monthlyBillingFragment"
         android:name="com.example.upddormtracker.ui.MonthlyBillingFragment"
         android:label="Late Night/Overnight Pass" />
+
+    <fragment
+        android:id="@+id/nav_manage_dormers"
+        android:name="com.example.upddormtracker.ui.managedormers.ManageDormersFragment"
+        android:label="@string/manage_dormers_information"
+        tools:layout="@layout/fragment_manage_dormers">
+        <action
+            android:id="@+id/action_nav_manage_dormers_to_editDormerFragment"
+            app:destination="@id/editDormerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editDormerFragment"
+        android:name="com.example.upddormtracker.ui.managedormers.EditDormerFragment"
+        android:label="Edit Dormer's Information"
+        tools:layout="@layout/fragment_edit_dormer">
+        <action
+            android:id="@+id/action_editDormerFragment_to_updateDormerDetailsFragment"
+            app:destination="@id/updateDormerDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateDormerDetailsFragment"
+        android:name="com.example.upddormtracker.ui.managedormers.UpdateDormerDetailsFragment"
+        android:label="Update Dormer's Details"
+        tools:layout="@layout/fragment_update_dormer_details" />
 </navigation>

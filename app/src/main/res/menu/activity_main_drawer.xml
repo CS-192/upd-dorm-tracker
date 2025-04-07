@@ -20,5 +20,10 @@
             android:id="@+id/nav_requests"
             android:icon="@drawable/ic_request"
             android:title="@string/create_a_request" />
+
+        <item
+            android:id="@+id/nav_manage_dormers"
+            android:icon="@drawable/ic_menu_manage_dormers"
+            android:title="@string/manage_dormers_information" />
     </group>
 </menu>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleEditDormer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Edit Dormer's\nInformation"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@android:drawable/ic_menu_camera"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/titleEditDormer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/profileImage">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name: Harry J. Potter"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Student Number: 2020123345"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Birth Date: 31/07/1980"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number: 09762844239"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sex: M"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dorm: Molave"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Room Number: E138A"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnUpdateDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update details"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/red"/>
+
+        <Button
+            android:id="@+id/btnViewEditRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View/Edit requests"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnViewEditViolations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View/Edit violations"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnViewEditGuardian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View/Edit guardian"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnRemoveDormer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove dormer"
+            android:backgroundTint="@color/button_red"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
