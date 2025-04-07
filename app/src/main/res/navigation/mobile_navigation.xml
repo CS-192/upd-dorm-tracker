@@ -42,7 +42,12 @@
     <fragment
         android:id="@+id/faqFragment"
         android:name="com.example.upddormtracker.ui.faq.FaqFragment"
-        android:label="Frequently Asked Questions" />
+        android:label="Frequently Asked Questions" >
+        <action
+            android:id="@+id/action_faqFragment_to_editFaqFragment"
+            app:destination="@id/editFaqFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/addFaqFragment"
         android:name="com.example.upddormtracker.ui.add_faq.AddFaqFragment"
@@ -59,4 +64,12 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment android:id="@+id/editFaqFragment"
+        android:name="com.example.upddormtracker.ui.edit_faq.EditFaqFragment"
+        android:label="Edit FAQ" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

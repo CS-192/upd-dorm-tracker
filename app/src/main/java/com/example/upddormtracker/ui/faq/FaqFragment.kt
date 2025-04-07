@@ -44,7 +44,10 @@ class FaqFragment: Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        faqAdapter = FAQAdapter(faqList)
+        faqAdapter = FAQAdapter(faqList, firestore){
+            val action = FaqFragmentDirections.actionFaqFragmentToEditFaqFragment(it)
+            findNavController().navigate(action)
+        }
 
         // Access buttons using View Binding
         val createButton: Button = binding.createFaq
@@ -73,6 +76,7 @@ class FaqFragment: Fragment() {
                 // Add new announcements
                 for (document in result) {
                     val faq = FAQ(
+                        document.id,
                         document.getString("question") ?: "",
                         document.getString("answer") ?: "",
                         document.getString("dorm") ?: ""

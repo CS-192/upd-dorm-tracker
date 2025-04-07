@@ -18,9 +18,6 @@ class AnnouncementAdapter(private val announcementList: MutableList<Announcement
 ): RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder>() {
 
 
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnouncementViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.announcement_card,
@@ -35,8 +32,6 @@ class AnnouncementAdapter(private val announcementList: MutableList<Announcement
     override fun onBindViewHolder(holder: AnnouncementViewHolder, position: Int) {
         val currentItem = announcementList[position]
         holder.bind(currentItem, position)
-
-
     }
 
     inner class AnnouncementViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -51,7 +46,6 @@ class AnnouncementAdapter(private val announcementList: MutableList<Announcement
             subject.text = announcement.subject
             details.text = announcement.details
             date.text = announcement.date
-
 
             // Set up delete button
             deleteButton.setOnClickListener {
@@ -76,8 +70,6 @@ class AnnouncementAdapter(private val announcementList: MutableList<Announcement
         }
 
         private fun deleteAnnouncement(announcement: Announcement, position: Int) {
-            // Assuming your Firestore collection is named "announcements"
-            // And that your Announcement model has a documentId field
             firestore.collection("announcements")
                 .document(announcement.documentId)
                 .delete()
@@ -87,7 +79,6 @@ class AnnouncementAdapter(private val announcementList: MutableList<Announcement
                     // Notify the adapter about the item removal
                     notifyItemRemoved(position)
 
-                    // Optional: Show a success toast
                     Toast.makeText(itemView.context, "Announcement deleted successfully", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {

@@ -83,6 +83,7 @@ class AddFaqFragment : Fragment() {
                 val question = inputQuestion.text.toString()
                 val answer = inputAnswer.text.toString()
                 val item = FAQ(
+                    "",
                     question,
                     answer,
                     "Molave"
