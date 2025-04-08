@@ -44,10 +44,10 @@
     <fragment
         android:id="@+id/monthlyBillingFragment"
         android:name="com.example.upddormtracker.ui.monthlybilling.MonthlyBillingFragment"
-        android:label="Late Night/Overnight Pass" />
+        android:label="Monthly Bill" />
 
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.upddormtracker.ui.report.ReportFragment"
-        android:label="Late Night/Overnight Pass" />
+        android:label="Reports/Concerns" />
 </navigation>
