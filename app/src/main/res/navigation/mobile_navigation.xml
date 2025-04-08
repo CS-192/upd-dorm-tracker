@@ -45,4 +45,9 @@
         android:id="@+id/monthlyBillingFragment"
         android:name="com.example.upddormtracker.ui.monthlybilling.MonthlyBillingFragment"
         android:label="Late Night/Overnight Pass" />
+
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.upddormtracker.ui.report.ReportFragment"
+        android:label="Late Night/Overnight Pass" />
 </navigation>

@@ -63,7 +63,7 @@ class CreateRequestFragment : Fragment() {
 
         buttonThird.setOnClickListener {
             // Handle "Dorm Information" button click
-            println("Dorm Information Button Clicked!")
+            findNavController().navigate(R.id.reportFragment)
         }
     }
 
