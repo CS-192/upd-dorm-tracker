@@ -5,11 +5,18 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:title="Profile" />
+
+        <item
             android:id="@+id/home_admin"
             android:title="Dashboard" />
+
         <item
-            android:id="@+id/dormDetailsFragment"
-            android:title="@string/manage_dorm_details_header" />
+            android:id="@+id/dashboardDormerFragment"
+            android:title="Dormer Dashboard (temporary; remove later)" />
+
+
+
 
     </group>
 </menu>

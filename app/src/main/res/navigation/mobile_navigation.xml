@@ -71,5 +71,10 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/dashboardDormerFragment"
+        android:name="com.example.upddormtracker.ui.dashboard_dormer.DashboardDormerFragment"
+        android:label="Dormer Dashboard (temporary; remove later)" />
+
 
 </navigation>
