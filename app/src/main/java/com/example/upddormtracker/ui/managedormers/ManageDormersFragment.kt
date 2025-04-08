@@ -32,7 +32,7 @@ class ManageDormersFragment : Fragment() {
         }
 
         binding.addDormerButton.setOnClickListener {
-            // Handle add dormer button click
+           findNavController().navigate(R.id.addDormerFragment)
         }
 
         return root
