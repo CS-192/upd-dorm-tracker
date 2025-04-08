@@ -35,6 +35,17 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>
+
+        <activity
+            android:name=".ui.scan_ui.ScanActivity"
+            android:exported="true"
+            android:label="@string/title_activity_scan">
+
+        </activity>
+
+
+
+
     </application>
 
 </manifest>

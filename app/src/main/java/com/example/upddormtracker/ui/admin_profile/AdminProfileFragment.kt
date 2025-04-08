@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.upddormtracker.databinding.FragmentAdminProfileBinding
 
-class AdminProfileFragment : Fragment() {
+class   AdminProfileFragment : Fragment() {
 
     private var _binding: FragmentAdminProfileBinding? = null
 

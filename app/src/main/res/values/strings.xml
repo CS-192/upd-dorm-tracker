@@ -23,6 +23,7 @@
     <string name="enter_subject">Enter subject</string>
     <string name="enter_details">Enter details</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_scan">ScanActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -35,7 +36,9 @@
     <string name="admin_management_name">"Dorm Management"</string>
     <string name="admin_email">"<b>Email: </b>example_dorm@gmail.com</string>
     <string name="admin_dorm_name">"<b>Dorm: </b>Example Dorm</string>
+    <string name="scan_ui">"Scan RFID"</string>
 
     <string name="web_client_id">"149096796950-j2p5idi584emvdplkiqjvccneopn4f6c.apps.googleusercontent.com"</string>
     <string name="registration_failed">\"registration Failed\"\n</string>
+    <string name="title_activity_scan_activityy">ScanActivityy</string>
 </resources>
