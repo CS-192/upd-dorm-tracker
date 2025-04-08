@@ -71,4 +71,10 @@
         android:name="com.example.upddormtracker.ui.managedormers.UpdateDormerDetailsFragment"
         android:label="Update Dormer's Details"
         tools:layout="@layout/fragment_update_dormer_details" />
+
+    <fragment
+        android:id="@+id/addDormerFragment"
+        android:name="com.example.upddormtracker.ui.managedormers.AddDormerFragment"
+        android:label="Add New Dormer"
+        tools:layout="@layout/fragment_add_dormer" />
 </navigation>
