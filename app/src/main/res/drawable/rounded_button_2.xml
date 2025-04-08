@@ -6,7 +6,6 @@
     <corners android:radius="20dp"/>
 
     <!-- Button color -->
-    <solid android:color="#b0ffbc"/>
 
     <!-- Optional: Add padding inside the button -->
     <padding android:left="20dp" android:right="20dp" />

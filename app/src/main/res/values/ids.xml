@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_successfulScanFragment_to_scanFragment" type="id" />
+    <item name="action_scanFragment_to_successfulScanFragment" type="id" />
+    <item name="action_scanFragment_to_unsuccessfulScanFragment" type="id" />
+    <item name="action_unsuccessfulScanFragment_to_scanFragment" type="id" />
+</resources>
