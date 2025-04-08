@@ -1,11 +1,7 @@
-package com.example.upddormtracker.ui
+package com.example.upddormtracker.ui.monthlybilling
 
-import android.R
 import android.app.DatePickerDialog
-import android.content.res.Resources
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -106,7 +102,7 @@ class MonthlyBillingFragment : Fragment() {
 
 
 
-    fun saveRequestToFirestore() {
+    private fun saveRequestToFirestore() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
             Log.e("Firestore", "User is not logged in")
