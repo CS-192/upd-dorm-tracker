@@ -1,6 +1,8 @@
 package com.example.upddormtracker.ui.managedormers
+import java.io.Serializable
 
 data class Dormer(
+    val docId : String = "",
     val studentNumber: String = "",
     val lastName: String = "",
     val firstName: String = "",
@@ -11,4 +13,4 @@ data class Dormer(
     val sex: String = "",
     val roomNumber: String = "",
     val email: String = ""
-)
+): Serializable

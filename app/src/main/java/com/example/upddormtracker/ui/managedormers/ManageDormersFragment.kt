@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentManageDormersBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,7 +45,7 @@ class ManageDormersFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (doc in documents) {
-                    val dormer = doc.toObject(Dormer::class.java)
+                    val dormer = doc.toObject(Dormer::class.java).copy(docId = doc.id)
                     dormerList.add(dormer)
                 }
                 binding.rvDormers.adapter = DormerAdapter(dormerList)
