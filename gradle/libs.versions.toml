@@ -46,9 +46,9 @@ androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junitJupiter" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version = "2.7.7" }
 

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.faq.FaqFragment"
+        android:fitsSystemWindows="true">
+
+        <!--Header-->
+
+        <TextView
+            android:id="@+id/text_add_faq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/add_faq"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Question label-->
+        <TextView
+            android:id="@+id/labelQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/question"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_add_faq" />
+
+
+        <!--Question input field       -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/labelQuestion"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            app:hintEnabled="false"
+            android:id="@+id/input_question_layout"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxBackgroundColor="@color/button_gray"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_question"
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_question"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Details Label-->
+        <TextView
+            android:id="@+id/labelAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/answer"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_question_layout" />
+
+        <!--        Details input field-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/labelAnswer"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            app:hintEnabled="false"
+            android:id="@+id/input_answer_layout"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxBackgroundColor="@color/button_gray"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_answer"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:lines="15"
+                android:minLines="15"
+                android:maxLines="15"
+                android:gravity="top|start"
+                android:scrollbars="vertical"
+                android:hint="@string/enter_answer"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Submit button-->
+        <Button
+            android:id="@+id/save_faq_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/button_gray"
+            android:text="@string/save"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/input_answer_layout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:strokeColor="@color/material_dynamic_neutral60"
+            app:strokeWidth="1dp" />
+
+        <!--        Cancel Button-->
+        <Button
+            android:id="@+id/cancel_faq_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="@color/button_gray"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/save_faq_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:strokeColor="@color/material_dynamic_neutral60"
+            app:strokeWidth="1dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

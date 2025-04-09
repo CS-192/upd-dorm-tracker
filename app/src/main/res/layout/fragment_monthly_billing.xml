@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LateNightFragment">
+    tools:context=".ui.latenight.LateNightFragment">
 
     <TextView
         android:id="@+id/textHome"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Create a Request"
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,19 +44,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/textHome"
+        app:layout_constraintStart_toStartOf="@+id/btnSelectStart"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:text="Start Date" />
 
     <TextView
         android:id="@+id/btnSelectStart"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_input"
         android:padding="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/textHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         tools:text="Select Date" />
 
@@ -67,19 +67,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/textHome"
+        app:layout_constraintStart_toStartOf="@+id/btnSelectStart"
         app:layout_constraintTop_toBottomOf="@+id/btnSelectStart"
         tools:text="End Date" />
 
     <TextView
         android:id="@+id/btnSelectEnd"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_input"
         android:padding="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/textHome"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:text="Select Date" />
 

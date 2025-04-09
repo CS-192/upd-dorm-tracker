@@ -1,16 +1,11 @@
-package com.example.upddormtracker.ui.createannouncement
+package com.example.upddormtracker.ui.edit_announcement
+
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CreateAnnouncementViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "Add Announcement"
-    }
-    val text: LiveData<String> = _text
-
+class EditAnnouncementViewModel : ViewModel() {
     // LiveData for form fields
     private val _subject = MutableLiveData<String>()
     val subject: LiveData<String> = _subject

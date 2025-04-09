@@ -4,54 +4,88 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
+import com.example.upddormtracker.adapter.AnnouncementAdapter
 import com.example.upddormtracker.databinding.FragmentAnnouncementBinding
+import com.example.upddormtracker.datamodel.Announcement
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 
 class AnnouncementFragment : Fragment() {
 
     private var _binding: FragmentAnnouncementBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val firestore = Firebase.firestore
+    private val announcementList = mutableListOf<Announcement>()
+    private lateinit var announcementAdapter: AnnouncementAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val announcementViewModel =
-            ViewModelProvider(this).get(AnnouncementViewModel::class.java)
 
         _binding = FragmentAnnouncementBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textAnnouncement
-        announcementViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Access buttons using View Binding
-        val createButton: Button = binding.createAnnouncement
+        announcementAdapter = AnnouncementAdapter(announcementList, firestore){ id: String ->
+            val action = AnnouncementFragmentDirections.actionAnnouncementFragmentToEditAnnouncementFragment(id)
+            findNavController().navigate(action)
+        }
 
+        // Setup RecyclerView
+        binding.announcementRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = announcementAdapter
+        }
 
-        // Set click listeners for buttons
-        createButton.setOnClickListener {
-            // Handle "Announcement" button click
+        // Fetch announcements from Firestore
+        fetchAnnouncements()
+
+        // Handle create button click
+        binding.createAnnouncement.setOnClickListener {
             findNavController().navigate(R.id.createAnnouncementFragment)
-            println("Announcement Button Clicked!")
         }
     }
 
+    private fun fetchAnnouncements() {
+        firestore.collection("announcements")
+            .get()
+            .addOnSuccessListener { result ->
+                announcementList.clear()
+
+                // Add new announcements
+                for (document in result) {
+                    val announcement = Announcement(
+                        document.id,
+                        document.getString("subject") ?: "",
+                        document.getString("details") ?: "",
+                        document.getString("date") ?: "",
+                        document.getString("time") ?: "",
+                        document.getString("dorm") ?: "",
+
+                    )
+                    announcementList.add(announcement)
+                }
+
+                // Notify adapter of data change
+                announcementAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error fetching announcements", Toast.LENGTH_SHORT).show()
+            }
+    }
 
 
     override fun onDestroyView() {

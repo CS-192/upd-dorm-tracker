@@ -1,4 +1,4 @@
-package com.example.upddormtracker.ui
+package com.example.upddormtracker.ui.latenight
 
 import android.R
 import android.app.DatePickerDialog
@@ -158,7 +158,7 @@ class LateNightFragment : Fragment() {
     }
 
 
-    fun saveRequestToFirestore() {
+    private fun saveRequestToFirestore() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
             Log.e("Firestore", "User is not logged in")

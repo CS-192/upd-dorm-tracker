@@ -1,20 +1,21 @@
-package com.example.upddormtracker.ui
+package com.example.upddormtracker.ui.dashboard_admin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
-import com.example.upddormtracker.databinding.FragmentCreateRequestBinding
+import com.example.upddormtracker.databinding.FragmentDashboardAdminBinding
 
-class CreateRequestFragment : Fragment() {
 
-    private var _binding: FragmentCreateRequestBinding? = null
+class DashboardAdminFragment : Fragment() {
+
+    private var _binding: FragmentDashboardAdminBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,16 +26,17 @@ class CreateRequestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val createRequestViewModel =
-            ViewModelProvider(this).get(CreateRequestViewModel::class.java)
+        val dashboardAdminViewModel =
+            ViewModelProvider(this)[DashboardAdminViewModel::class.java]
 
-        _binding = FragmentCreateRequestBinding.inflate(inflater, container, false)
+        _binding = FragmentDashboardAdminBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        createRequestViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textDashboard
+        dashboardAdminViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
         return root
     }
 
@@ -45,28 +47,25 @@ class CreateRequestFragment : Fragment() {
         val buttonFirst: Button = binding.buttonFirst
         val buttonSecond: Button = binding.buttonSecond
         val buttonThird: Button = binding.buttonThird
+        val buttonFourth: Button = binding.buttonFourth
 
         // Set click listeners for buttons
-
-        // Handle "Announcement" button click
-
         buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.lateNightFragment)
+            findNavController().navigate(R.id.dormDetailsFragment)
         }
 
-
         buttonSecond.setOnClickListener {
-            // Handle "FAQ" button click
-
-            findNavController().navigate(R.id.monthlyBillingFragment)
+            // Requests button
         }
 
         buttonThird.setOnClickListener {
-            // Handle "Dorm Information" button click
-            println("Dorm Information Button Clicked!")
+            //dormers button
+        }
+
+        buttonFourth.setOnClickListener {
+            //scan id button
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
