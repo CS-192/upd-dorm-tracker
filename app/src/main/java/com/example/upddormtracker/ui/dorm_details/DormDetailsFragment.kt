@@ -11,11 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentDormDetailsBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class DormDetailsFragment : Fragment() {
 
     private var _binding: FragmentDormDetailsBinding? = null
+    private val firestore = Firebase.firestore
 
     // This property is only valid between onCreateView and
     // onDestroyView.

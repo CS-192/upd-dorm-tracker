@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "149096796950-0gmdf4aat1uhlkrt6ltkm9p2rddvemo6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.upddormtracker",
-            "certificate_hash": "68871236d940d682450acc338efd5976767500d7"
-          }
-        },
-        {
           "client_id": "149096796950-j2p5idi584emvdplkiqjvccneopn4f6c.apps.googleusercontent.com",
           "client_type": 3
         }

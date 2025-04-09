@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:backgroundTint="@color/button_gray"
-        android:text="@string/create"
+        android:text="Add/Edit"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -59,19 +59,13 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/dorm_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/dorm_name" />
 
             <TextView
                 android:id="@+id/dorm_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/dorm_name"
+                android:text="Dorm Name"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -97,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:text="@string/curfew_value"
+                android:text="No data found in the database"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +114,7 @@
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/address_value"
+                android:text="No data found in the database"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +138,7 @@
                 android:id="@+id/contact_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/contact_details_value"
+                android:text="No data found in the database"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -166,8 +160,7 @@
                 android:id="@+id/history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="@string/history_value"
+                android:text="No data found in the database"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

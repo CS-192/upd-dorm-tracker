@@ -75,6 +75,10 @@
         android:id="@+id/dashboardDormerFragment"
         android:name="com.example.upddormtracker.ui.dashboard_dormer.DashboardDormerFragment"
         android:label="Dormer Dashboard (temporary; remove later)" />
-
-
+    <fragment android:id="@+id/dormInfoDormerFragment"
+        android:name="com.example.upddormtracker.ui.dorm_info_dormer.DormInfoDormerFragment"
+        android:label="Dorm Information" />
+    <fragment android:id="@+id/editDormInfoFragment"
+        android:name="com.example.upddormtracker.ui.edit_dorm_info.EditDormInfoFragment"
+        android:label="Edit Dorm Information" />
 </navigation>

@@ -97,11 +97,11 @@ class EditAnnouncementFragment: Fragment() {
 
 
                 inputSubject.doAfterTextChanged { text ->
-                    viewModel.validateSubject(text.toString())
+                    viewModel.validateSubject(text.toString().trim())
                 }
 
                 inputDetails.doAfterTextChanged { text ->
-                    viewModel.validateDetails(text.toString())
+                    viewModel.validateDetails(text.toString().trim())
                 }
 
                 viewModel.subjectError.observe(viewLifecycleOwner) { error ->
@@ -115,12 +115,12 @@ class EditAnnouncementFragment: Fragment() {
 
                 // Handle save button click
                 saveButton.setOnClickListener {
-                    viewModel.validateSubject(inputSubject.text.toString())
-                    viewModel.validateDetails(inputDetails.text.toString())
+                    viewModel.validateSubject(inputSubject.text.toString().trim())
+                    viewModel.validateDetails(inputDetails.text.toString().trim())
                     if (viewModel.isFormValid()) {
                         // Proceed with form submission
-                        val subject = inputSubject.text.toString()
-                        val details = inputDetails.text.toString()
+                        val subject = inputSubject.text.toString().trim()
+                        val details = inputDetails.text.toString().trim()
                         val itemToBeEdited = mapOf(
                             "subject" to subject,
                             "details" to details,

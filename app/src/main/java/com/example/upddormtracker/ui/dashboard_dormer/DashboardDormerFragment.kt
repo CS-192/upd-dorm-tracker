@@ -74,7 +74,7 @@ class DashboardDormerFragment: Fragment() {
         }
 
         buttonFourth.setOnClickListener {
-            //findNavController().navigate(R.id.dormInfoFragment)
+            findNavController().navigate(R.id.dormInfoDormerFragment)
         }
 
         announcementAdapter = DormerViewAnnouncementAdapter(announcementList, firestore)
