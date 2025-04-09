@@ -35,6 +35,7 @@
             android:id="@+id/action_announcementFragment_to_editAnnouncementFragment"
             app:destination="@id/editAnnouncementFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createAnnouncementFragment"
         android:name="com.example.upddormtracker.ui.add_announcement.CreateAnnouncementFragment"

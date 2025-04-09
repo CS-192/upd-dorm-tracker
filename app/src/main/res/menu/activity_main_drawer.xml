@@ -4,19 +4,5 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:title="Profile" />
-
-        <item
-            android:id="@+id/home_admin"
-            android:title="Home (Admin)" />
-
-        <item
-            android:id="@+id/dashboardDormerFragment"
-            android:title="Home (Dormer)" />
-        <item
-            android:id="@+id/nav_requests"
-            android:icon="@drawable/ic_request"
-            android:title="@string/create_a_request" />
     </group>
 </menu>

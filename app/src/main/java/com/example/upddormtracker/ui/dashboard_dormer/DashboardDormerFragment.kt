@@ -62,15 +62,15 @@ class DashboardDormerFragment: Fragment() {
 
         // Set click listeners for buttons
         buttonFirst.setOnClickListener {
-            //add request button
+            findNavController().navigate(R.id.lateNightFragment)
         }
 
         buttonSecond.setOnClickListener {
-            //request bill
+            findNavController().navigate(R.id.monthlyBillingFragment)
         }
 
         buttonThird.setOnClickListener {
-            //file report
+            findNavController().navigate(R.id.reportFragment)
         }
 
         buttonFourth.setOnClickListener {
