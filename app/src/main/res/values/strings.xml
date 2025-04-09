@@ -55,6 +55,21 @@
 Far beyond the marble bridges and cobbled streets, the endless expanse of the Eldrin Sea murmured softly against the cliffs, carrying with it the laughter of lost sailors and the sighs of unseen creatures. The wind wove its way through the empty halls of abandoned temples, carrying fragments of prayers once whispered in devotion, now only faint murmurs in the vast tapestry of time.phor quently drifted across the luminescent skyline, whispering secrets of the cosmos to the silent ether. Beneath, the world shimmered in hues of forgotten dreams and untold stories. The ancient city of Vareth lay beneath the twilight, its spires reaching toward the heavens like frozen echoes of an era long past. Lanterns flickered in alleyways where time itself seemed to hesitate, caught between memory and oblivion.
 
 Far beyond the marble bridges and cobbled streets, the endless expanse of the Eldrin Sea murmured softly against the cliffs, carrying with it the laughter of lost sailors and the sighs of unseen creatures. The wind wove its way through the empty halls of abandoned temples, carrying fragments of prayers once whispered in devotion, now only faint murmurs in the vast tapestry of time.</string>
-
-
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="admin_profile">"Profile"</string>
+    <string name="admin_management_name">"Dorm Management"</string>
+    <string name="admin_email">"<b>Email: </b>example_dorm@gmail.com</string>
+    <string name="admin_dorm_name">"<b>Dorm: </b>Example Dorm</string>
+    <string name="web_client_id">"149096796950-j2p5idi584emvdplkiqjvccneopn4f6c.apps.googleusercontent.com"</string>
+    <string name="registration_failed">\"registration Failed\"\n</string>
+    <string name="create_a_request">Create a Request</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

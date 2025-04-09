@@ -14,9 +14,9 @@
         <item
             android:id="@+id/dashboardDormerFragment"
             android:title="Home (Dormer)" />
-
-
-
-
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@drawable/ic_request"
+            android:title="@string/create_a_request" />
     </group>
 </menu>

@@ -50,12 +50,30 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.annotation)
+
+    implementation ("androidx.compose.material:material:1.2.0")
+
+    implementation ("com.google.firebase:firebase-auth-ktx:21.1.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.7.0")
+    implementation ("com.google.android.gms:play-services-auth:20.4.1")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+    implementation ("androidx.navigation:navigation-compose:2.5.3")
+    implementation ("io.coil-kt:coil-compose:2.2.2")
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.firebase.firestore.ktx)
-    implementation(libs.firebase.firestore)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.junit)
+
+    // ✅ Use AndroidX JUnit for UI tests
+    androidTestImplementation ("androidx.test:core:1.5.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.fragment:fragment-testing:1.6.2")
+
 
 }
