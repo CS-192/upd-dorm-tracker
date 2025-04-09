@@ -3,6 +3,9 @@ package com.example.upddormtracker
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.drawerlayout.widget.DrawerLayout
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,9 +15,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.upddormtracker.databinding.ActivityMainBinding
 import com.example.upddormtracker.ui.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -27,9 +27,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Firebase.initialize(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_requests
+                 R.id.home_admin, R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_requests
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
