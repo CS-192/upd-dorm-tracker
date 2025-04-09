@@ -49,7 +49,6 @@ class DormDetailsFragment : Fragment() {
         val buttonFirst: Button = binding.buttonFirst
         val buttonSecond: Button = binding.buttonSecond
         val buttonThird: Button = binding.buttonThird
-        val buttonFourth: Button = binding.buttonFourth
 
         // Set click listeners for buttons
 
@@ -72,9 +71,7 @@ class DormDetailsFragment : Fragment() {
             println("Dorm Information Button Clicked!")
         }
 
-        buttonFourth.setOnClickListener {
-            findNavController().navigate(R.id.adminProfileFragment)
-        }
+
     }
 
     override fun onDestroyView() {
