@@ -17,14 +17,10 @@ import com.google.firebase.ktx.Firebase
 
 class DormInfoFragment : Fragment() {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
     private var _binding: FragmentDormInfoBinding? = null
     private val firestore = Firebase.firestore
 
-    // Declare these as class properties to access in fetchInfoOfGivenDorm
     private lateinit var dormName: TextView
     private lateinit var curfew: TextView
     private lateinit var address: TextView
@@ -53,7 +49,6 @@ class DormInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize UI elements
         dormName = binding.dormName
         curfew = binding.curfew
         address = binding.address
@@ -61,14 +56,10 @@ class DormInfoFragment : Fragment() {
         history = binding.history
         val editButton: Button = binding.editDormInfoButton
 
-        // Set click listeners for buttons
         editButton.setOnClickListener {
-            // Add your edit button logic here
             findNavController().navigate(R.id.editDormInfoFragment)
         }
-
-        // Call the function to fetch dorm info (replace "YourDormName" with actual value)
-        fetchInfoOfGivenDorm("molave")
+        fetchInfoOfGivenDorm("molave") // replace with user's dorm
     }
 
     private fun fetchInfoOfGivenDorm(dormValue: String) {
@@ -77,14 +68,11 @@ class DormInfoFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
-                    // Get the first matching document
                     val document = documents.documents[0]
-
-                    // Display the data
                     dormName.text = (document.getString("dorm")?: "").uppercase()
                     curfew.text = document.getString("curfew") ?: ""
                     address.text = document.getString("address") ?: ""
-                    contactDetails.text = document.getString("contactDetails") ?: ""
+                    contactDetails.text = document.getString("email") ?: ""
                     history.text = document.getString("history") ?: ""
                 } else {
                     Toast.makeText(requireContext(), "No information found for your dorm", Toast.LENGTH_SHORT).show()

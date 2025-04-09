@@ -6,12 +6,6 @@ import androidx.lifecycle.ViewModel
 
 class EditDormInfoViewModel : ViewModel() {
 
-    private val _dormName = MutableLiveData<String>()
-    val dormName: LiveData<String> = _dormName
-
-    private val _dormNameError = MutableLiveData<String?>(null)
-    val dormNameError: LiveData<String?> = _dormNameError
-
     private val _curfew = MutableLiveData<String>()
     val curfew: LiveData<String> = _curfew
 
@@ -36,13 +30,6 @@ class EditDormInfoViewModel : ViewModel() {
     private val _historyError = MutableLiveData<String?>(null)
     val historyError: LiveData<String?> = _historyError
 
-    fun validateDormName(input: String) {
-        _dormName.value = input
-        when {
-            input.isEmpty() -> _dormNameError.value = "This is a required field"
-            else -> _dormNameError.value = null
-        }
-    }
 
     fun validateCurfew(input: String) {
         _curfew.value = input

@@ -79,11 +79,11 @@ class EditFaqFragment : Fragment() {
                 inputAnswer.setText(result.getString("answer"))
 
                 inputQuestion.doAfterTextChanged { text ->
-                    viewModel.validateQuestion(text.toString())
+                    viewModel.validateQuestion(text.toString().trim())
                 }
 
                 inputAnswer.doAfterTextChanged { text ->
-                    viewModel.validateAnswer(text.toString())
+                    viewModel.validateAnswer(text.toString().trim())
                 }
 
                 viewModel.questionError.observe(viewLifecycleOwner) { error ->
@@ -97,11 +97,11 @@ class EditFaqFragment : Fragment() {
 
                 // Handle save button click
                 saveButton.setOnClickListener {
-                    viewModel.validateQuestion(inputQuestion.text.toString())
-                    viewModel.validateAnswer(inputAnswer.text.toString())
+                    viewModel.validateQuestion(inputQuestion.text.toString().trim())
+                    viewModel.validateAnswer(inputAnswer.text.toString().trim())
                     if (viewModel.isFormValid()) {
-                        val question = inputQuestion.text.toString()
-                        val answer = inputAnswer.text.toString()
+                        val question = inputQuestion.text.toString().trim()
+                        val answer = inputAnswer.text.toString().trim()
                         val itemToBeEdited = mapOf(
                             "question" to question,
                             "answer" to answer,

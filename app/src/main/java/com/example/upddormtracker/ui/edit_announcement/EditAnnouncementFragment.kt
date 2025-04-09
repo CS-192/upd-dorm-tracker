@@ -24,8 +24,6 @@ class EditAnnouncementFragment: Fragment() {
     private val firestore = Firebase.firestore
     private var _binding: FragmentEditAnnouncementBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -128,15 +126,12 @@ class EditAnnouncementFragment: Fragment() {
                             "time" to LocalTime.now().toString(),
                         )
                         editAnnouncement(id, itemToBeEdited)
-//                Toast.makeText(requireContext(), "Announcement has been successfully posted!", Toast.LENGTH_SHORT).show()
-//                findNavController().navigateUp()
                     }
 
 
                 }
 
                 cancelButton.setOnClickListener {
-                    // Handle cancel button click
                     findNavController().navigateUp()
                 }
             }

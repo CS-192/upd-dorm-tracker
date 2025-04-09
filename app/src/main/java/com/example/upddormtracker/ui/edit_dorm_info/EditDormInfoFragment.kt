@@ -67,7 +67,7 @@ class EditDormInfoFragment : Fragment() {
         val inputHistoryLayout: com.google.android.material.textfield.TextInputLayout =
             binding.inputHistoryLayout
 
-        val userDorm = "molave" //replace
+        val userDorm = "molave" //replace with user's dorm
 
 
 
@@ -81,7 +81,7 @@ class EditDormInfoFragment : Fragment() {
 
                     inputCurfew.setText(document.getString("curfew"))
                     inputAddress.setText(document.getString("address"))
-                    inputEmail.setText(document.getString("contactDetails"))
+                    inputEmail.setText(document.getString("email"))
                     inputHistory.setText(document.getString("history"))
 
                     inputCurfew.doAfterTextChanged { text ->
@@ -113,15 +113,17 @@ class EditDormInfoFragment : Fragment() {
                     saveButton.setOnClickListener{
                         viewModel.validateCurfew(inputCurfew.text.toString().trim())
                         viewModel.validateAddress(inputAddress.text.toString().trim())
+                        viewModel.validateContactDetails(inputEmail.text.toString().trim())
+                        viewModel.validateHistory(inputHistory.text.toString().trim())
                         if (viewModel.isFormValid()) {
                             val curfew = inputCurfew.text.toString().trim()
                             val address = inputAddress.text.toString().trim()
-                            val contactDetails = inputEmail.text.toString().trim()
+                            val email = inputEmail.text.toString().trim()
                             val history = inputHistory.text.toString().trim()
                             val itemToBeEdited = mapOf(
                                 "curfew" to curfew,
                                 "address" to address,
-                                "contactDetails" to contactDetails,
+                                "email" to email,
                                 "history" to history
                             )
                             editDormInfo(userDorm, itemToBeEdited)

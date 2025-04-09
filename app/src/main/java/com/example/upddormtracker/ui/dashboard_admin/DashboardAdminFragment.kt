@@ -55,15 +55,15 @@ class DashboardAdminFragment : Fragment() {
         }
 
         buttonSecond.setOnClickListener {
-            //findNavController().navigate(R.id.faqFragment)
+            // Requests button
         }
 
         buttonThird.setOnClickListener {
-            //findNavController().navigate(R.id.dormInfoFragment)
+            //dormers button
         }
 
         buttonFourth.setOnClickListener {
-            //findNavController().navigate(R.id.dormInfoFragment)
+            //scan id button
         }
     }
 

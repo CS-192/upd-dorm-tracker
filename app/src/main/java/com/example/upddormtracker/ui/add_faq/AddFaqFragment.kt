@@ -74,8 +74,6 @@ class AddFaqFragment : Fragment() {
             inputAnswerLayout.error = error
         }
 
-
-        // Handle save button click
         saveButton.setOnClickListener {
             viewModel.validateQuestion(inputQuestion.text.toString().trim())
             viewModel.validateAnswer(inputAnswer.text.toString().trim())
@@ -92,9 +90,7 @@ class AddFaqFragment : Fragment() {
             }
         }
 
-        // Handle cancel button
         cancelButton.setOnClickListener {
-            // Handle cancel button click
             findNavController().navigateUp()
         }
     }

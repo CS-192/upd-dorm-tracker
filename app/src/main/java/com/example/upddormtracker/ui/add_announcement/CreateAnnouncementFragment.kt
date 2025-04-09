@@ -26,8 +26,6 @@ class CreateAnnouncementFragment : Fragment() {
     private val firestore = Firebase.firestore
     private var _binding: FragmentCreateAnnouncementBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -56,14 +54,8 @@ class CreateAnnouncementFragment : Fragment() {
             }
             .addOnFailureListener{
                 Toast.makeText(requireContext(), "Error adding announcement", Toast.LENGTH_SHORT).show()
-
             }
-
-
     }
-
-
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -112,22 +104,13 @@ class CreateAnnouncementFragment : Fragment() {
                     "Molave"
                 )
                 addAnnouncement(item)
-//                Toast.makeText(requireContext(), "Announcement has been successfully posted!", Toast.LENGTH_SHORT).show()
-//                findNavController().navigateUp()
             }
-
-
         }
 
         cancelButton.setOnClickListener {
-            // Handle cancel button click
             findNavController().navigateUp()
         }
-
-
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

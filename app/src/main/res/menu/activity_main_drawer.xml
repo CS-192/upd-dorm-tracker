@@ -9,11 +9,11 @@
 
         <item
             android:id="@+id/home_admin"
-            android:title="Dashboard" />
+            android:title="Home (Admin)" />
 
         <item
             android:id="@+id/dashboardDormerFragment"
-            android:title="Dormer Dashboard (temporary; remove later)" />
+            android:title="Home (Dormer)" />
 
 
 
