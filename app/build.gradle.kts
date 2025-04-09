@@ -66,6 +66,8 @@ dependencies {
 
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
+    implementation ("androidx.recyclerview:recyclerview:1.4.0")
+
     testImplementation ("junit:junit:4.13.2")
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.junit)
@@ -75,6 +77,4 @@ dependencies {
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation ("androidx.fragment:fragment-testing:1.6.2")
-
-
 }
