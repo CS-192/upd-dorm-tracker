@@ -59,7 +59,7 @@ class DashboardAdminFragment : Fragment() {
         }
 
         buttonThird.setOnClickListener {
-            //dormers button
+            findNavController().navigate(R.id.nav_manage_dormers)
         }
 
         buttonFourth.setOnClickListener {

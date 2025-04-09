@@ -58,11 +58,13 @@ class MainActivity : AppCompatActivity() {
 
         if (isDeveloping) {
             navView.menu.add(Menu.NONE, R.id.home_admin, 0, "Home (admin)")
+            navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, 0, "Manage Dormers")
             navView.menu.add(Menu.NONE, R.id.dormDetailsFragment, 0, "Manage Dorm Details")
             navView.menu.add(Menu.NONE, R.id.dashboardDormerFragment, 0, "Home (dormer)")
             navView.menu.add(Menu.NONE, R.id.nav_requests, 0, "Create a Request")
         } else if (isAdmin) {
             navView.menu.add(Menu.NONE, R.id.home_admin, 0, "Home")
+            navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, 0, "Manage Dormers")
             navView.menu.add(Menu.NONE, R.id.dormDetailsFragment, 0, "Manage Dorm Details")
         } else {
             navView.menu.add(Menu.NONE, R.id.dashboardDormerFragment, 0, "Home")
