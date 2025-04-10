@@ -22,6 +22,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_9_API_35" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung SM-A156E" value="120" />
                 </map>
@@ -71,6 +72,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="935245550">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_9_API_35" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="1282830607">
           <value>
             <AndroidTestResultsTableState>
@@ -79,6 +93,19 @@
                   <entry key="Duration" value="90" />
                   <entry key="Medium_Phone_API_35" value="120" />
                   <entry key="Pixel_6_API_36" value="120" />
+                  <entry key="Pixel_9_API_35" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1400333079">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
                   <entry key="Pixel_9_API_35" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
