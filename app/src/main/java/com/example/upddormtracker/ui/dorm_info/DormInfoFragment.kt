@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.databinding.FragmentDormInfoBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,6 +21,7 @@ class DormInfoFragment : Fragment() {
     private val binding get() = _binding!!
     private var _binding: FragmentDormInfoBinding? = null
     private val firestore = Firebase.firestore
+    private lateinit var user: UserViewModel
 
     private lateinit var dormName: TextView
     private lateinit var curfew: TextView
@@ -34,6 +36,7 @@ class DormInfoFragment : Fragment() {
     ): View {
         val dormInfoViewModel =
             ViewModelProvider(this)[DormInfoViewModel::class.java]
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentDormInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -59,7 +62,7 @@ class DormInfoFragment : Fragment() {
         editButton.setOnClickListener {
             findNavController().navigate(R.id.editDormInfoFragment)
         }
-        fetchInfoOfGivenDorm("molave") // replace with user's dorm
+        fetchInfoOfGivenDorm(user.dorm.value.toString()) // replace with user's dorm
     }
 
     private fun fetchInfoOfGivenDorm(dormValue: String) {

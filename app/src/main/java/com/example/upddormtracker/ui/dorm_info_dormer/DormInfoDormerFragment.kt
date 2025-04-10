@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.databinding.FragmentDormInfoDormerBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,7 @@ class DormInfoDormerFragment : Fragment() {
     private lateinit var address: TextView
     private lateinit var contactDetails: TextView
     private lateinit var history: TextView
+    private lateinit var user: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +34,7 @@ class DormInfoDormerFragment : Fragment() {
     ): View {
         val dormInfoViewModel =
             ViewModelProvider(this)[DormInfoDormerViewModel::class.java]
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentDormInfoDormerBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -46,7 +49,7 @@ class DormInfoDormerFragment : Fragment() {
         contactDetails = binding.contactDetails
         history = binding.history
 
-        fetchInfoOfGivenDorm("molave") // replace with user dorm
+        fetchInfoOfGivenDorm(user.dorm.value.toString()) // replace with user dorm
     }
 
     private fun fetchInfoOfGivenDorm(dormValue: String) {
