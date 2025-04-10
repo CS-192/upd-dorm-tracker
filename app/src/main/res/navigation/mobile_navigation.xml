@@ -35,5 +35,24 @@
         android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
         android:label="Add Announcement" />
 
+    <fragment
+        android:id="@+id/scanPageFragment"
+        android:name="com.example.upddormtracker.ui.scan_ui.ScanFragment"
+        android:label="Scan Page"
+        android:layout="@layout/fragment_scan_page"
+        />
+
+    <fragment
+        android:id="@+id/successfulScanFragment"
+        android:name="com.example.upddormtracker.ui.scan_ui.SuccessfulScanFragment"
+        android:label="Successful Scan"
+        android:layout="@layout/fragment_successful_scan"
+        />
+
+    <fragment
+        android:id="@+id/unsuccessfulScanFragment"
+        android:name="com.example.upddormtracker.ui.scan_ui.UnsuccessfulScanFragment"
+        android:label="Unsuccessful Scan"
+        android:layout="@layout/fragment_unsuccessful_scan" />
 
 </navigation>

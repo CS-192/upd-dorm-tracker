@@ -24,13 +24,19 @@ class ScanFragment : Fragment(R.layout.fragment_scan_page) {
             val scanCount = sharedPreferences.getInt("scanCount", 0)
 
             val nextFragment = if (scanCount % 2 == 0) {
-                R.id.action_scanFragment_to_successfulScanFragment
+                R.id.successfulScanFragment
             } else {
-                R.id.action_scanFragment_to_unsuccessfulScanFragment
+                R.id.unsuccessfulScanFragment
             }
 
-            sharedPreferences.edit() { putInt("scanCount", scanCount + 1) }
+            sharedPreferences.edit { putInt("scanCount", scanCount + 1) }
+
+            // Pop current fragment
+            findNavController().popBackStack()
+
+            // Navigate to next fragment
             findNavController().navigate(nextFragment)
         }
+
     }
 }

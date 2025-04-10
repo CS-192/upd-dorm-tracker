@@ -13,7 +13,10 @@ class SuccessfulScanFragment : Fragment(R.layout.fragment_successful_scan) {
 
         val scanAgainButton = view.findViewById<Button>(R.id.scan_again_button)
         scanAgainButton.setOnClickListener {
-            findNavController().navigate(R.id.action_successfulScanFragment_to_scanFragment)
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.scanPageFragment)
         }
+
+
     }
 }

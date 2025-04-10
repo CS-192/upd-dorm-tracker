@@ -48,6 +48,7 @@ class DormDetailsFragment : Fragment() {
         val buttonSecond: Button = binding.buttonSecond
         val buttonThird: Button = binding.buttonThird
         val buttonFourth: Button = binding.buttonFourth
+        val buttonFifth: Button= binding.buttonFifth
 
         // Set click listeners for buttons
 
@@ -71,6 +72,10 @@ class DormDetailsFragment : Fragment() {
 
         buttonFourth.setOnClickListener {
             findNavController().navigate(R.id.adminProfileFragment)
+        }
+
+        buttonFifth.setOnClickListener {
+            findNavController().navigate(R.id.scanPageFragment)
         }
     }
 

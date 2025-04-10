@@ -13,7 +13,8 @@ class UnsuccessfulScanFragment : Fragment(R.layout.fragment_unsuccessful_scan) {
 
         val tryAgainButton = view.findViewById<Button>(R.id.try_again)
         tryAgainButton.setOnClickListener {
-            findNavController().navigate(R.id.action_unsuccessfulScanFragment_to_scanFragment)
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.scanPageFragment)
         }
     }
 }
