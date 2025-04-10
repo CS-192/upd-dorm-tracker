@@ -10,6 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.databinding.FragmentAddFaqBinding
 import com.example.upddormtracker.datamodel.FAQ
 import com.google.firebase.firestore.ktx.firestore
@@ -18,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 class AddFaqFragment : Fragment() {
     private var _binding: FragmentAddFaqBinding? = null
     private val firestore = Firebase.firestore
+    private lateinit var user: UserViewModel
 
     private val binding get() = _binding!!
 
@@ -28,6 +30,7 @@ class AddFaqFragment : Fragment() {
     ): View {
         val addFaqViewModel =
             ViewModelProvider(this)[AddFaqViewModel::class.java]
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         _binding = FragmentAddFaqBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -84,7 +87,7 @@ class AddFaqFragment : Fragment() {
                     "",
                     question,
                     answer,
-                    "Molave"
+                    user.dorm.value.toString()
                 )
                 addFAQ(item)
             }

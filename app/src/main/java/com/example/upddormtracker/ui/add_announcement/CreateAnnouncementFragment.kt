@@ -12,6 +12,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.databinding.FragmentCreateAnnouncementBinding
 import com.example.upddormtracker.datamodel.Announcement
 import com.google.firebase.firestore.ktx.firestore
@@ -25,6 +26,7 @@ class CreateAnnouncementFragment : Fragment() {
 
     private val firestore = Firebase.firestore
     private var _binding: FragmentCreateAnnouncementBinding? = null
+    private lateinit var user: UserViewModel
 
     private val binding get() = _binding!!
 
@@ -35,6 +37,8 @@ class CreateAnnouncementFragment : Fragment() {
     ): View {
         val createAnnouncementViewModel =
             ViewModelProvider(this)[CreateAnnouncementViewModel::class.java]
+
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentCreateAnnouncementBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -101,7 +105,7 @@ class CreateAnnouncementFragment : Fragment() {
                     details,
                     LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE),
                     LocalTime.now().toString(),
-                    "Molave"
+                    user.dorm.value.toString()
                 )
                 addAnnouncement(item)
             }

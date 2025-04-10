@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.adapter.AnnouncementAdapter
 import com.example.upddormtracker.databinding.FragmentAnnouncementBinding
 import com.example.upddormtracker.datamodel.Announcement
@@ -22,6 +24,7 @@ class AnnouncementFragment : Fragment() {
     private val binding get() = _binding!!
     private val firestore = Firebase.firestore
     private val announcementList = mutableListOf<Announcement>()
+    private lateinit var user: UserViewModel
     private lateinit var announcementAdapter: AnnouncementAdapter
 
     override fun onCreateView(
@@ -29,7 +32,7 @@ class AnnouncementFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         _binding = FragmentAnnouncementBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,6 +64,7 @@ class AnnouncementFragment : Fragment() {
 
     private fun fetchAnnouncements() {
         firestore.collection("announcements")
+            .whereEqualTo("dorm", user.dorm.value.toString())
             .get()
             .addOnSuccessListener { result ->
                 announcementList.clear()

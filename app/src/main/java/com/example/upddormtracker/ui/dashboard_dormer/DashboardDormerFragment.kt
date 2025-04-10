@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.adapter.DormerViewAnnouncementAdapter
 import com.example.upddormtracker.adapter.DormerViewFAQAdapter
 import com.example.upddormtracker.databinding.FragmentDashboardDormerBinding
@@ -27,6 +28,7 @@ class DashboardDormerFragment: Fragment() {
     private val faqList = mutableListOf<FAQ>()
     private lateinit var announcementAdapter: DormerViewAnnouncementAdapter
     private lateinit var faqAdapter: DormerViewFAQAdapter
+    private lateinit var user: UserViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,6 +41,7 @@ class DashboardDormerFragment: Fragment() {
     ): View {
         val dashboardDormerViewModel =
             ViewModelProvider(this)[DashboardDormerViewModel::class.java]
+         user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentDashboardDormerBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -89,11 +92,16 @@ class DashboardDormerFragment: Fragment() {
             adapter = faqAdapter
         }
 
-        fetchAnnouncementsAndFAQs()
+        user.dorm.observe(viewLifecycleOwner) { dormValue ->
+            if (!dormValue.isNullOrEmpty()) {
+                fetchAnnouncementsAndFAQs()
+            }
+        }
     }
 
     private fun fetchAnnouncementsAndFAQs() {
         firestore.collection("announcements")
+            .whereEqualTo("dorm", user.dorm.value.toString())
             .get()
             .addOnSuccessListener { result ->
                 announcementList.clear()
@@ -119,6 +127,7 @@ class DashboardDormerFragment: Fragment() {
                 Toast.makeText(requireContext(), "Error fetching announcements", Toast.LENGTH_SHORT).show()
             }
         firestore.collection("faqs")
+            .whereEqualTo("dorm", user.dorm.value.toString())
             .get()
             .addOnSuccessListener { result ->
                 faqList.clear()

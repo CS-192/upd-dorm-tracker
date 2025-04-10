@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.adapter.FAQAdapter
 import com.example.upddormtracker.databinding.FragmentFaqBinding
 import com.example.upddormtracker.datamodel.FAQ
@@ -24,6 +25,7 @@ class FaqFragment: Fragment() {
     private val firestore = Firebase.firestore
     private val faqList = mutableListOf<FAQ>()
     private lateinit var faqAdapter: FAQAdapter
+    private lateinit var user: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +34,7 @@ class FaqFragment: Fragment() {
     ): View {
         val faqViewModel =
             ViewModelProvider(this)[FaqViewModel::class.java]
+        user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentFaqBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -69,6 +72,7 @@ class FaqFragment: Fragment() {
 
     private fun fetchFAQs() {
         firestore.collection("faqs")
+            .whereEqualTo("dorm", user.dorm.value.toString())
             .get()
             .addOnSuccessListener { result ->
                 faqList.clear()
