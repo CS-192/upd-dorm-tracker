@@ -126,7 +126,7 @@
                 android:id="@+id/numberText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="23/100"
+                android:text="0/100"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textAlignment="center"

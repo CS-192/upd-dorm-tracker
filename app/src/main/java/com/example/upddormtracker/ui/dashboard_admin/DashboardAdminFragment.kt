@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentDashboardAdminBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 
 class DashboardAdminFragment : Fragment() {
@@ -40,8 +45,32 @@ class DashboardAdminFragment : Fragment() {
         return root
     }
 
+    fun fetchDormerCount() {
+        val db = FirebaseFirestore.getInstance()
+
+        val admin = Firebase.auth.currentUser
+        admin?.let{
+            db.collection("users").document(it.uid).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val adminDorm = document.getString("dorm") ?: ""
+                        db.collection("dormers").whereEqualTo("dorm", adminDorm).get()
+                            .addOnSuccessListener { documents ->
+                                updateUI(documents.size())
+                            }
+                    }
+                    else { updateUI(0) }
+                }
+        }
+    }
+
+    private fun updateUI(dormerCount: Int) {
+        view?.findViewById<TextView>(R.id.numberText1)?.text = "$dormerCount/100"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fetchDormerCount()
 
         // Access buttons using View Binding
         val buttonFirst: Button = binding.buttonFirst
@@ -65,6 +94,9 @@ class DashboardAdminFragment : Fragment() {
         buttonFourth.setOnClickListener {
             //scan id button
         }
+
+        //update the thing
+
     }
 
     override fun onDestroyView() {
