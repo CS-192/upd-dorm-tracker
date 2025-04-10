@@ -72,6 +72,9 @@ dependencies {
     testImplementation ("junit:junit:4.13.2")
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.junit.junit)
+    testImplementation (libs.org.mockito.mockito.core)
+    testImplementation (libs.mockito.inline)  // For mocking final classes
+    androidTestImplementation (libs.mockito.android)
 
     // ✅ Use AndroidX JUnit for UI tests
     androidTestImplementation ("androidx.test:core:1.5.0")
