@@ -3,13 +3,11 @@ package com.example.upddormtracker
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.activity.viewModels
-import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,6 +18,7 @@ import com.example.upddormtracker.databinding.ActivityMainBinding
 import com.example.upddormtracker.ui.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             navView.menu.add(Menu.NONE, R.id.dormDetailsFragment, 0, "Manage Dorm Details")
             navView.menu.add(Menu.NONE, R.id.dashboardDormerFragment, 0, "Home (dormer)")
             navView.menu.add(Menu.NONE, R.id.nav_requests, 0, "Create a Request")
+            navView.menu.add(Menu.NONE, R.id.adminProfileFragment, 0, "Admin Profile")
         } else if (isAdmin) {
             navView.menu.add(Menu.NONE, R.id.home_admin, 0, "Home")
             navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, 0, "Manage Dormers")
