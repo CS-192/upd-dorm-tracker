@@ -11,11 +11,25 @@ class UserViewModel : ViewModel() {
     private val _isAdmin = MutableLiveData<Boolean>()
     val isAdmin: LiveData<Boolean> get() = _isAdmin
 
+    private val _name = MutableLiveData<String>()
+    val name: LiveData<String> get() = _name
+
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
+
     fun setDorm(dorm: String) {
         _dorm.value = dorm
     }
 
     fun setIsAdmin(isAdmin: Boolean) {
         _isAdmin.value = isAdmin
+    }
+
+    fun setName(name: String) {
+        _name.value = name
+    }
+
+    fun setEmail(email: String) {
+        _email.value = email
     }
 }

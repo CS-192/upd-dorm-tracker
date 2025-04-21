@@ -110,6 +110,10 @@ class MainActivity : AppCompatActivity() {
                             userViewModel.setIsAdmin(false)
                             isAdmin = false
                         }
+                        val name = document.getString("name") ?: ""
+                        userViewModel.setName(name)
+                        val email = document.getString("email") ?: ""
+                        userViewModel.setEmail(email)
                     }
                 }
         }
