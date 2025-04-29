@@ -83,6 +83,9 @@ class AnnouncementFragment : Fragment() {
                     announcementList.add(announcement)
                 }
 
+                //sort announcement list
+                announcementList.sortWith(compareByDescending<Announcement> { it.date }.thenByDescending { it.time })
+
                 // Notify adapter of data change
                 announcementAdapter.notifyDataSetChanged()
             }
