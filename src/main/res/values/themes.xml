@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Rfidpracticeagain" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- You can optionally customize these -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorSecondary">@color/purple_200</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+    </style>
+</resources>
