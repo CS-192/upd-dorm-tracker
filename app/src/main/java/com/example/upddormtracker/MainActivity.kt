@@ -126,6 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         if (isAdmin) {
             navView.menu.add(Menu.NONE, R.id.home_admin, 0, "Home")
+            navView.menu.add(Menu.NONE, R.id.manageRequestsFragment, 0, "Manage Requests")
             navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, 0, "Manage Dormers")
             navView.menu.add(Menu.NONE, R.id.dormDetailsFragment, 0, "Manage Dorm Details")
             graph.setStartDestination(R.id.home_admin)
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         navController.graph = graph
 
         val topLevelDestinations = if (isAdmin) {
-            setOf(R.id.home_admin, R.id.dormDetailsFragment, R.id.nav_manage_dormers)
+            setOf(R.id.home_admin, R.id.dormDetailsFragment, R.id.nav_manage_dormers, R.id.manageRequestsFragment)
         } else if (isDormer) {
             setOf(R.id.dashboardDormerFragment, R.id.nav_requests)
         } else {

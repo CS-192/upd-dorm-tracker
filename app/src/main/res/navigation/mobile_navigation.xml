@@ -140,9 +140,14 @@
         android:id="@+id/reportFragment"
         android:name="com.example.upddormtracker.ui.report.ReportFragment"
         android:label="Reports/Concerns" />
-  
+
     <fragment
         android:id="@+id/adminProfileFragment"
         android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
         android:label="Add Announcement" />
+
+    <fragment
+        android:id="@+id/manageRequestsFragment"
+        android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
+        android:label="Manage Requests" />
 </navigation>
