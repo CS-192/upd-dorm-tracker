@@ -291,6 +291,13 @@ class AddDormerFragment : Fragment() {
                             .addOnFailureListener { e ->
                                 Log.e("Firestore", "Failed to update user dorm", e)
                             }
+//                        docRef.update("isDormer", true)
+//                            .addOnSuccessListener {
+//                                Log.d("Firestore", "User dorm updated successfully")
+//                            }
+//                            .addOnFailureListener { e ->
+//                                Log.e("Firestore", "Failed to update user dorm", e)
+//                            }
                     }
                 } else {
                     Log.d("Firestore", "No user found with email: $email")

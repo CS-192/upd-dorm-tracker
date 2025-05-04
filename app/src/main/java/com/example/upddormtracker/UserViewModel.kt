@@ -11,11 +11,18 @@ class UserViewModel : ViewModel() {
     private val _isAdmin = MutableLiveData<Boolean>()
     val isAdmin: LiveData<Boolean> get() = _isAdmin
 
+    private val _isDormer = MutableLiveData<Boolean>()
+    val isDormer: LiveData<Boolean> get() = _isDormer
+
     fun setDorm(dorm: String) {
         _dorm.value = dorm
     }
 
     fun setIsAdmin(isAdmin: Boolean) {
         _isAdmin.value = isAdmin
+    }
+
+    fun setIsDormer(isDormer: Boolean) {
+        _isDormer.value = isDormer
     }
 }
