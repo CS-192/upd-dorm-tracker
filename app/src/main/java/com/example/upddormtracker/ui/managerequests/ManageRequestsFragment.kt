@@ -4,15 +4,18 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -41,6 +44,9 @@ class ManageRequestsFragment : Fragment() {
     lateinit var tvMonthlyBill: TextView
     lateinit var tvReports: TextView
     lateinit var activeFilterTextView: TextView
+    private val userViewModel: UserViewModel by activityViewModels()
+    private var userDorm: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +67,11 @@ class ManageRequestsFragment : Fragment() {
         adapter = RequestAdapter(allRequests)
         recyclerView.adapter = adapter
 
-        fetchRequests()
+        userViewModel.dorm.observe(viewLifecycleOwner) {
+            userDorm = it
+            fetchRequests(it)
+        }
+
 
         // Hook up filter buttons
         tvLateNight = view.findViewById(R.id.tvLateNight)
@@ -75,9 +85,11 @@ class ManageRequestsFragment : Fragment() {
         return view
     }
 
-    private fun fetchRequests() {
+    private fun fetchRequests(dormName: String) {
+        Log.d("Check", dormName)
         db.collection("requests")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .whereEqualTo("dorm", dormName) // Filter by dorm
+            .orderBy("timestamp", Query.Direction.DESCENDING) // Sort by latest
             .get()
             .addOnSuccessListener { result ->
                 val requestList = mutableListOf<Request>()
@@ -87,7 +99,7 @@ class ManageRequestsFragment : Fragment() {
                     val type = document.getString("type") ?: ""
 
                     val dateFormatted = timestamp?.toDate()?.let { date ->
-                        SimpleDateFormat("MM/dd", Locale.getDefault()).format(date)
+                        SimpleDateFormat("mm/dd", Locale.getDefault()).format(date)
                     } ?: "N/A"
 
                     requestList.add(Request(fullName, dateFormatted, type))
@@ -95,11 +107,13 @@ class ManageRequestsFragment : Fragment() {
 
                 allRequests.clear()
                 allRequests.addAll(requestList)
-                filter("pass", tvLateNight)
-
-                adapter.updateList(requestList)
+                adapter.updateList(allRequests.filter { it.type == "pass" }) // Default filter
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to fetch requests", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun filter(type: String, selectedTextView: TextView) {
         val filtered = allRequests.filter { it.type == type }
