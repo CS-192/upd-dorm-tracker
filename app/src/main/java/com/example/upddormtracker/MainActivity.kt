@@ -91,6 +91,8 @@ class MainActivity : AppCompatActivity() {
                     userViewModel.setIsAdmin(isAdmin)
                     isDormer = document.getBoolean("isDormer") ?: false
                     userViewModel.setIsDormer(isDormer)
+                    val studentNumber = document.getString("studentNumber") ?:""
+                    userViewModel.setStudentNumber(studentNumber)
 
                     if (!isDormer && !isAdmin) {
                         Toast.makeText(
