@@ -25,7 +25,7 @@ class RequestAdapter(private var requestList: List<Request>) :
         val request = requestList[position]
         holder.name.text = request.name.trim().substringAfterLast(" ")
         holder.date.text = request.date
-        holder.type.text = request.type
+        holder.type.text = truncateWithEllipsis(request.details, 15)
     }
 
     override fun getItemCount() = requestList.size
@@ -33,5 +33,13 @@ class RequestAdapter(private var requestList: List<Request>) :
     fun updateList(newList: List<Request>) {
         requestList = newList
         notifyDataSetChanged()
+    }
+
+    fun truncateWithEllipsis(text: String, maxLength: Int): String {
+        return if (text.length > maxLength) {
+            text.take(maxLength) + "..."
+        } else {
+            text
+        }
     }
 }
