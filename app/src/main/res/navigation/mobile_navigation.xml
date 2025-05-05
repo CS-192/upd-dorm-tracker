@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/home_admin">
+    app:startDestination="@+id/loadingFragment">
 
     <fragment
         android:id="@+id/home_admin"
@@ -150,4 +150,9 @@
         android:id="@+id/manageRequestsFragment"
         android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
         android:label="Manage Requests" />
+
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.upddormtracker.ui.LoadingFragment"
+        android:label="" />
 </navigation>
