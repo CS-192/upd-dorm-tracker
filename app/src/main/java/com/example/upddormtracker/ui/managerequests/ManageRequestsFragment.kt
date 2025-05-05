@@ -97,7 +97,7 @@ class ManageRequestsFragment : Fragment() {
                     val type = document.getString("type") ?: ""
 
                     val dateFormatted = timestamp?.toDate()?.let { date ->
-                        SimpleDateFormat("mm/dd", Locale.getDefault()).format(date)
+                        SimpleDateFormat("MM/dd", Locale.getDefault()).format(date)
                     } ?: "N/A"
 
                     requestList.add(Request(fullName, dateFormatted, type))
