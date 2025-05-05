@@ -77,13 +77,17 @@ class ManageRequestsFragment : Fragment() {
                     val details = when (type) {
                         "pass" -> document.getString("pass") ?: ""
                         "report" -> document.getString("subject") ?: ""
-                        "billing" -> formatMonthRange(
-                            "${document.getString("startDate")}-${
-                                document.getString(
-                                    "endDate"
-                                )
-                            }"
-                        ) ?: ""
+                        "billing" -> when (document.getBoolean("resolved") ?: null) {
+                            true -> "Resolved"
+                            false -> "Unresolved"
+                            else -> formatMonthRange(
+                                "${document.getString("startDate")}-${
+                                    document.getString(
+                                        "endDate"
+                                    )
+                                }"
+                            )
+                        }
 
                         else -> ""
                     }

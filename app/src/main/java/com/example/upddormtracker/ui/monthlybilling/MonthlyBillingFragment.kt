@@ -140,6 +140,7 @@ class MonthlyBillingFragment : Fragment() {
             "startDate" to startDate,
             "endDate" to endDate,
             "studentNumber" to studentNumber,
+            "resolved" to false,
             "timestamp" to FieldValue.serverTimestamp()
         )
 
