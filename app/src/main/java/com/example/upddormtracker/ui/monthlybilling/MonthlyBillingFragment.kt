@@ -33,6 +33,7 @@ class MonthlyBillingFragment : Fragment() {
     private var selectedStartDate: String? = null
     private var selectedEndDate: String? = null
     private var selectedDorm: String? = null
+    private var selectedStudentNumber: String? = null
 
 
     override fun onCreateView(
@@ -78,6 +79,10 @@ class MonthlyBillingFragment : Fragment() {
         userViewModel.dorm.observe(viewLifecycleOwner) { dorm ->
             selectedDorm = dorm
         }
+
+        userViewModel.studentNumber.observe(viewLifecycleOwner) { studentNumber ->
+            selectedStudentNumber = studentNumber
+        }
     }
 
     private fun showDatePicker(tvSelectedDate: TextView, variable: KMutableProperty0<String?>) {
@@ -116,10 +121,11 @@ class MonthlyBillingFragment : Fragment() {
         val startDate = selectedStartDate?.trim()
         val endDate = selectedEndDate?.trim()
         val dorm = selectedDorm?.trim()
+        val studentNumber = selectedStudentNumber?.trim()
 
         // Validate inputs
         if (startDate.isNullOrEmpty() || endDate.isNullOrEmpty() ||
-            dorm.isNullOrEmpty()) {
+            dorm.isNullOrEmpty() || studentNumber.isNullOrEmpty()) {
 
             Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT).show()
             return  // Stop execution if any field is empty
@@ -133,6 +139,7 @@ class MonthlyBillingFragment : Fragment() {
             "dorm" to dorm,
             "startDate" to startDate,
             "endDate" to endDate,
+            "studentNumber" to studentNumber,
             "timestamp" to FieldValue.serverTimestamp()
         )
 
