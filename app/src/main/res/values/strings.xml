@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Log out</string>
 
-<!--    Headers-->
+    <!--    Headers-->
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="manage_dorm_details_header">Manage Dorm Details</string>
@@ -23,8 +23,7 @@
     <string name="dormers">Dormers</string>
 
 
-
-<!--    Input field labels/Button text/Placeholder texts-->
+    <!--    Input field labels/Button text/Placeholder texts-->
     <string name="create">+  New</string>
     <string name="save">Save</string>
     <string name="subject">Subject</string>
@@ -39,14 +38,14 @@
     <string name="enter_question">Enter question</string>
     <string name="enter_answer">Enter answer</string>
 
-<!--    Dorm info sub headings-->
+    <!--    Dorm info sub headings-->
     <string name="dorm_name">MOLAVE RH</string>
     <string name="curfew_hours">Curfew Hours</string>
     <string name="address">Address</string>
     <string name="contact_details">Email</string>
     <string name="history">History</string>
 
-<!--    sample dorm info-->
+    <!--    sample dorm info-->
     <string name="curfew_value">10:00PM to 6:00AM</string>
     <string name="address_value">M359+35W, Diliman, Quezon City, Metro Manila</string>
     <string name="contact_details_value">molave@abc.xyz</string>
