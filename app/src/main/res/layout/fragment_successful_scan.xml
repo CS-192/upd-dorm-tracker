@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Toolbar -->
+
+
+
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/qr_code_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sucessful_image"
+            android:contentDescription="QR Code" />
+
+        <!-- User Information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/successful_scan_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCAN SUCCESSFUL!"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/rfid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RFID Number: "
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <!-- Scan Another Button -->
+        <Button
+            android:id="@+id/scan_again_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_button_2"
+            android:text="Scan another UP ID"
+            android:textColor="#080b08"
+            android:textSize="20sp"
+            android:paddingVertical="12dp" />
+
+    </LinearLayout>
+</ScrollView>
