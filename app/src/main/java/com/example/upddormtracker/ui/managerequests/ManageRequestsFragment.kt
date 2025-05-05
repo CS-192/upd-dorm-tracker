@@ -66,17 +66,15 @@ class ManageRequestsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = RequestAdapter(allRequests)
         recyclerView.adapter = adapter
+        tvLateNight = view.findViewById(R.id.tvLateNight)
+        tvMonthlyBill = view.findViewById(R.id.tvMonthlyBill)
+        tvReports = view.findViewById(R.id.tvReports)
 
         userViewModel.dorm.observe(viewLifecycleOwner) {
             userDorm = it
             fetchRequests(it)
+            filter("pass", tvLateNight)
         }
-
-
-        // Hook up filter buttons
-        tvLateNight = view.findViewById(R.id.tvLateNight)
-        tvMonthlyBill = view.findViewById(R.id.tvMonthlyBill)
-        tvReports = view.findViewById(R.id.tvReports)
 
         tvLateNight.setOnClickListener { filter("pass", tvLateNight) }
         tvMonthlyBill.setOnClickListener { filter("billing", tvMonthlyBill) }
@@ -107,10 +105,11 @@ class ManageRequestsFragment : Fragment() {
 
                 allRequests.clear()
                 allRequests.addAll(requestList)
-                adapter.updateList(allRequests.filter { it.type == "pass" }) // Default filter
+                adapter.updateList(allRequests.filter { it.type == "pass" })
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to fetch requests", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to fetch requests", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
