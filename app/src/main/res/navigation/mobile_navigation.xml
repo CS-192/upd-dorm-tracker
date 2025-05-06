@@ -158,9 +158,8 @@
 
     <fragment
         android:id="@+id/adminProfileFragment"
-        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"\
-        android:label="Profile" />\
-        android:label="Add Announcement" />
+        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
+        android:label="Profile" />
 
     <fragment
         android:id="@+id/manageRequestsFragment"
