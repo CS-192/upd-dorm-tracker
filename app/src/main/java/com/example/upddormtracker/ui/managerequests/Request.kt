@@ -5,5 +5,6 @@ data class Request(
     val date: String = "",
     val type: String = "",
     val details: String = "",
+    val docId: String = "",
 )
 

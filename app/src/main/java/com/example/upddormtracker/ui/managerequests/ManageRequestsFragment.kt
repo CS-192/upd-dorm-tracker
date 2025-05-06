@@ -63,7 +63,6 @@ class ManageRequestsFragment : Fragment() {
     }
 
     private fun fetchRequests(dormName: String) {
-        Log.d("Check", dormName)
         db.collection("requests")
             .whereEqualTo("dorm", dormName) // Filter by dorm
             .orderBy("timestamp", Query.Direction.DESCENDING) // Sort by latest
@@ -74,6 +73,7 @@ class ManageRequestsFragment : Fragment() {
                     val fullName = document.getString("name") ?: ""
                     val timestamp = document.getTimestamp("timestamp")
                     val type = document.getString("type") ?: ""
+                    val docId = document.id
                     val details = when (type) {
                         "pass" -> document.getString("pass") ?: ""
                         "report" -> document.getString("subject") ?: ""
@@ -96,7 +96,7 @@ class ManageRequestsFragment : Fragment() {
                         SimpleDateFormat("MM/dd", Locale.getDefault()).format(date)
                     } ?: "N/A"
 
-                    requestList.add(Request(fullName, dateFormatted, type, details))
+                    requestList.add(Request(fullName, dateFormatted, type, details, docId))
                 }
 
                 allRequests.clear()

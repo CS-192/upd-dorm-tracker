@@ -155,4 +155,9 @@
         android:id="@+id/loadingFragment"
         android:name="com.example.upddormtracker.ui.LoadingFragment"
         android:label="" />
+
+    <fragment
+        android:id="@+id/requestDetailsFragment"
+        android:name="com.example.upddormtracker.ui.managerequests.RequestDetailsFragment"
+        android:label="Request" />
 </navigation>
