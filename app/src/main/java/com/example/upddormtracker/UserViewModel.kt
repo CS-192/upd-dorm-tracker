@@ -16,6 +16,9 @@ class UserViewModel : ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> get() = _email
+  
+    private val _isDormer = MutableLiveData<Boolean>()
+    val isDormer: LiveData<Boolean> get() = _isDormer
 
     fun setDorm(dorm: String) {
         _dorm.value = dorm
@@ -31,5 +34,8 @@ class UserViewModel : ViewModel() {
 
     fun setEmail(email: String) {
         _email.value = email
+      
+    fun setIsDormer(isDormer: Boolean) {
+        _isDormer.value = isDormer
     }
 }

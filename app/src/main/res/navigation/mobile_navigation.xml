@@ -131,6 +131,21 @@
         tools:layout="@layout/fragment_update_dormer_details" />
 
     <fragment
+
+        android:id="@+id/scanDormerIdFragment"
+        android:name="com.example.upddormtracker.ui.scan_id.ScanIDFragment"
+        android:label="Scan Dormer ID"
+        tools:layout="@layout/scan_id"
+        />
+
+    <fragment
+        android:id="@+id/successfulScanFragment"
+        android:name="com.example.upddormtracker.ui.scan_id.SuccessfulScanFragment"
+        android:label="Successful Scan"
+        android:layout="@layout/fragment_successful_scan"
+        />
+
+    <fragment
         android:id="@+id/addDormerFragment"
         android:name="com.example.upddormtracker.ui.managedormers.AddDormerFragment"
         android:label="Add New Dormer"
@@ -140,9 +155,15 @@
         android:id="@+id/reportFragment"
         android:name="com.example.upddormtracker.ui.report.ReportFragment"
         android:label="Reports/Concerns" />
-  
+
     <fragment
         android:id="@+id/adminProfileFragment"
-        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
-        android:label="Profile" />
+        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"\
+        android:label="Profile" />\
+        android:label="Add Announcement" />
+
+    <fragment
+        android:id="@+id/manageRequestsFragment"
+        android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
+        android:label="Manage Requests" />\
 </navigation>
