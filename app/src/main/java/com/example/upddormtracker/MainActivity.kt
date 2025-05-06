@@ -8,6 +8,8 @@ import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,16 +21,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.example.upddormtracker.databinding.ActivityMainBinding
 import com.example.upddormtracker.ui.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,9 +56,30 @@ class MainActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by viewModels()
 
+    fun updateSidebar(user: FirebaseUser) {
+        val headerView = binding.navView.getHeaderView(0)
+        val nameTextView = headerView.findViewById<TextView>(R.id.nav_header_name)
+        val emailTextView = headerView.findViewById<TextView>(R.id.nav_header_email)
+        val profileImageView = headerView.findViewById<ImageView>(R.id.imageView)
+
+        nameTextView.text = user.displayName ?: "No name"
+        emailTextView.text = user.email ?: "No email"
+
+        val photoUrl = user.photoUrl
+        if (photoUrl != null) {
+            Glide.with(this)
+                .load(photoUrl)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .circleCrop()
+                .into(profileImageView)
+        }
+
+    }
+
     fun getUser() {
         val user = Firebase.auth.currentUser
         if (user == null) return
+        updateSidebar(user)
 
         val timeoutMillis: Long = 5000 // 5 seconds timeout
         var didRespond = false
@@ -81,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     userViewModel.setIsAdmin(isAdmin)
                     isDormer = document.getBoolean("isDormer") ?: false
                     userViewModel.setIsDormer(isDormer)
-                    val studentNumber = document.getString("studentNumber") ?:""
+                    val studentNumber = document.getString("studentNumber") ?: ""
                     userViewModel.setStudentNumber(studentNumber)
 
                     if (!isDormer && !isAdmin) {
@@ -109,7 +133,8 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
         if (navHostFragment !is NavHostFragment) {
             Log.e("MainActivity", "NavHostFragment not found.")
             return
