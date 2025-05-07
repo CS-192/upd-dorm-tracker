@@ -162,6 +162,11 @@
         android:label="Profile" />
 
     <fragment
+        android:id="@+id/dormerProfileFragment"
+        android:name="com.example.upddormtracker.ui.dormer_profile.DormerProfileFragment"
+        android:label="Profile" />
+
+    <fragment
         android:id="@+id/manageRequestsFragment"
         android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
         android:label="Manage Requests" />
