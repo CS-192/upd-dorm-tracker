@@ -1,5 +1,6 @@
 package com.example.upddormtracker.ui.managerequests
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -44,6 +45,10 @@ class RequestDetailsFragment : Fragment() {
         // Use `binding` to access views
         val docId = arguments?.getString("requestId") ?: return
         fetchRequestDetails(docId)
+
+        binding.btnDeleteRequest.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
     }
 
     override fun onDestroyView() {
@@ -60,7 +65,11 @@ class RequestDetailsFragment : Fragment() {
                     val detailsList = formatDetails(document)
 
                     // Set up the adapter for ListView
-                    val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, detailsList)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_list_item_1,
+                        detailsList
+                    )
                     binding.lvRequestDetails.adapter = adapter
                     binding.title.visibility = View.VISIBLE
                     binding.progressCircular.visibility = View.GONE
@@ -69,7 +78,8 @@ class RequestDetailsFragment : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to fetch details", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to fetch details", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -148,4 +158,31 @@ class RequestDetailsFragment : Fragment() {
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return format.format(date)
     }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Request")
+            .setMessage("Are you sure you want to delete this request?")
+            .setPositiveButton("Yes") { _, _ ->
+                deleteRequest()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteRequest() {
+        val documentId = docId ?: return
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("requests").document(documentId)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Request deleted", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.popBackStack() // Go back to previous fragment
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Failed to delete: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }
