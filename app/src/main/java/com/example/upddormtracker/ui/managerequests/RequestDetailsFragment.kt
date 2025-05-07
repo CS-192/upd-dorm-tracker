@@ -15,12 +15,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentRequestDetailsBinding
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 class RequestDetailsFragment : Fragment() {
 
@@ -120,7 +121,7 @@ class RequestDetailsFragment : Fragment() {
         val destination = document.getString("destination") ?: "N/A"
         val departureDate = document.getString("departureDate") ?: "N/A"
         val arrivalDate = document.getString("arrivalDate") ?: "N/A"
-        val createdTimestamp = document.getTimestamp("createdAt")?.toDate() ?: Date()
+        val createdTimestamp = formatTimestampToPHT(document.getTimestamp("timestamp")) ?: ""
         val comment = document.getString("comment") ?: "N/A"
         val tagsList = document.get("tags") as? List<*> ?: emptyList<Any>()
         val tags = if (tagsList.isNotEmpty()) tagsList.joinToString(", ") else "N/A"
@@ -129,7 +130,7 @@ class RequestDetailsFragment : Fragment() {
         return listOf(
             "Name: $name",
             "Student Number: $studentNumber",
-            "Created: ${formatTimestamp(createdTimestamp)}",
+            "Created: $createdTimestamp",
             "Destination: $destination",
             "Departure Date: $departureDate",
             "Arrival Date: $arrivalDate",
@@ -146,7 +147,7 @@ class RequestDetailsFragment : Fragment() {
         val startDate = document.getString("startDate") ?: "N/A"
         val endDate = document.getString("endDate") ?: "N/A"
         val resolved = document.getBoolean("resolved") ?: false
-        val createdTimestamp = document.getTimestamp("createdAt")?.toDate() ?: Date()
+        val createdTimestamp = formatTimestampToPHT(document.getTimestamp("timestamp")) ?: ""
         val comment = document.getString("comment") ?: "N/A"
         val tagsList = document.get("tags") as? List<*> ?: emptyList<Any>()
         val tags = if (tagsList.isNotEmpty()) tagsList.joinToString(", ") else "N/A"
@@ -173,7 +174,7 @@ class RequestDetailsFragment : Fragment() {
         return listOf(
             "Name: $name",
             "Student Number: $studentNumber",
-            "Created: ${formatTimestamp(createdTimestamp)}",
+            "Created: $createdTimestamp",
             "Start Date: $startDate",  // More specific wording for billing
             "End Date: $endDate",           // Change to reflect due date for billing
             "Resolved: ${if (resolved) "Yes" else "No"}",
@@ -189,7 +190,7 @@ class RequestDetailsFragment : Fragment() {
         val studentNumber = document.getString("studentNumber") ?: "N/A"
         val subject = document.getString("subject") ?: "N/A"
         val details = document.getString("details") ?: "N/A"
-        val createdTimestamp = document.getTimestamp("createdAt")?.toDate() ?: Date()
+        val createdTimestamp = formatTimestampToPHT(document.getTimestamp("timestamp")) ?: ""
         val comment = document.getString("comment") ?: "N/A"
         val tagsList = document.get("tags") as? List<*> ?: emptyList<Any>()
         val tags = if (tagsList.isNotEmpty()) tagsList.joinToString(", ") else "N/A"
@@ -197,18 +198,12 @@ class RequestDetailsFragment : Fragment() {
         return listOf(
             "Name: $name",
             "Student Number: $studentNumber",
-            "Created: ${formatTimestamp(createdTimestamp)}",
+            "Created: $createdTimestamp",
             "Subject: $subject", // Treat destination as the issue description
             "Details: $details",           // Date of report
             "Comment: $comment",
             "Tags: $tags",
         )
-    }
-
-
-    private fun formatTimestamp(date: Date): String {
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        return format.format(date)
     }
 
     private fun showDeleteConfirmationDialog() {
@@ -378,5 +373,13 @@ class RequestDetailsFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to update resolved status", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    fun formatTimestampToPHT(timestamp: Timestamp?): String? {
+        return timestamp?.toDate()?.let { date ->
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            sdf.format(date)
+        }
     }
 }

@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.upddormtracker.R
 import com.example.upddormtracker.UserViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.TimeZone
 
 class ManageRequestsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -71,13 +72,13 @@ class ManageRequestsFragment : Fragment() {
                 val requestList = mutableListOf<Request>()
                 for (document in result) {
                     val fullName = document.getString("name") ?: ""
-                    val timestamp = document.getTimestamp("timestamp")
+                    val timestamp = formatTimestampToPHT(document.getTimestamp("timestamp")) ?: ""
                     val type = document.getString("type") ?: ""
                     val docId = document.id
                     val details = when (type) {
                         "pass" -> document.getString("pass") ?: ""
                         "report" -> document.getString("subject") ?: ""
-                        "billing" -> when (document.getBoolean("resolved") ?: null) {
+                        "billing" -> when (document.getBoolean("resolved")) {
                             true -> "Resolved"
                             false -> "Unresolved"
                             else -> formatMonthRange(
@@ -92,11 +93,7 @@ class ManageRequestsFragment : Fragment() {
                         else -> ""
                     }
 
-                    val dateFormatted = timestamp?.toDate()?.let { date ->
-                        SimpleDateFormat("MM/dd", Locale.getDefault()).format(date)
-                    } ?: "N/A"
-
-                    requestList.add(Request(fullName, dateFormatted, type, details, docId))
+                    requestList.add(Request(fullName, timestamp, type, details, docId))
                 }
 
                 allRequests.clear()
@@ -157,6 +154,14 @@ class ManageRequestsFragment : Fragment() {
 
             else ->
                 "$startMonth/$startYear–$endMonth/$endYear"
+        }
+    }
+
+    fun formatTimestampToPHT(timestamp: Timestamp?): String? {
+        return timestamp?.toDate()?.let { date ->
+            val sdf = SimpleDateFormat("MM-dd", Locale.getDefault())
+            sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            sdf.format(date)
         }
     }
 
