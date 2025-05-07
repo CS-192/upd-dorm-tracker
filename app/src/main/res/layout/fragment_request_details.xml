@@ -38,22 +38,41 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
         android:divider="@color/white"
-        android:dividerHeight="0dp"
+        android:dividerHeight="-10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <Button
-        android:id="@+id/btnDeleteRequest"
-        android:layout_width="190dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/button_red"
-        android:text="Delete request"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/lvRequestDetails">
+
+        <Button
+            android:id="@+id/btnEditComment"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Edit Comment"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnAddTag"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add tag"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnDeleteRequest"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/button_red"
+            android:text="Delete request"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

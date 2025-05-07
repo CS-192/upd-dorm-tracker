@@ -112,7 +112,7 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/btnViewEditGuardian"
+            android:id="@+id/btnEditComment"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
