@@ -9,9 +9,11 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.example.upddormtracker.databinding.FragmentManageDormersBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -21,6 +23,8 @@ class ManageDormersFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var dormerAdapter: DormerAdapter
     private val dormers = mutableListOf<Dormer>()
+    private val userViewModel: UserViewModel by activityViewModels()
+    private var userDorm: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +32,12 @@ class ManageDormersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentManageDormersBinding.inflate(inflater, container, false)
+
+        userViewModel.dorm.observe(viewLifecycleOwner) {
+            userDorm = it
+            loadDormers()
+        }
+
         return binding.root
     }
 
@@ -48,7 +58,7 @@ class ManageDormersFragment : Fragment() {
         setupSorting()
 
         // Load dormers from Firestore
-        loadDormers()
+
 
         // Setup Add Dormer button
         binding.addDormerButton.setOnClickListener {
@@ -118,6 +128,7 @@ class ManageDormersFragment : Fragment() {
         dormers.clear()
 
         db.collection("dormers")
+            .whereEqualTo("dorm", userDorm)
             .get()
             .addOnSuccessListener { documents ->
                 for (doc in documents) {
