@@ -83,6 +83,7 @@ class DashboardAdminFragment : Fragment() {
 
         buttonSecond.setOnClickListener {
             // Requests button
+            findNavController().navigate(R.id.manageRequestsFragment)
         }
 
         buttonThird.setOnClickListener {

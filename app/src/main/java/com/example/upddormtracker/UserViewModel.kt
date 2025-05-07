@@ -20,6 +20,9 @@ class UserViewModel : ViewModel() {
     private val _isDormer = MutableLiveData<Boolean>()
     val isDormer: LiveData<Boolean> get() = _isDormer
 
+    private val _studentNumber = MutableLiveData<String>()
+    val studentNumber: LiveData<String> get() = _studentNumber
+
     fun setDorm(dorm: String) {
         _dorm.value = dorm
     }
@@ -37,5 +40,9 @@ class UserViewModel : ViewModel() {
       
     fun setIsDormer(isDormer: Boolean) {
         _isDormer.value = isDormer
+    }
+
+    fun setStudentNumber(studentNumber: String) {
+        _studentNumber.value = studentNumber
     }
 }
