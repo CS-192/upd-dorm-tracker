@@ -33,6 +33,8 @@ class ReportFragment : Fragment() {
     private var selectedSubject: String? = null
     private var selectedDetails: String? = null
     private var selectedDorm: String? = null
+    private var selectedStudentNumber: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +76,10 @@ class ReportFragment : Fragment() {
         userViewModel.dorm.observe(viewLifecycleOwner) { dorm ->
             selectedDorm = dorm
         }
+
+        userViewModel.studentNumber.observe(viewLifecycleOwner) { studentNumber ->
+            selectedStudentNumber = studentNumber
+        }
     }
 
     private fun saveRequestToFirestore() {
@@ -90,10 +96,12 @@ class ReportFragment : Fragment() {
         val subject = selectedSubject?.trim()
         val details = selectedDetails?.trim()
         val dorm = selectedDorm?.trim()
+        val studentNumber = selectedStudentNumber?.trim()
+
 
         // Validate inputs
         if (subject.isNullOrEmpty() || details.isNullOrEmpty() ||
-            dorm.isNullOrEmpty()) {
+            dorm.isNullOrEmpty() || studentNumber.isNullOrEmpty()) {
 
             Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT).show()
             return  // Stop execution if any field is empty
@@ -107,6 +115,7 @@ class ReportFragment : Fragment() {
             "dorm" to dorm,
             "subject" to subject,
             "details" to details,
+            "studentNumber" to studentNumber,
             "timestamp" to FieldValue.serverTimestamp()
         )
 

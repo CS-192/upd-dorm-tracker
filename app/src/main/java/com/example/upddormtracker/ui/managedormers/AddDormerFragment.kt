@@ -284,20 +284,19 @@ class AddDormerFragment : Fragment() {
                 if (!querySnapshot.isEmpty) {
                     for (document in querySnapshot.documents) {
                         val docRef = db.collection("users").document(document.id)
-                        docRef.update("dorm", dorm)
+                        docRef.update(
+                            mapOf(
+                                "dorm" to dorm,
+                                "studentNumber" to selectedStudentNumber,
+                                "isDormer" to true
+                            )
+                        )
                             .addOnSuccessListener {
                                 Log.d("Firestore", "User dorm updated successfully")
                             }
                             .addOnFailureListener { e ->
                                 Log.e("Firestore", "Failed to update user dorm", e)
                             }
-//                        docRef.update("isDormer", true)
-//                            .addOnSuccessListener {
-//                                Log.d("Firestore", "User dorm updated successfully")
-//                            }
-//                            .addOnFailureListener { e ->
-//                                Log.e("Firestore", "Failed to update user dorm", e)
-//                            }
                     }
                 } else {
                     Log.d("Firestore", "No user found with email: $email")
