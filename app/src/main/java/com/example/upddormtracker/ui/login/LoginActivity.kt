@@ -215,7 +215,7 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         ).show()
         setResult(RESULT_OK)
         val intent = Intent(this, MainActivity::class.java)

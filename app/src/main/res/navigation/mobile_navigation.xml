@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/home_admin">
+    app:startDestination="@+id/loadingFragment">
 
     <fragment
         android:id="@+id/home_admin"
@@ -131,6 +131,21 @@
         tools:layout="@layout/fragment_update_dormer_details" />
 
     <fragment
+
+        android:id="@+id/scanDormerIdFragment"
+        android:name="com.example.upddormtracker.ui.scan_id.ScanIDFragment"
+        android:label="Scan Dormer ID"
+        tools:layout="@layout/scan_id"
+        />
+
+    <fragment
+        android:id="@+id/successfulScanFragment"
+        android:name="com.example.upddormtracker.ui.scan_id.SuccessfulScanFragment"
+        android:label="Successful Scan"
+        android:layout="@layout/fragment_successful_scan"
+        />
+
+    <fragment
         android:id="@+id/addDormerFragment"
         android:name="com.example.upddormtracker.ui.managedormers.AddDormerFragment"
         android:label="Add New Dormer"
@@ -140,7 +155,7 @@
         android:id="@+id/reportFragment"
         android:name="com.example.upddormtracker.ui.report.ReportFragment"
         android:label="Reports/Concerns" />
-  
+
     <fragment
         android:id="@+id/adminProfileFragment"
         android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
@@ -151,5 +166,18 @@
         android:name="com.example.upddormtracker.ui.dormer_profile.DormerProfileFragment"
         android:label="Profile" />
 
+    <fragment
+        android:id="@+id/manageRequestsFragment"
+        android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
+        android:label="Manage Requests" />
 
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.upddormtracker.ui.LoadingFragment"
+        android:label="" />
+
+    <fragment
+        android:id="@+id/requestDetailsFragment"
+        android:name="com.example.upddormtracker.ui.managerequests.RequestDetailsFragment"
+        android:label="Request" />
 </navigation>
