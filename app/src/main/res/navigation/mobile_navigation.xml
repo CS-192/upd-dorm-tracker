@@ -145,4 +145,11 @@
         android:id="@+id/adminProfileFragment"
         android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
         android:label="Profile" />
+
+    <fragment
+        android:id="@+id/dormerProfileFragment"
+        android:name="com.example.upddormtracker.ui.dormer_profile.DormerProfileFragment"
+        android:label="Profile" />
+
+
 </navigation>

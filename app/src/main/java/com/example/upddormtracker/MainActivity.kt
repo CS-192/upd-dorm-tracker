@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             navView.menu.add(Menu.NONE, R.id.dashboardDormerFragment, 0, "Home (dormer)")
             navView.menu.add(Menu.NONE, R.id.nav_requests, 0, "Create a Request")
             navView.menu.add(Menu.NONE, R.id.adminProfileFragment, 0, "Admin Profile")
+            navView.menu.add(Menu.NONE, R.id.dormerProfileFragment, 0, "Dormer Profile")
         } else if (isAdmin) {
             navView.menu.add(Menu.NONE, R.id.home_admin, 0, "Home")
             navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, 0, "Manage Dormers")
