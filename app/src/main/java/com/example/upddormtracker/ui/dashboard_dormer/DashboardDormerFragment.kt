@@ -119,7 +119,8 @@ class DashboardDormerFragment: Fragment() {
                         )
                     announcementList.add(announcement)
                 }
-
+                // sort
+                announcementList.sortWith(compareByDescending<Announcement> { it.date }.thenByDescending { it.time })
                 // Notify adapter of data change
                 announcementAdapter.notifyDataSetChanged()
             }
