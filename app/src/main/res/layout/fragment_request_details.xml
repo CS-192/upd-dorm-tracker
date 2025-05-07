@@ -38,7 +38,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
         android:divider="@color/white"
-        android:dividerHeight="-10dp"
+        android:dividerHeight="-19dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -47,6 +47,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/lvRequestDetails">
+
+        <Button
+            android:id="@+id/btnResolved"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/gray"
+            android:text="Resolved/unresolved"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnEditComment"

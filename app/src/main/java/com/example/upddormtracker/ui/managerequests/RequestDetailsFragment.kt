@@ -1,9 +1,9 @@
 package com.example.upddormtracker.ui.managerequests
 
 import android.app.AlertDialog
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.compose.ui.text.toUpperCase
+import androidx.core.content.ContextCompat
 import com.example.upddormtracker.R
 import com.example.upddormtracker.databinding.FragmentRequestDetailsBinding
 import com.google.firebase.firestore.DocumentSnapshot
@@ -61,6 +61,10 @@ class RequestDetailsFragment : Fragment() {
 
         binding.btnAddTag.setOnClickListener {
             showAddTagDialog()
+        }
+
+        binding.btnResolved.setOnClickListener{
+            showResolveBillingDialog()
         }
     }
 
@@ -147,6 +151,24 @@ class RequestDetailsFragment : Fragment() {
         val tagsList = document.get("tags") as? List<*> ?: emptyList<Any>()
         val tags = if (tagsList.isNotEmpty()) tagsList.joinToString(", ") else "N/A"
 
+        binding.btnResolved.visibility = View.VISIBLE
+        when (document.getBoolean("resolved")){
+            true -> {
+                binding.btnResolved.text = "Billing Resolved"
+                val greenColor = ContextCompat.getColor(requireContext(), R.color.green)
+                binding.btnResolved.backgroundTintList = ColorStateList.valueOf(greenColor)
+            }
+            false -> {
+                binding.btnResolved.text = "Resolve this Billing"
+                val redColor = ContextCompat.getColor(requireContext(), R.color.red)
+                binding.btnResolved.backgroundTintList = ColorStateList.valueOf(redColor)
+            }
+            else -> {
+                binding.btnResolved.text = "No data"
+                val redColor = ContextCompat.getColor(requireContext(), R.color.button_gray)
+                binding.btnResolved.backgroundTintList = ColorStateList.valueOf(redColor)
+            }
+        }
 
         return listOf(
             "Name: $name",
@@ -319,4 +341,42 @@ class RequestDetailsFragment : Fragment() {
             }
     }
 
+    private fun showResolveBillingDialog() {
+        val documentId = docId ?: return
+        val db = FirebaseFirestore.getInstance()
+
+        // Fetch the current resolved status
+        db.collection("requests").document(documentId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val resolved = document.getBoolean("resolved") ?: false
+                    val newResolvedStatus = !resolved // Toggle the resolved status (true -> false, false -> true)
+
+                    // Update the resolved field and show confirmation dialog
+                    updateResolvedStatus(documentId, newResolvedStatus)
+                } else {
+                    Toast.makeText(requireContext(), "Request not found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to fetch request", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun updateResolvedStatus(documentId: String, newResolvedStatus: Boolean) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("requests").document(documentId)
+            .update("resolved", newResolvedStatus)
+            .addOnSuccessListener {
+                // Show the AlertDialog confirming the update
+                val statusMessage = if (newResolvedStatus) "Resolved" else "Not Resolved"
+                Toast.makeText(requireContext(), "This billing is $statusMessage", Toast.LENGTH_SHORT).show()
+                fetchRequestDetails(documentId)  // Refresh the details after the update
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to update resolved status", Toast.LENGTH_SHORT).show()
+            }
+    }
 }
