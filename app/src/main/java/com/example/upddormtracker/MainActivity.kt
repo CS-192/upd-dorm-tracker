@@ -108,6 +108,10 @@ class MainActivity : AppCompatActivity() {
                     userViewModel.setIsDormer(isDormer)
                     val studentNumber = document.getString("studentNumber") ?: ""
                     userViewModel.setStudentNumber(studentNumber)
+                    val name = document.getString("name") ?: ""
+                    userViewModel.setName(name)
+                    val email = document.getString("email") ?: ""
+                    userViewModel.setEmail(email)
 
                     if (!isDormer && !isAdmin) {
                         Toast.makeText(
@@ -216,6 +220,16 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
+            R.id.action_profile -> {
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                if (isAdmin) {
+                    navController.navigate(R.id.adminProfileFragment)
+                } else if (isDormer) {
+                    navController.navigate(R.id.dormerProfileFragment)
+                }
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -242,13 +256,15 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
-            ?.childFragmentManager
-            ?.fragments
-            ?.firstOrNull()
+        val currentFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+                ?.childFragmentManager
+                ?.fragments
+                ?.firstOrNull()
 
         if (currentFragment is ScanIDFragment) {
             currentFragment.handleTagIntent(intent)
