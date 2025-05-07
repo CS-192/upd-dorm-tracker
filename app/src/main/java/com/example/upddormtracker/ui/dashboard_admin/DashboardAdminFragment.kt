@@ -91,7 +91,7 @@ class DashboardAdminFragment : Fragment() {
         }
 
         buttonFourth.setOnClickListener {
-            //scan id button
+            findNavController().navigate(R.id.scanDormerIdFragment)
         }
 
         //update the thing

@@ -24,6 +24,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.upddormtracker.databinding.ActivityMainBinding
 import com.example.upddormtracker.ui.login.LoginActivity
+import com.example.upddormtracker.ui.scan_id.ScanIDFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
@@ -241,4 +242,17 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+            ?.childFragmentManager
+            ?.fragments
+            ?.firstOrNull()
+
+        if (currentFragment is ScanIDFragment) {
+            currentFragment.handleTagIntent(intent)
+        }
+    }
+
 }
