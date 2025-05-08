@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,26 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.upddormtracker.R
 import com.example.upddormtracker.UserViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.TimeZone
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ManageRequestsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ManageRequestsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RequestAdapter
     private val db = Firebase.firestore
@@ -43,18 +31,10 @@ class ManageRequestsFragment : Fragment() {
     lateinit var tvLateNight: TextView
     lateinit var tvMonthlyBill: TextView
     lateinit var tvReports: TextView
+    lateinit var tvthirdColumn: TextView
     lateinit var activeFilterTextView: TextView
     private val userViewModel: UserViewModel by activityViewModels()
     private var userDorm: String? = null
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,18 +53,17 @@ class ManageRequestsFragment : Fragment() {
         userViewModel.dorm.observe(viewLifecycleOwner) {
             userDorm = it
             fetchRequests(it)
-            filter("pass", tvLateNight)
+            filter("pass", tvLateNight, view)
         }
 
-        tvLateNight.setOnClickListener { filter("pass", tvLateNight) }
-        tvMonthlyBill.setOnClickListener { filter("billing", tvMonthlyBill) }
-        tvReports.setOnClickListener { filter("report", tvReports) }
+        tvLateNight.setOnClickListener { filter("pass", tvLateNight, view) }
+        tvMonthlyBill.setOnClickListener { filter("billing", tvMonthlyBill, view) }
+        tvReports.setOnClickListener { filter("report", tvReports, view) }
 
         return view
     }
 
     private fun fetchRequests(dormName: String) {
-        Log.d("Check", dormName)
         db.collection("requests")
             .whereEqualTo("dorm", dormName) // Filter by dorm
             .orderBy("timestamp", Query.Direction.DESCENDING) // Sort by latest
@@ -93,14 +72,28 @@ class ManageRequestsFragment : Fragment() {
                 val requestList = mutableListOf<Request>()
                 for (document in result) {
                     val fullName = document.getString("name") ?: ""
-                    val timestamp = document.getTimestamp("timestamp")
+                    val timestamp = formatTimestampToPHT(document.getTimestamp("timestamp")) ?: ""
                     val type = document.getString("type") ?: ""
+                    val docId = document.id
+                    val details = when (type) {
+                        "pass" -> document.getString("pass") ?: ""
+                        "report" -> document.getString("subject") ?: ""
+                        "billing" -> when (document.getBoolean("resolved")) {
+                            true -> "Resolved"
+                            false -> "Unresolved"
+                            else -> formatMonthRange(
+                                "${document.getString("startDate")}-${
+                                    document.getString(
+                                        "endDate"
+                                    )
+                                }"
+                            )
+                        }
 
-                    val dateFormatted = timestamp?.toDate()?.let { date ->
-                        SimpleDateFormat("mm/dd", Locale.getDefault()).format(date)
-                    } ?: "N/A"
+                        else -> ""
+                    }
 
-                    requestList.add(Request(fullName, dateFormatted, type))
+                    requestList.add(Request(fullName, timestamp, type, details, docId))
                 }
 
                 allRequests.clear()
@@ -114,9 +107,19 @@ class ManageRequestsFragment : Fragment() {
     }
 
 
-    private fun filter(type: String, selectedTextView: TextView) {
+    private fun filter(type: String, selectedTextView: TextView, view: View) {
         val filtered = allRequests.filter { it.type == type }
         adapter.updateList(filtered)
+
+        tvthirdColumn = view.findViewById(R.id.tvThirdRow)
+        tvthirdColumn.setText(
+            when (type) {
+                "pass" -> "Type"
+                "billing" -> "Resolved"
+                "report" -> "Subject"
+                else -> ""
+            }
+        )
 
         // Reset previous selection (if exists)
         if (::activeFilterTextView.isInitialized) {
@@ -133,24 +136,33 @@ class ManageRequestsFragment : Fragment() {
         activeFilterTextView = selectedTextView
     }
 
+    fun formatMonthRange(input: String): String {
+        val parts = input.split("–", "-", "—")
+        if (parts.size != 4) return input // Expecting [yyyy, mm, yyyy, mm]
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ManageRequestsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ManageRequestsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        val startYear = parts[0].trim()
+        val startMonth = parts[1].trim().padStart(2, '0')
+        val endYear = parts[2].trim()
+        val endMonth = parts[3].trim().padStart(2, '0')
+
+        return when {
+            startYear == endYear && startMonth == endMonth ->
+                "$startMonth/$startYear"
+
+            startYear == endYear ->
+                "$startMonth–$endMonth/$endYear"
+
+            else ->
+                "$startMonth/$startYear–$endMonth/$endYear"
+        }
     }
+
+    fun formatTimestampToPHT(timestamp: Timestamp?): String? {
+        return timestamp?.toDate()?.let { date ->
+            val sdf = SimpleDateFormat("MM-dd", Locale.getDefault())
+            sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            sdf.format(date)
+        }
+    }
+
 }

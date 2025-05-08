@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tvRoomNumber"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -101,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit requests"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnViewEditViolations"
@@ -109,15 +109,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit violations"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
-            android:id="@+id/btnViewEditGuardian"
+            android:id="@+id/btnEditComment"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit guardian"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnRegisterID"

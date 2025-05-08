@@ -41,6 +41,7 @@ class LateNightFragment : Fragment() {
     private var selectedDestination: String? = null
     private var selectedReason: String? = null
     private var selectedDorm: String? = null
+    private var selectedStudentNumber: String? = null
 
 
     override fun onCreateView(
@@ -133,6 +134,10 @@ class LateNightFragment : Fragment() {
         userViewModel.dorm.observe(viewLifecycleOwner) { dorm ->
             selectedDorm = dorm
         }
+
+        userViewModel.studentNumber.observe(viewLifecycleOwner) { studentNumber ->
+            selectedStudentNumber = studentNumber
+        }
     }
 
     private fun showDatePicker(tvSelectedDate: TextView, variable: KMutableProperty0<String?>) {
@@ -175,10 +180,11 @@ class LateNightFragment : Fragment() {
         val destination = selectedDestination?.trim()
         val reason = selectedReason?.trim()
         val dorm = selectedDorm?.trim()
+        val studentNumber = selectedStudentNumber?.trim()
 
         // Validate inputs
         if (pass.isNullOrEmpty() || departureDate.isNullOrEmpty() || arrivalDate.isNullOrEmpty() ||
-            destination.isNullOrEmpty() || reason.isNullOrEmpty() || dorm.isNullOrEmpty()
+            destination.isNullOrEmpty() || reason.isNullOrEmpty() || dorm.isNullOrEmpty() || studentNumber.isNullOrEmpty()
         ) {
 
             Toast.makeText(requireContext(), "Please fill in all fields!", Toast.LENGTH_SHORT)
@@ -197,6 +203,7 @@ class LateNightFragment : Fragment() {
             "arrivalDate" to arrivalDate,
             "destination" to destination,
             "reason" to reason,
+            "studentNumber" to studentNumber,
             "timestamp" to FieldValue.serverTimestamp()
         )
 
