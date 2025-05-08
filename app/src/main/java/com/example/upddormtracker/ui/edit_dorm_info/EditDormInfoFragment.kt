@@ -30,9 +30,6 @@ class EditDormInfoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dormInfoViewModel =
-            ViewModelProvider(this)[EditDormInfoViewModel::class.java]
-
         _binding = FragmentEditDormInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

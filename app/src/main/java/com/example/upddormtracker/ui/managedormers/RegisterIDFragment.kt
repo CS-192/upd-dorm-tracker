@@ -41,7 +41,6 @@ class RegisterRFIDFragment : Fragment() {
         val pendingIntent = android.app.PendingIntent.getActivity(
             requireContext(), 0, intent, android.app.PendingIntent.FLAG_MUTABLE
         )
-        val filter = arrayOf(arrayOf("android.nfc.tech.Ndef"))
         nfcAdapter?.enableForegroundDispatch(activity, pendingIntent, null, null)
     }
 

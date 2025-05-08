@@ -35,14 +35,9 @@ class CreateAnnouncementFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val createAnnouncementViewModel =
-            ViewModelProvider(this)[CreateAnnouncementViewModel::class.java]
-
         user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
-
         _binding = FragmentCreateAnnouncementBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
 
         return root
     }

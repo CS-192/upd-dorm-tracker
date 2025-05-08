@@ -28,8 +28,6 @@ class AddFaqFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val addFaqViewModel =
-            ViewModelProvider(this)[AddFaqViewModel::class.java]
         user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         _binding = FragmentAddFaqBinding.inflate(inflater, container, false)
         val root: View = binding.root

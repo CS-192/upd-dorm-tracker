@@ -28,7 +28,7 @@ class DormerViewAnnouncementAdapter(private val announcementList: MutableList<An
 
     override fun onBindViewHolder(holder: DormerViewAnnouncementViewHolder, position: Int) {
         val currentItem = announcementList[position]
-        holder.bind(currentItem, position)
+        holder.bind(currentItem)
     }
 
     inner class DormerViewAnnouncementViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -36,7 +36,7 @@ class DormerViewAnnouncementAdapter(private val announcementList: MutableList<An
         private val date: TextView = itemView.findViewById(R.id.tvDate)
         private val details: TextView = itemView.findViewById(R.id.tvDetails)
 
-        fun bind(announcement: Announcement, position: Int) {
+        fun bind(announcement: Announcement) {
             // Set text for TextViews
             subject.text = announcement.subject
             date.text = announcement.date

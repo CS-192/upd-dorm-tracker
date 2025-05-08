@@ -31,9 +31,6 @@ class EditAnnouncementFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val editAnnouncementViewModel =
-            ViewModelProvider(this)[EditAnnouncementViewModel::class.java]
-
         _binding = FragmentEditAnnouncementBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

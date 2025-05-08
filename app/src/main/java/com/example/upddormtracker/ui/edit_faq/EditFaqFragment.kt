@@ -25,8 +25,6 @@ class EditFaqFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val editFaqViewModel =
-            ViewModelProvider(this)[EditFaqViewModel::class.java]
         _binding = FragmentEditFaqBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root

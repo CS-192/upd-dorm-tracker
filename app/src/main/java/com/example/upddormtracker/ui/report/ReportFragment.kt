@@ -43,8 +43,6 @@ class ReportFragment : Fragment() {
         _binding = FragmentReportBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-
         return root
     }
 

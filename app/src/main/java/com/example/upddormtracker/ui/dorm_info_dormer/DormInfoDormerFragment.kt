@@ -32,8 +32,6 @@ class DormInfoDormerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dormInfoViewModel =
-            ViewModelProvider(this)[DormInfoDormerViewModel::class.java]
         user = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
         _binding = FragmentDormInfoDormerBinding.inflate(inflater, container, false)
@@ -70,7 +68,7 @@ class DormInfoDormerFragment : Fragment() {
                     Toast.makeText(requireContext(), "No information found for your dorm", Toast.LENGTH_SHORT).show()
                 }
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener { _ ->
                 Toast.makeText(requireContext(), "Error getting dorm info", Toast.LENGTH_SHORT).show()
             }
     }

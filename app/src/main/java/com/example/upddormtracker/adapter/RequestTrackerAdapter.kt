@@ -30,7 +30,7 @@ class RequestTrackerAdapter (private val requestList: MutableList<Request>,
 
     override fun onBindViewHolder(holder: RequestTrackerViewHolder, position: Int) {
         val currentItem = requestList[position]
-        holder.bind(currentItem, position)
+        holder.bind(currentItem)
     }
 
     inner class RequestTrackerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,7 +39,7 @@ class RequestTrackerAdapter (private val requestList: MutableList<Request>,
         private val view: TextView = itemView.findViewById(R.id.colViewBtn)
 
 
-        fun bind(request: Request, position: Int) {
+        fun bind(request: Request) {
             // Set text for TextViews
             date.text = request.timestamp
             type.text = request.type

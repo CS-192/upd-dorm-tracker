@@ -81,7 +81,7 @@ class DormInfoFragment : Fragment() {
                     Toast.makeText(requireContext(), "No information found for your dorm", Toast.LENGTH_SHORT).show()
                 }
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener { _ ->
                 Toast.makeText(requireContext(), "Error getting dorm info", Toast.LENGTH_SHORT).show()
             }
     }

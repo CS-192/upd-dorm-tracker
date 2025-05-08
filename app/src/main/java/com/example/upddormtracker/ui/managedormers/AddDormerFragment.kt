@@ -50,9 +50,6 @@ class AddDormerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val addDormerViewModel =
-            ViewModelProvider(this).get(AddDormerViewModel::class.java)
-
         _binding = FragmentAddDormerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -87,14 +84,14 @@ class AddDormerFragment : Fragment() {
                 convertView: View?,
                 parent: ViewGroup
             ): View {
-                val view = super.getDropDownView(position, convertView, parent)
-                val tv = view as TextView
+                val view1 = super.getDropDownView(position, convertView, parent)
+                val tv = view1 as TextView
                 if (position == 0) {
                     tv.setTextColor(resources.getColor(R.color.gray))
                 } else {
                     tv.setTextColor(resources.getColor(R.color.black))
                 }
-                return view
+                return view1
             }
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
