@@ -2,6 +2,7 @@ package com.example.upddormtracker
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
@@ -21,6 +23,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.upddormtracker.databinding.ActivityMainBinding
 import com.example.upddormtracker.ui.login.LoginActivity
+import com.example.upddormtracker.ui.managedormers.RegisterRFIDFragment
 import com.example.upddormtracker.ui.scan_id.ScanIDFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -211,6 +214,7 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
@@ -219,9 +223,15 @@ class MainActivity : AppCompatActivity() {
             ?.fragments
             ?.firstOrNull()
 
-        if (currentFragment is ScanIDFragment) {
-            currentFragment.handleTagIntent(intent)
+        when (currentFragment) {
+            is ScanIDFragment -> {
+                currentFragment.handleTagIntent(intent)
+            }
+            is RegisterRFIDFragment -> {
+                currentFragment.handleNfcIntent(intent)
+            }
         }
     }
+
 
 }

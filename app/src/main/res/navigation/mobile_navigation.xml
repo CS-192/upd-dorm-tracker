@@ -146,6 +146,18 @@
         />
 
     <fragment
+        android:id="@+id/unsuccessfulScanFragment"
+        android:name="com.example.upddormtracker.ui.scan_id.UnsuccessfulScanFragment"
+        android:label="Unsuccessful Scan"
+        android:layout="@layout/fragment_unsuccessful_scan" />
+
+    <fragment
+        android:id="@+id/registerRFIDFragment"
+        android:name="com.example.upddormtracker.ui.managedormers.RegisterRFIDFragment"
+        android:label="Register RFID" />
+
+
+    <fragment
         android:id="@+id/addDormerFragment"
         android:name="com.example.upddormtracker.ui.managedormers.AddDormerFragment"
         android:label="Add New Dormer"
@@ -158,12 +170,11 @@
 
     <fragment
         android:id="@+id/adminProfileFragment"
-        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"\
-        android:label="Profile" />\
-        android:label="Add Announcement" />
+        android:name="com.example.upddormtracker.ui.admin_profile.AdminProfileFragment"
+        android:label="Profile" />
 
     <fragment
         android:id="@+id/manageRequestsFragment"
         android:name="com.example.upddormtracker.ui.managerequests.ManageRequestsFragment"
-        android:label="Manage Requests" />\
+        android:label="Manage Requests" />
 </navigation>
