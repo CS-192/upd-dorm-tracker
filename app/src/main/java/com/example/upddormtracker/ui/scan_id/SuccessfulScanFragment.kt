@@ -11,6 +11,15 @@ import com.example.upddormtracker.R
 class SuccessfulScanFragment : Fragment(R.layout.fragment_successful_scan) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val firstName = arguments?.getString("first_name") ?: "Unknown"
+        val lastName = arguments?.getString("last_name") ?: "Unknown"
+        val studentId = arguments?.getString("student_id") ?: "Unknown"
+
+        val nameTextView = view.findViewById<TextView>(R.id.dormerName)
+        val studentIdTextView = view.findViewById<TextView>(R.id.studentId)
+
+        nameTextView.text = "Dormer Name: $firstName $lastName"
+        studentIdTextView.text = "Student ID: $studentId"
 
         // Get the passed RFID from arguments
         val rfid = arguments?.getString("rfid") ?: "Unknown"

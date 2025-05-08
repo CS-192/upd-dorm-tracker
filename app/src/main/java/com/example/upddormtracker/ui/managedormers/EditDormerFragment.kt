@@ -86,6 +86,15 @@ class EditDormerFragment : Fragment() {
             }
         }
 
+        binding.btnRegisterID.setOnClickListener {
+            dormer?.let {
+                val bundle = Bundle()
+                bundle.putString("docId", it.docId)  // Pass Firestore doc ID
+                findNavController().navigate(R.id.registerRFIDFragment, bundle)
+            }
+        }
+
+
         binding.btnUpdateDetails.setOnClickListener {
             dormer?.let {
                 val bundle = Bundle()
@@ -96,6 +105,9 @@ class EditDormerFragment : Fragment() {
             }
         }
     }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

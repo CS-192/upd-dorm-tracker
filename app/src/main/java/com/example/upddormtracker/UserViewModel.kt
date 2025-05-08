@@ -38,7 +38,6 @@ class UserViewModel : ViewModel() {
     fun setEmail(email: String) {
         _email.value = email
     }
-
     fun setIsDormer(isDormer: Boolean) {
         _isDormer.value = isDormer
     }
