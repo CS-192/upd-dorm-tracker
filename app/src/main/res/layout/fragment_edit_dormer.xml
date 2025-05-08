@@ -100,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit requests"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnViewEditViolations"
@@ -108,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit violations"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnEditComment"
@@ -116,7 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="View/Edit guardian"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnRemoveDormer"

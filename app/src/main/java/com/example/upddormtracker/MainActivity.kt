@@ -159,6 +159,8 @@ class MainActivity : AppCompatActivity() {
             navView.menu.add(Menu.NONE, R.id.manageRequestsFragment, Menu.NONE, "Manage Requests")
             navView.menu.add(Menu.NONE, R.id.nav_manage_dormers, Menu.NONE, "Manage Dormers")
             navView.menu.add(Menu.NONE, R.id.dormDetailsFragment, Menu.NONE, "Manage Dorm Details")
+            navView.menu.add(Menu.NONE, R.id.entryExitLogsFragment, Menu.NONE, "Entry and Exit Logs")
+
             graph.setStartDestination(R.id.home_admin)
 
             topLevelDestinations = setOf(

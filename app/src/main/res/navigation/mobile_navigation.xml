@@ -180,4 +180,9 @@
         android:id="@+id/requestDetailsFragment"
         android:name="com.example.upddormtracker.ui.managerequests.RequestDetailsFragment"
         android:label="Request" />
+
+    <fragment
+        android:id="@+id/entryExitLogsFragment"
+        android:name="com.example.upddormtracker.ui.entryexitlogs.EntryExitLogsFragment"
+        android:label="Entry and Exit Logs" />
 </navigation>
