@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-private val timeFormatter = SimpleDateFormat("hh:mm a", Locale.getDefault()).apply {
+private val timeFormatter = SimpleDateFormat("hh:mm:ss a", Locale.getDefault()).apply {
     timeZone = TimeZone.getTimeZone("Asia/Manila")
 }
 

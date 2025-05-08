@@ -3,35 +3,52 @@
     android:id="@+id/fragment_scan_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="?android:attr/windowBackground"
     android:gravity="center"
-    android:padding="24dp"
-    android:background="?android:attr/windowBackground">
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/nfcText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tap_your_id_to_scan"
-        android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
+
+    <TextView
+        android:id="@+id/clockTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDormScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dorm"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <RadioGroup
         android:id="@+id/entryExitGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/entryRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Entry"
-            android:checked="true" />
+            android:checked="true"
+            android:text="Entry" />
 
         <RadioButton
             android:id="@+id/exitRadio"

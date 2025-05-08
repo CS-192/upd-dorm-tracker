@@ -6,6 +6,8 @@ import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,14 +18,17 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.upddormtracker.R
+import com.example.upddormtracker.UserViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import okhttp3.internal.wait
 import com.google.firebase.firestore.FieldValue
+import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.ZonedDateTime
-
+import java.util.Date
+import java.util.Locale
 
 
 @Suppress("DEPRECATION")
@@ -32,6 +37,8 @@ class ScanIDFragment : Fragment() {
     private lateinit var textView: TextView
     private var nfcAdapter: NfcAdapter? = null
     private var entryOrExit = "entry"
+    private val userViewModel: UserViewModel by activityViewModels()
+    private var selectedDorm: String = ""
 
 
     override fun onCreateView(
@@ -43,6 +50,15 @@ class ScanIDFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        clockTextView = view.findViewById(R.id.clockTextView)
+        handler.post(clockRunnable)
+
+        userViewModel.dorm.observe(viewLifecycleOwner) {
+            val dormText = view.findViewById<TextView>(R.id.tvDormScan)
+            dormText.text = it.capitalize()
+            selectedDorm = it
+        }
 
         val entryExitGroup = view.findViewById<RadioGroup>(R.id.entryExitGroup)
         entryExitGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -73,6 +89,7 @@ class ScanIDFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         nfcAdapter?.disableForegroundDispatch(requireActivity())
+        Log.d("NFC", "Foreground dispatch disabled - no longer scanning.")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -83,7 +100,7 @@ class ScanIDFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         val dormersRef = db.collection("dormers")
 
-        dormersRef.whereEqualTo("rfid_number", id).get()
+        dormersRef.whereEqualTo("rfid_number", id).whereEqualTo("dorm", selectedDorm).get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     val dormerDoc = documents.documents[0]
@@ -156,5 +173,19 @@ class ScanIDFragment : Fragment() {
             }
     }
 
+    private lateinit var clockTextView: TextView
+    private val handler = Handler(Looper.getMainLooper())
+    private val clockRunnable = object : Runnable {
+        override fun run() {
+            val currentTime = SimpleDateFormat("hh:mm:ss a", Locale.getDefault()).format(Date())
+            clockTextView.text = currentTime
+            handler.postDelayed(this, 1000) // update every second
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        handler.removeCallbacks(clockRunnable)
+    }
 
 }
