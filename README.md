@@ -18,42 +18,43 @@ https://www.figma.com/proto/h8r14frHFfw3DoWKqlW2Wm/Mobile-App?node-id=5-2&t=Q3vp
 
 When a dormer logs in, they are directed to the dashboard, with announcements and FAQs, as seen below:
 
-[Dormer Dashboard](images/dormer_dashboard.jpeg)
+![Dormer Dashboard](images/dormer_dashboard.jpg)
 
 The button in the upper right allows the user to check their profile or sign out. Clicking "Sign Out" signs out the user and directs them back to the log in page
 
-[Profile and Sign Out](images/dormer_profile_signout.jpeg)
+![Profile and Sign Out](images/dormer_profile_signout.jpg)
 
 Clicking in "Profile" allows the user to view their own information, as well as the requests that they have submitted. Clicking on "View" shows the details of the request.
 
-[Dormer Profile and Request View](images/dormer_profile_request.jpeg)
+![Dormer Profile and Request View](images/dormer_profile_request.jpg)
 
 Back to the Dashboard, clicking Request Pass, Request Bill, and File Report would allow the user to file the respective requests after filling in the relevant fields.
 
-[Dormer Requests](images/dormer_requests.jpeg)
+![Dormer Requests](images/dormer_requests.jpg)
 
 In "Dorm Info", the user is shown relevant information about the dorm.
 
-[Dormer's Dorm Info](images/dormer_dorm_info.jpeg)
+![Dormer's Dorm Info](images/dormer_dorm_info.jpg)
 
 # Dorm Management
 
 In the management dashboard, the management can view dorm statistics, as well as manage dorm functions like requests and announcements.
 
-[Management Dashboard](images/management_dashboard.jpeg)
+![Management Dashboard](images/management_dashboard.jpg)
 
 In "Scan ID", management can scan a dormer's ID using RFID to register their entry or exit in the dorm.
 
-[Management ID Scan](images/management_id_scan.jpeg)
+![Management ID Scan](images/management_id_scan.jpg)
 
 In "Dormers", management can keep track of the dormers in the dorm and update their details, register their ID, or delete them from the database.
 
-[Manage Dormers](images/manage_dormer.jpeg)
+![Manage Dormers](images/manage_dormer.jpg)
 
 In "Dorm Details", management can update their announcements and FAQs, as well as details about the dorm.
 
-[Manage Dorm Details](images/manage_dorm_details.jpeg)
+![Manage Dorm Details](images/manage_dorm_details.jpg)
 
 In "Requests", much like in the Dormers page, management can keep track of requests filed by dormers
-[Manage Requests](images/manage_requests.jpeg)
+
+![Manage Requests](images/manage_requests.jpg)
 
